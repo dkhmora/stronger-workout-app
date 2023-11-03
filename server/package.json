@@ -6,6 +6,7 @@
   "license": "ISC",
   "main": "server.ts",
   "scripts": {
+    "start": "node server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

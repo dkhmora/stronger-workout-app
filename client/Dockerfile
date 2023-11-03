@@ -9,12 +9,15 @@ COPY . .
 ARG REACT_APP_API_BASE_URL
 ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
-RUN npm run build
+CMD npm start
 
-# Stage 2
-FROM nginx:1.25.3-alpine
+# Uncomment for production build
+# RUN npm run build
 
-COPY --from=build-stage /client/build /usr/share/nginx/html
-EXPOSE $REACT_DOCKER_PORT
+# # Stage 2
+# FROM nginx:1.25.3-alpine
 
-CMD nginx -g 'daemon off;'
+# COPY --from=build-stage /client/build /usr/share/nginx/html
+# EXPOSE $REACT_DOCKER_PORT
+
+# CMD nginx -g 'daemon off;'

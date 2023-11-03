@@ -16,9 +16,9 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./app/models");
+const dbModels = require("./app/models/index.ts");
 
-db.sequelize.sync();
+dbModels.sequelize.sync();
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
@@ -28,6 +28,8 @@ db.sequelize.sync();
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to stronger" });
 });
+
+require("./app/routes/exercise.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
