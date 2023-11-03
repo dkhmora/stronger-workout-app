@@ -43,6 +43,9 @@ services:
       - DB_NAME=$MYSQLDB_DATABASE
       - DB_PORT=$MYSQLDB_DOCKER_PORT
       - CLIENT_ORIGIN=$CLIENT_ORIGIN
+    volumes:
+      - "./server:/server"
+      - "/server/node_modules"
     networks:
       - backend
       - frontend
