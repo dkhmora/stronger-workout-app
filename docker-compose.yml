@@ -44,8 +44,9 @@ services:
       - DB_PORT=$MYSQLDB_DOCKER_PORT
       - CLIENT_ORIGIN=$CLIENT_ORIGIN
     volumes:
-      - "./server:/server"
-      - "/server/node_modules"
+      - "./server:/opt/app"
+      - type: tmpfs
+        target: /opt/app/node_modules/
     networks:
       - backend
       - frontend
@@ -66,13 +67,18 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - "./client:/client"
-      - "/client/node_modules"
+      - "./client:/opt/app"
+      - type: tmpfs
+        target: /opt/app/node_modules/
     networks:
       - frontend
 
 volumes:
   db:
+  ignore_client_node_modules:
+    driver: local
+  ignore_server_node_modules:
+    driver: local
 
 networks:
   backend:
