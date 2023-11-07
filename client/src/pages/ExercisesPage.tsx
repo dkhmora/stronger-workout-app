@@ -60,10 +60,7 @@ export default function ExercisesPage() {
 
   return (
     <Paper>
-      <Typography sx={{ typography: { sm: "h3", xs: "h4" } }}>
-        Exercises
-      </Typography>
-      <DataTable columns={columns} rows={rows} />
+      <DataTable toolbarTitle="Exercises" columns={columns} rows={rows} />
     </Paper>
   );
 }

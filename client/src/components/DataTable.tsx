@@ -7,13 +7,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import TableToolbar from "./TableToolbar";
 
 interface DataTableProps {
+  toolbarTitle: string | null;
   columns: any[];
   rows: any[];
 }
 
-export default function DataTable({ columns, rows }: DataTableProps) {
+export default function DataTable(props: DataTableProps) {
+  const { toolbarTitle, columns, rows } = props;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -30,6 +33,7 @@ export default function DataTable({ columns, rows }: DataTableProps) {
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <TableToolbar title={toolbarTitle} numSelected={0} />
       <TableContainer
         sx={{
           maxHeight: "100vh",
