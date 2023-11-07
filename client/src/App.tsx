@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const [windowDimension, setWindowDimension] = useState<number | null>(null);
+
+  useEffect(() => {
+    setWindowDimension(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimension(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowDimension && windowDimension <= 640;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,7 +39,7 @@ function App() {
         </a>
       </header>
 
-      <Navbar />
+      {isMobile ? <MobileNavbar /> : <Navbar />}
     </div>
   );
 }
