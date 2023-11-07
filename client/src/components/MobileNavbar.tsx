@@ -1,12 +1,9 @@
 import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import PersonIcon from "@mui/icons-material/Person";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-import HistoryIcon from "@mui/icons-material/History";
-import StraightenIcon from "@mui/icons-material/Straighten";
-import AddIcon from "@mui/icons-material/Add";
 import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
+import { mobileNavbarItems } from "../constants/general";
 
 export default function MobileNavbar() {
   const [value, setValue] = React.useState(0);
@@ -23,14 +20,14 @@ export default function MobileNavbar() {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
-        <BottomNavigationAction label="History" icon={<HistoryIcon />} />
-        <BottomNavigationAction label="Workout" icon={<AddIcon />} />
-        <BottomNavigationAction
-          label="Exercises"
-          icon={<FitnessCenterIcon />}
-        />
-        <BottomNavigationAction label="Measure" icon={<StraightenIcon />} />
+        {mobileNavbarItems.map(({ text, icon, to }, index) => (
+          <BottomNavigationAction
+            label={text}
+            icon={icon}
+            {...{ to }}
+            component={Link}
+          />
+        ))}
       </BottomNavigation>
     </Paper>
   );

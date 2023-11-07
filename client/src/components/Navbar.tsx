@@ -7,12 +7,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from "@mui/icons-material/Person";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-import HistoryIcon from "@mui/icons-material/History";
-import StraightenIcon from "@mui/icons-material/Straighten";
 import { Link } from "react-router-dom";
+import { desktopNavbarItems } from "../constants/general";
 
 const drawerWidth = 240;
 
@@ -79,14 +75,6 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const drawerItems = [
-    { text: "Home", icon: <HomeIcon />, to: "/" },
-    { text: "Profile", icon: <PersonIcon />, to: "/profile" },
-    { text: "History", icon: <HistoryIcon />, to: "/history" },
-    { text: "Exercises", icon: <FitnessCenterIcon />, to: "/exercises" },
-    { text: "Measure", icon: <StraightenIcon />, to: "/measure" },
-  ];
-
   return (
     <Drawer
       variant="permanent"
@@ -95,7 +83,7 @@ export default function Navbar() {
       onMouseLeave={handleDrawerClose}
     >
       <List>
-        {drawerItems.map(({ text, icon, to }, index) => (
+        {desktopNavbarItems.map(({ text, icon, to }, index) => (
           <ListItem
             key={text}
             disablePadding
