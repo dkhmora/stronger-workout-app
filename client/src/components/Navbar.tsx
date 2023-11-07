@@ -1,28 +1,18 @@
 import * as React from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import HistoryIcon from "@mui/icons-material/History";
 import StraightenIcon from "@mui/icons-material/Straighten";
-import AddIcon from "@mui/icons-material/Add";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -90,10 +80,11 @@ export default function Navbar() {
   };
 
   const drawerItems = [
-    { text: "Profile", icon: <PersonIcon /> },
-    { text: "History", icon: <HistoryIcon /> },
-    { text: "Exercises", icon: <FitnessCenterIcon /> },
-    { text: "Measure", icon: <StraightenIcon /> },
+    { text: "Home", icon: <HomeIcon />, to: "/" },
+    { text: "Profile", icon: <PersonIcon />, to: "/profile" },
+    { text: "History", icon: <HistoryIcon />, to: "/history" },
+    { text: "Exercises", icon: <FitnessCenterIcon />, to: "/exercises" },
+    { text: "Measure", icon: <StraightenIcon />, to: "/measure" },
   ];
 
   return (
@@ -104,8 +95,14 @@ export default function Navbar() {
       onMouseLeave={handleDrawerClose}
     >
       <List>
-        {drawerItems.map(({ text, icon }, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {drawerItems.map(({ text, icon, to }, index) => (
+          <ListItem
+            key={text}
+            disablePadding
+            sx={{ display: "block" }}
+            {...{ to }}
+            component={Link}
+          >
             <ListItemButton
               sx={{
                 minHeight: 48,

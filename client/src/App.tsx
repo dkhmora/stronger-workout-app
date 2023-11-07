@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
+import ProfilePage from "./pages/ProfilePage";
+import HomePage from "./pages/HomePage";
+import MeasurePage from "./pages/MeasurePage";
+import ExercisesPage from "./pages/ExercisesPage";
+import HistoryPage from "./pages/HistoryPage";
 
 function App() {
   const [windowDimension, setWindowDimension] = useState<number | null>(null);
@@ -24,22 +29,16 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-      {isMobile ? <MobileNavbar /> : <Navbar />}
+      <BrowserRouter>
+        {isMobile ? <MobileNavbar /> : <Navbar />}
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/exercises" element={<ExercisesPage />} />
+          <Route path="/measure" element={<MeasurePage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
