@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:14 as build-stage
+FROM node:18-alpine
 
 WORKDIR /client
 COPY package.json .
@@ -9,7 +9,7 @@ COPY . .
 ARG REACT_APP_API_BASE_URL
 ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
-CMD npm start
+CMD ["npm", "start"]
 
 # Uncomment for production build
 # RUN npm run build

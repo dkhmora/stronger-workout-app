@@ -45,7 +45,7 @@ services:
       - CLIENT_ORIGIN=$CLIENT_ORIGIN
     volumes:
       - "./server:/server"
-      - "/server/node_modules"
+      - "/server/node_modules/"
     networks:
       - backend
       - frontend
@@ -67,7 +67,7 @@ services:
     tty: true
     volumes:
       - "./client:/client"
-      - "/client/node_modules"
+      - "/client/node_modules/"
     networks:
       - frontend
 

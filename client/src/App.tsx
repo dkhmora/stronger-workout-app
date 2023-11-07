@@ -1,24 +1,44 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import MobileNavbar from "./components/MobileNavbar";
+import Navbar from "./components/Navbar";
+import ProfilePage from "./pages/ProfilePage";
+import HomePage from "./pages/HomePage";
+import MeasurePage from "./pages/MeasurePage";
+import ExercisesPage from "./pages/ExercisesPage";
+import HistoryPage from "./pages/HistoryPage";
 
 function App() {
+  const [windowDimension, setWindowDimension] = useState<number | null>(null);
+
+  useEffect(() => {
+    setWindowDimension(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimension(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowDimension && windowDimension <= 640;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        {isMobile ? <MobileNavbar /> : <Navbar />}
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/exercises" element={<ExercisesPage />} />
+          <Route path="/measure" element={<MeasurePage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
