@@ -10,6 +10,7 @@ import MeasurePage from "./pages/MeasurePage";
 import ExercisesPage from "./pages/ExercisesPage";
 import HistoryPage from "./pages/HistoryPage";
 import { Box, CssBaseline } from "@mui/material";
+import MobileAppBar from "./components/MobileAppBar";
 
 function App() {
   const [windowDimension, setWindowDimension] = useState<number | null>(null);
@@ -43,6 +44,7 @@ function App() {
         {isMobile ? <MobileNavbar /> : <Navbar />}
 
         <Box sx={{ flexGrow: 1, overflow: "auto" }}>
+          {isMobile && <MobileAppBar />}
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/profile" element={<ProfilePage />} />
