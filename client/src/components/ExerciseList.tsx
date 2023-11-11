@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Box, List } from "@mui/material";
-import ExerciseListButton from "./ExerciseListItem";
+import ExerciseListItem from "./ExerciseListItem";
 import { ExerciseData, ExerciseColumn } from "../Interfaces";
 
 interface ExerciseListProps {
@@ -18,7 +18,7 @@ export default function ExerciseList(props: ExerciseListProps) {
         {rows.map((row: ExerciseData, index) => {
           return (
             <>
-              <ExerciseListButton exerciseData={row} />
+              <ExerciseListItem exerciseData={row} />
             </>
           );
         })}
