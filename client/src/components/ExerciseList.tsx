@@ -7,6 +7,7 @@ import {
   Box,
   Divider,
   ListItemAvatar,
+  ListItemButton,
   Typography,
 } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
@@ -20,6 +21,8 @@ interface ExerciseListProps {
 interface ExerciseData {
   title: string;
   type: string;
+  description: string;
+  userCreated: string;
 }
 
 export default function ExerciseList(props: ExerciseListProps) {
@@ -28,13 +31,23 @@ export default function ExerciseList(props: ExerciseListProps) {
   const getListItemPrimaryText = ({ title, type }: ExerciseData) =>
     `${title} (${type})`;
 
+  const openExerciseDetailsDialog = (row: ExerciseData) => () => {
+    console.log(row);
+    /* place open exercise dialog here */
+  };
+
   return (
     <Box sx={{ height: "100%", width: "100%", overflow: "auto" }}>
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-        {rows.map((row, index) => {
+        {rows.map((row: ExerciseData, index) => {
           return (
             <>
-              <ListItem alignItems="flex-start">
+              <ListItemButton
+                alignItems="flex-start"
+                role={undefined}
+                onClick={openExerciseDetailsDialog(row)}
+                dense
+              >
                 <ListItemAvatar>
                   <Avatar>
                     <ImageIcon />
@@ -55,7 +68,7 @@ export default function ExerciseList(props: ExerciseListProps) {
                     </React.Fragment>
                   }
                 />
-              </ListItem>
+              </ListItemButton>
               <Divider variant="inset" component="li" />
             </>
           );
