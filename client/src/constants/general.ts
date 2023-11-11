@@ -23,3 +23,12 @@ export const mobileNavbarItems = [
   { text: "Workout", icon: createElement(AddIcon), to: "/create" },
   ...desktopNavbarItems.slice(3),
 ];
+
+export const pathnameTitles = {
+  "/": "Home",
+  "/profile": "Profile",
+  "/history": "History",
+  "/create": "New Workout",
+  "/exercises": "Exercises",
+  "/measure": "Measure",
+};
