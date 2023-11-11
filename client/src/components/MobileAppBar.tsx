@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { pathnameTitles } from "../constants/general";
 
@@ -12,9 +12,11 @@ export default function MobileAppBar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {getPathNameTitle(location.pathname)}
-        </Typography>
+        <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+          <Typography noWrap variant="h6" component="div">
+            {getPathNameTitle(location.pathname)}
+          </Typography>
+        </Box>
       </Toolbar>
     </AppBar>
   );
