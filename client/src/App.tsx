@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage";
 import MeasurePage from "./pages/MeasurePage";
 import ExercisesPage from "./pages/ExercisesPage";
 import HistoryPage from "./pages/HistoryPage";
-import { Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline, Grid } from "@mui/material";
 
 function App() {
   const [windowDimension, setWindowDimension] = useState<number | null>(null);
@@ -29,12 +29,13 @@ function App() {
   const isMobile = windowDimension && windowDimension <= 640;
 
   return (
-    <Box sx={{ display: "flex", flex: 1 }}>
+    <Box sx={{ display: "flex", height: "100vh" }}>
       <CssBaseline />
 
       <BrowserRouter>
         {isMobile ? <MobileNavbar /> : <Navbar />}
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+
+        <Box sx={{ flexGrow: 1, overflow: "auto" }}>
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/profile" element={<ProfilePage />} />

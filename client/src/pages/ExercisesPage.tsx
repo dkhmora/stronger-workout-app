@@ -1,4 +1,4 @@
-import { Container, Paper, Typography } from "@mui/material";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import DataTable from "../components/DataTable";
 
@@ -59,8 +59,8 @@ export default function ExercisesPage() {
   ];
 
   return (
-    <Paper>
+    <Box sx={{ width: "100%", p: 3 }}>
       <DataTable toolbarTitle="Exercises" columns={columns} rows={rows} />
-    </Paper>
+    </Box>
   );
 }
