@@ -1,26 +1,12 @@
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
 import DataTable from "../components/DataTable";
 import { useSelector } from "react-redux";
 import ExerciseList from "../components/ExerciseList";
-import type { RootState, AppDispatch } from "../store/general";
+import type { RootState } from "../store/general";
+import { ExerciseColumn, ExerciseData } from "../Interfaces";
 
 export default function ExercisesPage() {
-  interface ExerciseColumn {
-    id: "title" | "description" | "type" | "userCreated";
-    label: string;
-    minWidth?: number;
-    align?: "right";
-    format?: (value: number) => string;
-  }
-
-  interface ExerciseData {
-    title: string;
-    type: string;
-    description: string;
-    userCreated: string;
-  }
-
   const columns: ExerciseColumn[] = [
     { id: "title", label: "Title", minWidth: 170 },
     { id: "type", label: "Type", minWidth: 170 },

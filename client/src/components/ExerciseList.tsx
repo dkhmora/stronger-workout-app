@@ -1,18 +1,12 @@
 import * as React from "react";
 import { Box, List } from "@mui/material";
 import ExerciseListButton from "./ExerciseListItem";
+import { ExerciseData, ExerciseColumn } from "../Interfaces";
 
 interface ExerciseListProps {
   toolbarTitle: string | null;
-  columns: any[];
-  rows: any[];
-}
-
-interface ExerciseData {
-  title: string;
-  type: string;
-  description: string;
-  userCreated: string;
+  columns: ExerciseColumn[];
+  rows: ExerciseData[];
 }
 
 export default function ExerciseList(props: ExerciseListProps) {

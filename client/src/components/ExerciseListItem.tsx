@@ -1,29 +1,20 @@
 import * as React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import {
   Avatar,
-  Box,
   Divider,
   ListItemAvatar,
   ListItemButton,
+  ListItemText,
   Typography,
 } from "@mui/material";
-import ImageIcon from "@mui/icons-material/Image";
-
-interface ExerciseData {
-  title: string;
-  type: string;
-  description: string;
-  userCreated: string;
-}
+import { Image as ImageIcon } from "@mui/icons-material";
+import { ExerciseData } from "../Interfaces";
 
 interface ExerciseListProps {
   exerciseData: ExerciseData;
 }
 
-export default function ExerciseListButton(props: ExerciseListProps) {
+export default function ExerciseListItem(props: ExerciseListProps) {
   const { exerciseData } = props;
 
   const getListItemPrimaryText = ({ title, type }: ExerciseData) =>

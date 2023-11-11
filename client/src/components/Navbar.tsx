@@ -1,12 +1,13 @@
 import * as React from "react";
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
-import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import { styled, Theme, CSSObject } from "@mui/material/styles";
+import {
+  ListItemText,
+  ListItemIcon,
+  ListItemButton,
+  ListItem,
+  List,
+  Drawer as MuiDrawer,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { desktopNavbarItems } from "../constants/general";
 
@@ -33,19 +34,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -64,7 +52,6 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Navbar() {
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {

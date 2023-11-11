@@ -1,6 +1,5 @@
-import { Container, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import React from "react";
+import { Container, Typography, Unstable_Grid2 as Grid } from "@mui/material";
 
 export default function HomePage() {
   return (
