@@ -1,6 +1,9 @@
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import DataTable from "../components/DataTable";
+import { useSelector } from "react-redux";
+import ExerciseList from "../components/ExerciseList";
+import type { RootState, AppDispatch } from "../store/general";
 
 export default function ExercisesPage() {
   interface ExerciseColumn {
@@ -57,6 +60,14 @@ export default function ExercisesPage() {
       false
     ),
   ];
+
+  const isMobile = useSelector((state: RootState) => state.isMobile);
+
+  if (isMobile) {
+    return (
+      <ExerciseList toolbarTitle="Exercises" columns={columns} rows={rows} />
+    );
+  }
 
   return (
     <Box sx={{ width: "100%", p: 3 }}>
