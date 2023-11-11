@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
@@ -8,7 +9,7 @@ import HomePage from "./pages/HomePage";
 import MeasurePage from "./pages/MeasurePage";
 import ExercisesPage from "./pages/ExercisesPage";
 import HistoryPage from "./pages/HistoryPage";
-import { Box, CssBaseline, Grid } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 
 function App() {
   const [windowDimension, setWindowDimension] = useState<number | null>(null);
@@ -27,6 +28,12 @@ function App() {
   }, []);
 
   const isMobile = windowDimension && windowDimension <= 640;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "SET_IS_MOBILE", payload: isMobile });
+  }, [dispatch, isMobile]);
 
   return (
     <Box sx={{ display: "flex", height: "100vh" }}>
