@@ -14,8 +14,27 @@ export interface ExerciseColumn {
 }
 
 export interface DBExerciseData {
+  id: number;
   title: string;
   type: string;
   description: string;
-  userCreated: string;
+  userCreated: boolean;
+}
+
+export type ExerciseSet = {
+  numberOfReps: number;
+  weight: number;
+  weightUnit: "lb" | "kg";
+};
+
+export type WorkoutExercises = {
+  exerciseData: DBExerciseData;
+  sets: ExerciseSet[];
+};
+
+export interface WorkoutData {
+  title: string;
+  start: number;
+  end: number;
+  exercises: WorkoutExercises[];
 }
