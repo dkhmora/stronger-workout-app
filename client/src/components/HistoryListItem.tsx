@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Avatar,
+  Box,
   Divider,
   ListItemAvatar,
   ListItemButton,
@@ -26,13 +27,13 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
   };
 
   return (
-    <>
+    <Box sx={{ borderWidth: 1, borderRadius: 4, m: 1 }}>
       <ListItemButton
         alignItems="flex-start"
         role={undefined}
         onClick={openWorkoutDetailsDialog(workoutData)}
         dense
-        sx={{ borderRadius: 10 }}
+        sx={{ borderRadius: 4 }}
       >
         <ListItemAvatar>
           <Avatar>
@@ -55,7 +56,6 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
           }
         />
       </ListItemButton>
-      <Divider variant="inset" component="li" />
-    </>
+    </Box>
   );
 }

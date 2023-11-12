@@ -59,7 +59,7 @@ export default function HistoryPage() {
 
   return (
     <Paper
-      sx={{ height: "100vh", borderWidth: 1, borderRadius: 5, m: 2, p: 3 }}
+      sx={{ height: "100vh", borderWidth: 1, borderRadius: 5, m: 2, p: 1 }}
     >
       <HistoryList toolbarTitle="Workout History" workouts={data} />
     </Paper>
