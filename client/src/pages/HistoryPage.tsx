@@ -60,10 +60,10 @@ export default function HistoryPage() {
   return (
     <Grid
       container
-      sx={{ display: "flex", flexDirection: "column", flex: 1, p: 2 }}
+      sx={{ display: "flex", flexDirection: "column", flex: 1, p: 3 }}
     >
-      <Grid item>
-        <Typography noWrap variant="h3" component="div" sx={{ mb: 2 }}>
+      <Grid item sx={{ mb: 3 }}>
+        <Typography noWrap variant="h3" component="div">
           Workout History
         </Typography>
       </Grid>
