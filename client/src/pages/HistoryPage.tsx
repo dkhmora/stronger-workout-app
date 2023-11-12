@@ -69,9 +69,7 @@ export default function HistoryPage() {
       </Grid>
 
       <Grid item>
-        <Paper sx={{ height: "100vh", borderWidth: 1, borderRadius: 5, p: 1 }}>
-          <HistoryList toolbarTitle="Workout History" workouts={data} />
-        </Paper>
+        <HistoryList toolbarTitle="Workout History" workouts={data} />
       </Grid>
     </Grid>
   );

@@ -27,7 +27,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
   };
 
   return (
-    <Box sx={{ borderWidth: 1, borderRadius: 4, m: 1 }}>
+    <Box sx={{ borderWidth: 1, borderRadius: 4, my: 1 }}>
       <ListItemButton
         alignItems="flex-start"
         role={undefined}
