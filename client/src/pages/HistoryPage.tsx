@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Paper } from "@mui/material";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import HistoryList from "../components/HistoryList";
 import { WorkoutData, WorkoutExercises } from "../Interfaces";
 
@@ -58,10 +58,21 @@ export default function HistoryPage() {
   ];
 
   return (
-    <Paper
-      sx={{ height: "100vh", borderWidth: 1, borderRadius: 5, m: 2, p: 1 }}
+    <Grid
+      container
+      sx={{ display: "flex", flexDirection: "column", flex: 1, p: 2 }}
     >
-      <HistoryList toolbarTitle="Workout History" workouts={data} />
-    </Paper>
+      <Grid item>
+        <Typography noWrap variant="h3" component="div" sx={{ mb: 2 }}>
+          Workout History
+        </Typography>
+      </Grid>
+
+      <Grid item>
+        <Paper sx={{ height: "100vh", borderWidth: 1, borderRadius: 5, p: 1 }}>
+          <HistoryList toolbarTitle="Workout History" workouts={data} />
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
