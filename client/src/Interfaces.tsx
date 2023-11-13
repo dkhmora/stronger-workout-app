@@ -13,13 +13,15 @@ export interface ExerciseColumn {
   format?: (value: number) => string;
 }
 
+export type WeightUnit = "lb" | "kg";
+
 export interface DBExerciseData {
   id: number;
   title: string;
   type: string;
   description: string;
   userCreated: boolean;
-  weightUnit: "lb" | "kg";
+  weightUnit: WeightUnit;
 }
 
 export type ExerciseSet = {

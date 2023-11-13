@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Image as ImageIcon } from "@mui/icons-material";
 import { WorkoutData, WorkoutExercises } from "../Interfaces";
-import { getDuration, getHumanReadableTime } from "../helpers";
+import { getDuration, getHumanReadableTime, getTotalWeight } from "../helpers";
 
 interface WorkoutListItemProps {
   workoutData: WorkoutData;
@@ -44,7 +44,27 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
           {getHumanReadableTime(start)}
         </Typography>
 
-        <Box>
+        <Box sx={{ display: "flex", flex: 1, justifyContent: "space-between" }}>
+          <Typography
+            sx={{ display: "inline", mr: 2 }}
+            component="span"
+            variant="body2"
+            color="text.primary"
+          >
+            <b>{getDuration(start, end)}</b>
+          </Typography>
+
+          <Typography
+            noWrap
+            sx={{ display: "inline", mr: 2 }}
+            component="span"
+            variant="body2"
+            color="text.primary"
+          >
+            {/* TODO: Change to selected user weight in store */}
+            <b>{getTotalWeight(workoutData)} lb</b>
+          </Typography>
+
           <Typography
             noWrap
             sx={{ display: "inline" }}
@@ -52,7 +72,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
             variant="body2"
             color="text.primary"
           >
-            <b>{getDuration(start, end)}</b>
+            <b>{"<number of personal records>"}</b>
           </Typography>
         </Box>
       </Box>
