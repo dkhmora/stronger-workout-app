@@ -166,7 +166,13 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
                   width: "100%",
                 }}
               >
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "50%",
+                  }}
+                >
                   <Typography
                     noWrap
                     sx={{ display: "inline" }}
@@ -179,7 +185,13 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
                   {getWorkoutList(workoutData.exercises)}
                 </Box>
 
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "50%",
+                  }}
+                >
                   <Typography
                     noWrap
                     sx={{ display: "inline" }}
