@@ -1,7 +1,5 @@
 import * as React from "react";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import Paper from "@mui/material/Paper";
+import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { Link } from "react-router-dom";
 import { mobileNavbarItems } from "../constants/general";
 

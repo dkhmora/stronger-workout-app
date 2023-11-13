@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
@@ -8,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import MeasurePage from "./pages/MeasurePage";
 import ExercisesPage from "./pages/ExercisesPage";
 import HistoryPage from "./pages/HistoryPage";
+import { Box, CssBaseline } from "@mui/material";
+import MobileAppBar from "./components/MobileAppBar";
 
 function App() {
   const [windowDimension, setWindowDimension] = useState<number | null>(null);
@@ -27,19 +30,31 @@ function App() {
 
   const isMobile = windowDimension && windowDimension <= 640;
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "SET_IS_MOBILE", payload: isMobile });
+  }, [dispatch, isMobile]);
+
   return (
-    <div className="App">
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+
       <BrowserRouter>
         {isMobile ? <MobileNavbar /> : <Navbar />}
-        <Routes>
-          <Route index element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/history" element={<HistoryPage />} />
-          <Route path="/exercises" element={<ExercisesPage />} />
-          <Route path="/measure" element={<MeasurePage />} />
-        </Routes>
+
+        <Box sx={{ flexGrow: 1, overflow: "auto" }}>
+          {isMobile && <MobileAppBar />}
+          <Routes>
+            <Route index element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/history" element={<HistoryPage />} />
+            <Route path="/exercises" element={<ExercisesPage />} />
+            <Route path="/measure" element={<MeasurePage />} />
+          </Routes>
+        </Box>
       </BrowserRouter>
-    </div>
+    </Box>
   );
 }
 
