@@ -95,7 +95,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
                     noWrap
                     sx={{ display: "inline" }}
                     component="span"
-                    variant="overline"
+                    variant="button"
                     color="text.primary"
                   >
                     <b>Best Set</b>

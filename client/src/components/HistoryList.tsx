@@ -38,10 +38,8 @@ export default function HistoryList(props: any) {
   };
 
   return (
-    <Box sx={{ height: "100%", width: "100%", overflow: "auto" }}>
-      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-        {renderRows()}
-      </List>
-    </Box>
+    <List sx={{ height: "100%", width: "100%", bgcolor: "background.paper" }}>
+      {renderRows()}
+    </List>
   );
 }
