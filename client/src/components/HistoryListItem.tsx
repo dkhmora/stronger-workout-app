@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { Image as ImageIcon } from "@mui/icons-material";
 import { WorkoutData, WorkoutExercises } from "../Interfaces";
+import { getDuration, getHumanReadableTime } from "../helpers";
 
 interface WorkoutListItemProps {
   workoutData: WorkoutData;
@@ -20,8 +21,43 @@ interface WorkoutListItemProps {
 export default function HistoryListItem(props: WorkoutListItemProps) {
   const { workoutData } = props;
 
-  const getListItemPrimaryText = ({ title, start, end }: any) =>
-    `${title} (${start} - ${end})`;
+  const getListItemPrimaryText = ({ title, start, end }: any) => {
+    return (
+      <Box sx={{ display: "flex", flexDirection: "column", mb: 1 }}>
+        <Typography
+          noWrap
+          sx={{ display: "inline" }}
+          component="span"
+          variant="button"
+          color="text.primary"
+        >
+          <b>{title}</b>
+        </Typography>
+
+        <Typography
+          noWrap
+          sx={{ display: "inline" }}
+          component="span"
+          variant="body2"
+          color="text.primary"
+        >
+          {getHumanReadableTime(start)}
+        </Typography>
+
+        <Box>
+          <Typography
+            noWrap
+            sx={{ display: "inline" }}
+            component="span"
+            variant="body2"
+            color="text.primary"
+          >
+            <b>{getDuration(start, end)}</b>
+          </Typography>
+        </Box>
+      </Box>
+    );
+  };
 
   const openWorkoutDetailsDialog = (row: any) => () => {
     console.log(row);
