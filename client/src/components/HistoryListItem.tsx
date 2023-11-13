@@ -51,6 +51,39 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
     );
   };
 
+  const getBestSetList = (workouts: WorkoutExercises[]) => {
+    return workouts.map(
+      ({
+        exerciseData: { id, title, type, description, userCreated },
+        sets,
+      }) => {
+        const bestOneRepMax = 0;
+        let bestSet = sets[0];
+
+        sets.forEach((set) => {
+          const { numberOfReps, weight, weightUnit } = set;
+          const oneRepMax = weight * (1 + 0.0333 * numberOfReps);
+
+          if (oneRepMax > bestOneRepMax) {
+            bestSet = set;
+          }
+        });
+
+        return (
+          <Typography
+            noWrap
+            sx={{ display: "inline" }}
+            component="span"
+            variant="body2"
+            color="text.primary"
+          >
+            {bestSet.numberOfReps} x {bestSet.weight} {bestSet.weightUnit}
+          </Typography>
+        );
+      }
+    );
+  };
+
   return (
     <Paper sx={{ borderRadius: 4, height: "100%" }}>
       <ListItemButton
@@ -100,7 +133,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
                   >
                     <b>Best Set</b>
                   </Typography>
-                  {getWorkoutList(workoutData.exercises)}
+                  {getBestSetList(workoutData.exercises)}
                 </Box>
               </Box>
             </React.Fragment>

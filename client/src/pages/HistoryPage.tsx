@@ -282,12 +282,12 @@ export default function HistoryPage() {
           },
           {
             numberOfReps: 6,
-            weight: 85,
+            weight: 95,
             weightUnit: "kg",
           },
           {
             numberOfReps: 6,
-            weight: 85,
+            weight: 105,
             weightUnit: "kg",
           },
         ],
