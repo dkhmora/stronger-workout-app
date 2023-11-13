@@ -54,6 +54,32 @@ export default function HistoryPage() {
           },
         ],
       },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
     ]),
   ];
 
