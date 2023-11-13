@@ -18,9 +18,15 @@ export default function HistoryList(props: any) {
       const row = workouts.slice(i, i + itemsPerRow);
 
       rows.push(
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="stretch">
           {row.map((data: any, index: number) => (
-            <Grid item xs={12 / itemsPerRow} md={12 / itemsPerRow} key={index}>
+            <Grid
+              item
+              xs={12 / itemsPerRow}
+              md={12 / itemsPerRow}
+              sx={{ my: 1 }}
+              key={index}
+            >
               <HistoryListItem workoutData={data} />
             </Grid>
           ))}

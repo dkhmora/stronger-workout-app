@@ -80,6 +80,1234 @@ export default function HistoryPage() {
           },
         ],
       },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            weightUnit: "kg",
+          },
+        ],
+      },
     ]),
   ];
 

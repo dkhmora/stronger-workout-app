@@ -52,13 +52,13 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
   };
 
   return (
-    <Box sx={{ borderWidth: 1, borderRadius: 4, my: 1 }}>
+    <Paper sx={{ borderRadius: 4, height: "100%" }}>
       <ListItemButton
         alignItems="flex-start"
         role={undefined}
         onClick={openWorkoutDetailsDialog(workoutData)}
         dense
-        sx={{ borderRadius: 4 }}
+        sx={{ borderRadius: 4, height: "100%" }}
       >
         <ListItemAvatar>
           <Avatar>
@@ -107,6 +107,6 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
           }
         />
       </ListItemButton>
-    </Box>
+    </Paper>
   );
 }
