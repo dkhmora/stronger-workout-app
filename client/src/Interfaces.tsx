@@ -19,12 +19,12 @@ export interface DBExerciseData {
   type: string;
   description: string;
   userCreated: boolean;
+  weightUnit: "lb" | "kg";
 }
 
 export type ExerciseSet = {
   numberOfReps: number;
   weight: number;
-  weightUnit: "lb" | "kg";
 };
 
 export type WorkoutExercises = {

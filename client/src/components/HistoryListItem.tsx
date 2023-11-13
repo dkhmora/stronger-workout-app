@@ -54,14 +54,14 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
   const getBestSetList = (workouts: WorkoutExercises[]) => {
     return workouts.map(
       ({
-        exerciseData: { id, title, type, description, userCreated },
+        exerciseData: { id, title, type, description, userCreated, weightUnit },
         sets,
       }) => {
         const bestOneRepMax = 0;
         let bestSet = sets[0];
 
         sets.forEach((set) => {
-          const { numberOfReps, weight, weightUnit } = set;
+          const { numberOfReps, weight } = set;
           const oneRepMax = weight * (1 + 0.0333 * numberOfReps);
 
           if (oneRepMax > bestOneRepMax) {
@@ -77,7 +77,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
             variant="body2"
             color="text.primary"
           >
-            {bestSet.numberOfReps} x {bestSet.weight} {bestSet.weightUnit}
+            {bestSet.numberOfReps} x {bestSet.weight} {weightUnit}
           </Typography>
         );
       }
