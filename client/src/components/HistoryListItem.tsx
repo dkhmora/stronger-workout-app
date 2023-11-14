@@ -44,37 +44,61 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
           {getHumanReadableTime(start)}
         </Typography>
 
-        <Box sx={{ display: "flex", flex: 1, justifyContent: "space-between" }}>
-          <Typography
-            sx={{ display: "inline", mr: 2 }}
-            component="span"
-            variant="body2"
-            color="text.primary"
+        <Grid container spacing={2}>
+          <Grid
+            item
+            xs={4}
+            sx={{
+              overflow: "hidden",
+            }}
           >
-            <b>{getDuration(start, end)}</b>
-          </Typography>
+            <Typography
+              sx={{ display: "inline" }}
+              component="span"
+              variant="body2"
+              color="text.primary"
+              align="center"
+            >
+              <b>{getDuration(start, end)}</b>
+            </Typography>
+          </Grid>
 
-          <Typography
-            noWrap
-            sx={{ display: "inline", mr: 2 }}
-            component="span"
-            variant="body2"
-            color="text.primary"
+          <Grid
+            item
+            xs={4}
+            sx={{
+              overflow: "hidden",
+            }}
           >
-            {/* TODO: Change to selected user weight in store */}
-            <b>{getTotalWeight(workoutData)} lb</b>
-          </Typography>
+            <Typography
+              noWrap
+              sx={{ display: "inline" }}
+              component="span"
+              variant="body2"
+              color="text.primary"
+            >
+              <b>{getTotalWeight(workoutData)} lb</b>
+            </Typography>
+          </Grid>
 
-          <Typography
-            noWrap
-            sx={{ display: "inline" }}
-            component="span"
-            variant="body2"
-            color="text.primary"
+          <Grid
+            item
+            xs={4}
+            sx={{
+              overflow: "hidden",
+            }}
           >
-            <b>{"<number of personal records>"}</b>
-          </Typography>
-        </Box>
+            <Typography
+              noWrap
+              sx={{ display: "inline" }}
+              component="span"
+              variant="body2"
+              color="text.primary"
+            >
+              <b>{"<number of personal records>"}</b>
+            </Typography>
+          </Grid>
+        </Grid>
       </Box>
     );
   };
