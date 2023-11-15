@@ -51,7 +51,7 @@ export const getWorkoutSummary = (workoutData: WorkoutData) => {
 
   return {
     duration: getDuration(start, end),
-    totalWeight,
+    totalWeight: Math.round(totalWeight),
     totalPersonalRecords,
   };
 };
