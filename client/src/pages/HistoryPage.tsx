@@ -2,8 +2,12 @@ import React from "react";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import HistoryList from "../components/HistoryList";
 import { WorkoutData, WorkoutExercises } from "../Interfaces";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/general";
 
 export default function HistoryPage() {
+  const isMobile = useSelector((state: RootState) => state.isMobile);
+
   function createData(
     title: string,
     start: number,
@@ -128,21 +132,484 @@ export default function HistoryPage() {
         ],
       },
     ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+    ]),
+    createData("Push Day", 1699747093, 1699749913, [
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+    ]),
   ];
+
+  const containerPadding = isMobile ? 2 : 3;
 
   return (
     <Grid
       container
-      sx={{ display: "flex", flexDirection: "column", flex: 1, p: 3 }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        p: containerPadding,
+      }}
     >
-      <Grid item sx={{ mb: 3 }}>
-        <Typography noWrap variant="h3" component="div">
-          Workout History
-        </Typography>
-      </Grid>
+      {!isMobile && (
+        <Grid item sx={{ mb: 3 }}>
+          <Typography noWrap variant="h3" component="div">
+            Workout History
+          </Typography>
+        </Grid>
+      )}
 
       <Grid item>
-        <HistoryList toolbarTitle="Workout History" workouts={data} />
+        <HistoryList
+          isMobile={isMobile}
+          toolbarTitle="Workout History"
+          workouts={data}
+        />
       </Grid>
     </Grid>
   );
