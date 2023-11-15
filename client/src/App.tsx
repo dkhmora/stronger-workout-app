@@ -43,10 +43,9 @@ function App() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-
       <BrowserRouter>
+        {isMobile ? <MobileNavbar /> : <Navbar />}
         <Box sx={{ flexGrow: 1, overflow: "auto", ...mainPadding }}>
-          {isMobile ? <MobileNavbar /> : <Navbar />}
           {isMobile && <MobileAppBar />}
           <Routes>
             <Route index element={<HomePage />} />
