@@ -36,14 +36,17 @@ function App() {
     dispatch({ type: "SET_IS_MOBILE", payload: isMobile });
   }, [dispatch, isMobile]);
 
+  const mainPadding = {
+    py: isMobile ? 5 : 0,
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
 
       <BrowserRouter>
-        {isMobile ? <MobileNavbar /> : <Navbar />}
-
-        <Box sx={{ flexGrow: 1, overflow: "auto" }}>
+        <Box sx={{ flexGrow: 1, overflow: "auto", ...mainPadding }}>
+          {isMobile ? <MobileNavbar /> : <Navbar />}
           {isMobile && <MobileAppBar />}
           <Routes>
             <Route index element={<HomePage />} />
