@@ -33,6 +33,7 @@ export default function HistoryPage() {
           {
             numberOfReps: 6,
             weight: 100,
+            personalRecord: true,
           },
         ],
       },
@@ -51,6 +52,7 @@ export default function HistoryPage() {
           {
             numberOfReps: 6,
             weight: 85,
+            personalRecord: false,
           },
         ],
       },
@@ -67,30 +69,17 @@ export default function HistoryPage() {
           {
             numberOfReps: 6,
             weight: 85,
+            personalRecord: false,
           },
           {
             numberOfReps: 6,
             weight: 85,
+            personalRecord: false,
           },
           {
             numberOfReps: 6,
             weight: 85,
-          },
-        ],
-      },
-      {
-        exerciseData: {
-          id: 1,
-          title: "Bench Press",
-          type: "Barbell",
-          description: "Bench Press(Barbell) Description",
-          userCreated: false,
-          weightUnit: "kg",
-        },
-        sets: [
-          {
-            numberOfReps: 6,
-            weight: 85,
+            personalRecord: false,
           },
         ],
       },
@@ -107,14 +96,34 @@ export default function HistoryPage() {
           {
             numberOfReps: 6,
             weight: 85,
+            personalRecord: false,
+          },
+        ],
+      },
+      {
+        exerciseData: {
+          id: 1,
+          title: "Bench Press",
+          type: "Barbell",
+          description: "Bench Press(Barbell) Description",
+          userCreated: false,
+          weightUnit: "kg",
+        },
+        sets: [
+          {
+            numberOfReps: 6,
+            weight: 85,
+            personalRecord: false,
           },
           {
             numberOfReps: 6,
             weight: 85,
+            personalRecord: false,
           },
           {
             numberOfReps: 6,
             weight: 85,
+            personalRecord: false,
           },
         ],
       },

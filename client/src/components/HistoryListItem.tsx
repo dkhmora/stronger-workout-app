@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Avatar,
   Box,
-  Divider,
   Grid,
   ListItemAvatar,
   ListItemButton,
@@ -12,7 +11,7 @@ import {
 } from "@mui/material";
 import { Image as ImageIcon } from "@mui/icons-material";
 import { WorkoutData, WorkoutExercises } from "../Interfaces";
-import { getDuration, getHumanReadableTime, getTotalWeight } from "../helpers";
+import { getHumanReadableTime, getWorkoutSummary } from "../helpers";
 
 interface WorkoutListItemProps {
   workoutData: WorkoutData;
@@ -20,6 +19,8 @@ interface WorkoutListItemProps {
 
 export default function HistoryListItem(props: WorkoutListItemProps) {
   const { workoutData } = props;
+  const { duration, totalWeight, totalPersonalRecords } =
+    getWorkoutSummary(workoutData);
 
   const getListItemPrimaryText = ({ title, start, end }: any) => {
     return (
@@ -59,7 +60,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
               color="text.primary"
               align="center"
             >
-              <b>{getDuration(start, end)}</b>
+              <b>{duration}</b>
             </Typography>
           </Grid>
 
@@ -77,7 +78,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
               variant="body2"
               color="text.primary"
             >
-              <b>{getTotalWeight(workoutData)} lb</b>
+              <b>{totalWeight} lb</b>
             </Typography>
           </Grid>
 
@@ -95,7 +96,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
               variant="body2"
               color="text.primary"
             >
-              <b>{"<number of personal records>"}</b>
+              <b>{totalPersonalRecords} PRs</b>
             </Typography>
           </Grid>
         </Grid>

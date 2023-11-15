@@ -27,6 +27,7 @@ export interface DBExerciseData {
 export type ExerciseSet = {
   numberOfReps: number;
   weight: number;
+  personalRecord: boolean;
 };
 
 export type WorkoutExercises = {
