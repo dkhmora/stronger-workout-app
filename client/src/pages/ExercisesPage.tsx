@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import DataTable from "../components/DataTable";
 import { useSelector } from "react-redux";
 import ExerciseList from "../components/ExerciseList";
@@ -8,6 +8,7 @@ import { ExerciseColumn } from "../interfaces";
 import { data } from "../temp_db/exercises";
 
 export default function ExercisesPage() {
+  const isMobile = useSelector((state: RootState) => state.isMobile);
   const columns: ExerciseColumn[] = [
     { id: "title", label: "Title", minWidth: 170 },
     { id: "type", label: "Type", minWidth: 170 },
@@ -18,7 +19,6 @@ export default function ExercisesPage() {
       minWidth: 170,
     },
   ];
-  const isMobile = useSelector((state: RootState) => state.isMobile);
 
   if (isMobile) {
     return (
@@ -27,8 +27,26 @@ export default function ExercisesPage() {
   }
 
   return (
-    <Box sx={{ width: "100%", p: 3 }}>
-      <DataTable toolbarTitle="Exercises" columns={columns} rows={data} />
-    </Box>
+    <Grid
+      container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        p: 3,
+      }}
+    >
+      {!isMobile && (
+        <Grid item sx={{ mb: 3 }}>
+          <Typography noWrap variant="h3" component="div">
+            Exercises
+          </Typography>
+        </Grid>
+      )}
+
+      <Grid item>
+        <DataTable columns={columns} rows={data} />
+      </Grid>
+    </Grid>
   );
 }

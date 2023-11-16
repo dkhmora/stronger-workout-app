@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import generalStore from "./store/general";
 import { Provider } from "react-redux";
-import { blueGrey, red } from "@mui/material/colors";
+import { blueGrey, grey } from "@mui/material/colors";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -20,7 +20,8 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: blueGrey[900],
+      default: grey[900],
+      paper: grey[900],
     },
   },
 });
