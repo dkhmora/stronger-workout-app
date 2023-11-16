@@ -11,29 +11,13 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { desktopNavbarItems } from "../constants/general";
 import "./Navbar.css";
-
-const drawerWidth = 240;
-
-const openedMixin = (theme: Theme): CSSObject => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
+import {
+  dynamicNavbarStyles,
+  navbarStyles,
+  openedMixin,
+  closedMixin,
+  drawerWidth,
+} from "../styles/navbar";
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -72,28 +56,21 @@ export default function Navbar() {
           <ListItem
             key={text}
             disablePadding
-            sx={{ display: "block" }}
+            sx={navbarStyles.listItem}
             {...{ to }}
             component={Link}
           >
             <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+              sx={dynamicNavbarStyles.listItemButton({ open })}
               selected={location.pathname === to}
             >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
+              <ListItemIcon sx={dynamicNavbarStyles.listItemIcon({ open })}>
                 {icon}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={text}
+                sx={dynamicNavbarStyles.listItemText({ open })}
+              />
             </ListItemButton>
           </ListItem>
         ))}
