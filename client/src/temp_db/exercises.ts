@@ -1,4 +1,4 @@
-import { ExerciseData } from "../Interfaces";
+import { ExerciseData } from "../interfaces";
 
 function createData(
   title: string,

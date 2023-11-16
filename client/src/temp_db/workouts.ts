@@ -1,4 +1,5 @@
-import { WorkoutData, WorkoutExercises } from "../Interfaces";
+import { WorkoutData } from "../interfaces";
+import { WorkoutExercises } from "../types";
 
 function createData(
   title: string,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, List } from "@mui/material";
 import ExerciseListItem from "./ExerciseListItem";
-import { ExerciseData, ExerciseColumn } from "../Interfaces";
+import { ExerciseData, ExerciseColumn } from "../interfaces";
 
 interface ExerciseListProps {
   toolbarTitle: string | null;

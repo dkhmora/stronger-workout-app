@@ -4,7 +4,7 @@ import DataTable from "../components/DataTable";
 import { useSelector } from "react-redux";
 import ExerciseList from "../components/ExerciseList";
 import type { RootState } from "../store/general";
-import { ExerciseColumn } from "../Interfaces";
+import { ExerciseColumn } from "../interfaces";
 import { data } from "../temp_db/exercises";
 
 export default function ExercisesPage() {

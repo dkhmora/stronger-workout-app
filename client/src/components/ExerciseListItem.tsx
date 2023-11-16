@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Image as ImageIcon } from "@mui/icons-material";
-import { ExerciseData } from "../Interfaces";
+import { ExerciseData } from "../interfaces";
 
 interface ExerciseListProps {
   exerciseData: ExerciseData;

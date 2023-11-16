@@ -1,5 +1,6 @@
 import moment from "moment";
-import { WeightUnit, WorkoutData } from "../Interfaces";
+import { WorkoutData } from "../interfaces";
+import { WeightUnit } from "../types";
 
 export const getHumanReadableTime = (timestamp: number) =>
   moment.unix(timestamp).calendar();

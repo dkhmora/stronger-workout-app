@@ -15,8 +15,9 @@ import {
   Speed as SpeedIcon,
   EmojiEvents as EmojiEventsIcon,
 } from "@mui/icons-material";
-import { WorkoutData, WorkoutExercises } from "../Interfaces";
+import { WorkoutData } from "../interfaces";
 import { getHumanReadableTime, getWorkoutSummary } from "../helpers";
+import { WorkoutExercises } from "../types";
 
 interface WorkoutListItemProps {
   workoutData: WorkoutData;
