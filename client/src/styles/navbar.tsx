@@ -1,4 +1,4 @@
-import { SxProps, Theme, CSSObject, styled } from "@mui/material/styles";
+import { SxProps, Theme, CSSObject } from "@mui/material/styles";
 
 export const drawerWidth = 240;
 
@@ -40,20 +40,6 @@ export const dynamicNavbarStyles: Record<string, StyleFunction> = {
     justifyContent: "center",
   }),
   listItemText: ({ open }) => ({ opacity: open ? 1 : 0 }),
-  drawer: ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
-    ...(open && {
-      ...openedMixin(theme),
-      "& .MuiDrawer-paper": openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      "& .MuiDrawer-paper": closedMixin(theme),
-    }),
-  }),
 };
 
 export const navbarStyles: Record<string, SxProps<Theme>> = {
