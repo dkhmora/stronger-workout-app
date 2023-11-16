@@ -34,9 +34,5 @@ export default function HistoryList(props: any) {
     return rows;
   };
 
-  return (
-    <List sx={{ height: "100%", width: "100%", bgcolor: "background.paper" }}>
-      {renderRows()}
-    </List>
-  );
+  return <List sx={{ height: "100%", width: "100%" }}>{renderRows()}</List>;
 }
