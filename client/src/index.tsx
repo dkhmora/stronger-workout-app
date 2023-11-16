@@ -10,11 +10,26 @@ import {
 } from "@mui/material";
 import generalStore from "./store/general";
 import { Provider } from "react-redux";
-import { blueGrey, grey } from "@mui/material/colors";
+import { blue, grey } from "@mui/material/colors";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+declare module "@mui/material/styles" {
+  interface Theme {
+    button: {
+      primary: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    button: {
+      primary: string;
+    };
+  }
+}
+
 const darkTheme = createTheme({
   // Your dark mode theme configuration
   palette: {
@@ -23,6 +38,9 @@ const darkTheme = createTheme({
       default: grey[900],
       paper: grey[900],
     },
+  },
+  button: {
+    primary: blue[500],
   },
 });
 

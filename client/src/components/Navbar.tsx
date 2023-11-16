@@ -8,8 +8,9 @@ import {
   List,
   Drawer as MuiDrawer,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { desktopNavbarItems } from "../constants/general";
+import "./Navbar.css";
 
 const drawerWidth = 240;
 
@@ -54,13 +55,10 @@ const Drawer = styled(MuiDrawer, {
 export default function Navbar() {
   const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  const handleDrawerOpen = () => setOpen(true);
+  const handleDrawerClose = () => setOpen(false);
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const location = useLocation();
 
   return (
     <Drawer
@@ -84,6 +82,7 @@ export default function Navbar() {
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
               }}
+              selected={location.pathname === to}
             >
               <ListItemIcon
                 sx={{
