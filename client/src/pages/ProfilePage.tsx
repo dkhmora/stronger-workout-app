@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
 import { data } from "../temp_db/workouts";
 import ProfileBox from "../components/ProfileBox";
+import ProfileDashboard from "../components/ProfileDashboard";
 
 export default function ProfilePage() {
   const isMobile = useSelector((state: RootState) => state.isMobile);
@@ -30,6 +31,10 @@ export default function ProfilePage() {
 
       <Grid item>
         <ProfileBox />
+      </Grid>
+
+      <Grid item>
+        <ProfileDashboard />
       </Grid>
     </Grid>
   );
