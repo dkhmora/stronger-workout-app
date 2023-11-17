@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, Typography, Grid, Paper, Box } from "@mui/material";
 import Chart from "react-google-charts";
 import { blueGrey } from "@mui/material/colors";
+import { getPreviousMonthTicks } from "../helpers";
 
 // Sample data for the charts
 const workoutData = [
@@ -23,14 +24,29 @@ const weightData = [
 ];
 
 const bodyFatData = [
-  ["Sep", 20.2],
-  ["Oct", 21],
-  ["Nov", 21.3],
+  [new Date(2023, 8, 21), 21.1],
+  [new Date(2023, 8, 22), 21.2],
+  [new Date(2023, 8, 23), 21.3],
+  [new Date(2023, 8, 24), 21.4],
+  [new Date(2023, 8, 25), 21.5],
+  [new Date(2023, 9, 21), 20.1],
+  [new Date(2023, 9, 22), 20.2],
+  [new Date(2023, 9, 23), 20.2],
+  [new Date(2023, 9, 24), 20.4],
+  [new Date(2023, 9, 25), 20.2],
+  [new Date(2023, 10, 21), 21],
+  [new Date(2023, 10, 22), 21],
+  [new Date(2023, 10, 23), 21.2],
+  [new Date(2023, 10, 24), 21],
+  [new Date(2023, 10, 25), 21],
 ];
 
 const selectedWorkoutData = [["Week", "Workouts"], ...workoutData.slice(-5)];
 const selectedWeightData = [["Week", "Weight"], ...weightData.slice(-7)];
-const selectedBodyFatData = [["Month", "Body Fat"], ...bodyFatData.slice(-90)];
+const selectedBodyFatData = [
+  [{ type: "date", label: "Month" }, "Body Fat"],
+  ...bodyFatData,
+];
 
 export default function ProfileDashboard() {
   return (
@@ -116,6 +132,8 @@ export default function ProfileDashboard() {
                   hAxis: {
                     titleTextStyle: { color: "white" },
                     textStyle: { color: "white" },
+                    format: "MMM",
+                    ticks: getPreviousMonthTicks(4),
                   },
                   vAxis: {
                     title: "Activity",
@@ -127,7 +145,7 @@ export default function ProfileDashboard() {
                   },
                   backgroundColor: blueGrey[900],
                 }}
-                graph_id="DailyMacrosLineChart"
+                graph_id="BodyFatLineChart"
                 width="100%"
                 height="300px"
               />

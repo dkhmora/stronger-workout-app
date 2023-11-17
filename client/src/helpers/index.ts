@@ -56,3 +56,11 @@ export const getWorkoutSummary = (workoutData: WorkoutData) => {
     totalPersonalRecords,
   };
 };
+
+export const getPreviousMonthTicks = (numberOfMonths: number): Date[] => {
+  const endMonth = moment().add(1, "month");
+
+  return Array.from({ length: numberOfMonths }, (_, index) => {
+    return endMonth.clone().subtract(index, "months").toDate();
+  });
+};
