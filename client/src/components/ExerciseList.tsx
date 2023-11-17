@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, List } from "@mui/material";
 import ExerciseListItem from "./ExerciseListItem";
-import { ExerciseData, ExerciseColumn } from "../Interfaces";
+import { ExerciseData, ExerciseColumn } from "../interfaces";
 
 interface ExerciseListProps {
   toolbarTitle: string | null;
@@ -14,7 +14,7 @@ export default function ExerciseList(props: ExerciseListProps) {
 
   return (
     <Box sx={{ height: "100%", width: "100%", overflow: "auto" }}>
-      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+      <List sx={{ width: "100%" }}>
         {rows.map((row: ExerciseData, index) => {
           return (
             <>

@@ -1,140 +1,41 @@
 import React from "react";
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import HistoryList from "../components/HistoryList";
-import { WorkoutData, WorkoutExercises } from "../Interfaces";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/general";
+import { data } from "../temp_db/workouts";
 
 export default function HistoryPage() {
-  function createData(
-    title: string,
-    start: number,
-    end: number,
-    exercises: WorkoutExercises[]
-  ): WorkoutData {
-    return {
-      title,
-      start,
-      end,
-      exercises,
-    };
-  }
-
-  const data = [
-    createData("Leg Day", 1699747093, 1699749913, [
-      {
-        exerciseData: {
-          id: 1,
-          title: "Squat",
-          type: "Barbell",
-          description: "Squat Description",
-          userCreated: false,
-          weightUnit: "lb",
-        },
-        sets: [
-          {
-            numberOfReps: 6,
-            weight: 100,
-          },
-        ],
-      },
-    ]),
-    createData("Push Day", 1699747093, 1699749913, [
-      {
-        exerciseData: {
-          id: 1,
-          title: "Bench Press",
-          type: "Barbell",
-          description: "Bench Press(Barbell) Description",
-          userCreated: false,
-          weightUnit: "kg",
-        },
-        sets: [
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-        ],
-      },
-      {
-        exerciseData: {
-          id: 1,
-          title: "Bench Press",
-          type: "Barbell",
-          description: "Bench Press(Barbell) Description",
-          userCreated: false,
-          weightUnit: "kg",
-        },
-        sets: [
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-        ],
-      },
-      {
-        exerciseData: {
-          id: 1,
-          title: "Bench Press",
-          type: "Barbell",
-          description: "Bench Press(Barbell) Description",
-          userCreated: false,
-          weightUnit: "kg",
-        },
-        sets: [
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-        ],
-      },
-      {
-        exerciseData: {
-          id: 1,
-          title: "Bench Press",
-          type: "Barbell",
-          description: "Bench Press(Barbell) Description",
-          userCreated: false,
-          weightUnit: "kg",
-        },
-        sets: [
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-          {
-            numberOfReps: 6,
-            weight: 85,
-          },
-        ],
-      },
-    ]),
-  ];
+  const isMobile = useSelector((state: RootState) => state.isMobile);
+  const containerPadding = isMobile ? 2 : 3;
 
   return (
-    <Grid
-      container
-      sx={{ display: "flex", flexDirection: "column", flex: 1, p: 3 }}
-    >
-      <Grid item sx={{ mb: 3 }}>
-        <Typography noWrap variant="h3" component="div">
-          Workout History
-        </Typography>
-      </Grid>
+    <Container>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          p: containerPadding,
+        }}
+      >
+        {!isMobile && (
+          <Grid item sx={{ my: 3 }}>
+            <Typography noWrap variant="h2" component="div">
+              Workout History
+            </Typography>
+          </Grid>
+        )}
 
-      <Grid item>
-        <HistoryList toolbarTitle="Workout History" workouts={data} />
+        <Grid item>
+          <HistoryList
+            isMobile={isMobile}
+            toolbarTitle="Workout History"
+            workouts={data}
+          />
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 }

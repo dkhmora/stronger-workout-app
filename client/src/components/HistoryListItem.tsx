@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Avatar,
   Box,
-  Divider,
   Grid,
   ListItemAvatar,
   ListItemButton,
@@ -10,9 +9,15 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { Image as ImageIcon } from "@mui/icons-material";
-import { WorkoutData, WorkoutExercises } from "../Interfaces";
-import { getDuration, getHumanReadableTime, getTotalWeight } from "../helpers";
+import {
+  Image as ImageIcon,
+  WatchLater as WatchLaterIcon,
+  Speed as SpeedIcon,
+  EmojiEvents as EmojiEventsIcon,
+} from "@mui/icons-material";
+import { WorkoutData } from "../interfaces";
+import { getHumanReadableTime, getWorkoutSummary } from "../helpers";
+import { WorkoutExercises } from "../types";
 
 interface WorkoutListItemProps {
   workoutData: WorkoutData;
@@ -20,20 +25,12 @@ interface WorkoutListItemProps {
 
 export default function HistoryListItem(props: WorkoutListItemProps) {
   const { workoutData } = props;
+  const { duration, totalWeight, totalPersonalRecords } =
+    getWorkoutSummary(workoutData);
 
   const getListItemPrimaryText = ({ title, start, end }: any) => {
     return (
-      <Box sx={{ display: "flex", flexDirection: "column", mb: 1 }}>
-        <Typography
-          noWrap
-          sx={{ display: "inline" }}
-          component="span"
-          variant="button"
-          color="text.primary"
-        >
-          <b>{title}</b>
-        </Typography>
-
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Typography
           noWrap
           sx={{ display: "inline" }}
@@ -41,40 +38,82 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
           variant="body2"
           color="text.primary"
         >
+          <b>{title}</b>
+        </Typography>
+
+        <Typography
+          noWrap
+          sx={{ display: "inline", py: 0.2 }}
+          component="span"
+          variant="body2"
+          color="text.secondary"
+        >
           {getHumanReadableTime(start)}
         </Typography>
 
-        <Box sx={{ display: "flex", flex: 1, justifyContent: "space-between" }}>
-          <Typography
-            sx={{ display: "inline", mr: 2 }}
-            component="span"
-            variant="body2"
-            color="text.primary"
+        <Grid container spacing={2}>
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              overflow: "hidden",
+            }}
           >
-            <b>{getDuration(start, end)}</b>
-          </Typography>
+            <WatchLaterIcon fontSize="small" sx={{ mr: 0.3 }} />
+            <Typography
+              sx={{ display: "inline", verticalAlign: "middle" }}
+              component="span"
+              variant="body2"
+              color="text.secondary"
+            >
+              <b>{duration}</b>
+            </Typography>
+          </Grid>
 
-          <Typography
-            noWrap
-            sx={{ display: "inline", mr: 2 }}
-            component="span"
-            variant="body2"
-            color="text.primary"
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              overflow: "hidden",
+            }}
           >
-            {/* TODO: Change to selected user weight in store */}
-            <b>{getTotalWeight(workoutData)} lb</b>
-          </Typography>
+            <SpeedIcon fontSize="small" sx={{ mr: 0.3 }} />
+            <Typography
+              noWrap
+              sx={{ display: "inline", verticalAlign: "middle" }}
+              component="span"
+              variant="body2"
+              color="text.secondary"
+            >
+              <b>{totalWeight} lb</b>
+            </Typography>
+          </Grid>
 
-          <Typography
-            noWrap
-            sx={{ display: "inline" }}
-            component="span"
-            variant="body2"
-            color="text.primary"
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              overflow: "hidden",
+            }}
           >
-            <b>{"<number of personal records>"}</b>
-          </Typography>
-        </Box>
+            <EmojiEventsIcon fontSize="small" sx={{ mr: 0.3 }} />
+            <Typography
+              noWrap
+              sx={{ display: "inline", verticalAlign: "middle" }}
+              component="span"
+              variant="body2"
+              color="text.secondary"
+            >
+              <b>{totalPersonalRecords} PRs</b>
+            </Typography>
+          </Grid>
+        </Grid>
       </Box>
     );
   };
@@ -84,7 +123,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
     /* place open workout dialog here */
   };
 
-  const getWorkoutList = (workouts: WorkoutExercises[]) => {
+  const getExercisesList = (workouts: WorkoutExercises[]) => {
     return workouts.map(
       ({
         exerciseData: { id, title, type, description, userCreated },
@@ -98,7 +137,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
             sx={{ display: "inline" }}
             component="span"
             variant="body2"
-            color="text.primary"
+            color="text.secondary"
           >
             {numberOfSets} x {title} ({type})
           </Typography>
@@ -131,7 +170,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
             sx={{ display: "inline" }}
             component="span"
             variant="body2"
-            color="text.primary"
+            color="text.secondary"
           >
             {bestSet.numberOfReps} x {bestSet.weight} {weightUnit}
           </Typography>
@@ -147,7 +186,12 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
         role={undefined}
         onClick={openWorkoutDetailsDialog(workoutData)}
         dense
-        sx={{ borderRadius: 4, height: "100%" }}
+        sx={{
+          borderRadius: 4,
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
         <ListItemAvatar>
           <Avatar>
@@ -182,7 +226,7 @@ export default function HistoryListItem(props: WorkoutListItemProps) {
                   >
                     <b>Exercises</b>
                   </Typography>
-                  {getWorkoutList(workoutData.exercises)}
+                  {getExercisesList(workoutData.exercises)}
                 </Box>
 
                 <Box

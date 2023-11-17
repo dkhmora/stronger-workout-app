@@ -8,7 +8,7 @@ export default function MobileNavbar() {
 
   return (
     <Paper
-      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 1000 }}
       elevation={3}
     >
       <BottomNavigation

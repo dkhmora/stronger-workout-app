@@ -1,14 +1,11 @@
 import * as React from "react";
 import { Box, List, Grid } from "@mui/material";
 import HistoryListItem from "./HistoryListItem";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/general";
 
 export default function HistoryList(props: any) {
-  const { workouts } = props;
-  const isMobile = useSelector((state: RootState) => state.isMobile);
+  const { workouts, isMobile } = props;
 
-  const itemsPerRow = isMobile ? 1 : 3;
+  const itemsPerRow = isMobile ? 1 : 2;
 
   const renderRows = () => {
     const rows = [];
@@ -18,7 +15,7 @@ export default function HistoryList(props: any) {
       const row = workouts.slice(i, i + itemsPerRow);
 
       rows.push(
-        <Grid container spacing={2} alignItems="stretch">
+        <Grid container spacing={3} alignItems="stretch">
           {row.map((data: any, index: number) => (
             <Grid
               item
@@ -37,9 +34,5 @@ export default function HistoryList(props: any) {
     return rows;
   };
 
-  return (
-    <List sx={{ height: "100%", width: "100%", bgcolor: "background.paper" }}>
-      {renderRows()}
-    </List>
-  );
+  return <List sx={{ height: "100%", width: "100%" }}>{renderRows()}</List>;
 }

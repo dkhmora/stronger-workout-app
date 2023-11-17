@@ -1,12 +1,14 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import DataTable from "../components/DataTable";
 import { useSelector } from "react-redux";
 import ExerciseList from "../components/ExerciseList";
 import type { RootState } from "../store/general";
-import { ExerciseColumn, ExerciseData } from "../Interfaces";
+import { ExerciseColumn } from "../interfaces";
+import { data } from "../temp_db/exercises";
 
 export default function ExercisesPage() {
+  const isMobile = useSelector((state: RootState) => state.isMobile);
   const columns: ExerciseColumn[] = [
     { id: "title", label: "Title", minWidth: 170 },
     { id: "type", label: "Type", minWidth: 170 },
@@ -18,46 +20,35 @@ export default function ExercisesPage() {
     },
   ];
 
-  function createData(
-    title: string,
-    type: string,
-    description: string,
-    userCreated: boolean
-  ): ExerciseData {
-    return {
-      title,
-      type,
-      description,
-      userCreated: userCreated ? "Yes" : "No",
-    };
-  }
-
-  const rows = [
-    createData(
-      "Bench Press",
-      "Barbell",
-      "Bench Press(Barbell) Description",
-      false
-    ),
-    createData(
-      "Bench Press",
-      "Dumbell",
-      "Bench Press(Dumbell) Description",
-      false
-    ),
-  ];
-
-  const isMobile = useSelector((state: RootState) => state.isMobile);
-
   if (isMobile) {
     return (
-      <ExerciseList toolbarTitle="Exercises" columns={columns} rows={rows} />
+      <ExerciseList toolbarTitle="Exercises" columns={columns} rows={data} />
     );
   }
 
   return (
-    <Box sx={{ width: "100%", p: 3 }}>
-      <DataTable toolbarTitle="Exercises" columns={columns} rows={rows} />
-    </Box>
+    <Container>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          p: 3,
+        }}
+      >
+        {!isMobile && (
+          <Grid item sx={{ my: 3 }}>
+            <Typography noWrap variant="h2" component="div">
+              Exercises
+            </Typography>
+          </Grid>
+        )}
+
+        <Grid item>
+          <DataTable columns={columns} rows={data} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }

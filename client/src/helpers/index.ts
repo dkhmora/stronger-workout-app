@@ -1,5 +1,6 @@
 import moment from "moment";
-import { WeightUnit, WorkoutData } from "../Interfaces";
+import { WorkoutData } from "../interfaces";
+import { WeightUnit } from "../types";
 
 export const getHumanReadableTime = (timestamp: number) =>
   moment.unix(timestamp).calendar();
@@ -26,25 +27,40 @@ export const getDuration = (start: number, end: number) => {
 export const getKg = (weight: number) => weight / 2.20462262185;
 export const getLb = (weight: number) => weight * 2.20462262185;
 
-export const getTotalWeight = (workoutData: WorkoutData) => {
-  const { exercises } = workoutData;
+// Get workout summary (workout duration, total weight lifted, number of PRs)
+export const getWorkoutSummary = (workoutData: WorkoutData) => {
+  const { exercises, start, end } = workoutData;
   const userDefaultUnit = "lb"; // Temporary. TODO: Change to selected user weight in store
   const convertWeight = (weight: number, exerciseUnit: WeightUnit) => {
     if (exerciseUnit === userDefaultUnit) return weight;
     if (userDefaultUnit === "lb") return getLb(weight);
     else return getKg(weight);
   };
+  let totalPersonalRecords = 0;
   let totalWeight = 0;
 
   exercises.forEach(({ exerciseData, sets }) => {
-    sets.forEach(
-      ({ numberOfReps, weight }) =>
-        (totalWeight += convertWeight(
-          numberOfReps * weight,
-          exerciseData.weightUnit
-        ))
-    );
+    sets.forEach(({ numberOfReps, weight, personalRecord }) => {
+      totalWeight += convertWeight(
+        numberOfReps * weight,
+        exerciseData.weightUnit
+      );
+
+      if (personalRecord) totalPersonalRecords += 1;
+    });
   });
 
-  return totalWeight;
+  return {
+    duration: getDuration(start, end),
+    totalWeight: Math.round(totalWeight),
+    totalPersonalRecords,
+  };
+};
+
+export const getPreviousMonthTicks = (numberOfMonths: number): Date[] => {
+  const endMonth = moment().add(1, "month");
+
+  return Array.from({ length: numberOfMonths }, (_, index) => {
+    return endMonth.clone().subtract(index, "months").toDate();
+  });
 };

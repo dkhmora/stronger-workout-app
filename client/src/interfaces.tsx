@@ -1,3 +1,5 @@
+import { WeightUnit, WorkoutExercises } from "./types";
+
 export interface ExerciseData {
   title: string;
   type: string;
@@ -13,8 +15,6 @@ export interface ExerciseColumn {
   format?: (value: number) => string;
 }
 
-export type WeightUnit = "lb" | "kg";
-
 export interface DBExerciseData {
   id: number;
   title: string;
@@ -23,16 +23,6 @@ export interface DBExerciseData {
   userCreated: boolean;
   weightUnit: WeightUnit;
 }
-
-export type ExerciseSet = {
-  numberOfReps: number;
-  weight: number;
-};
-
-export type WorkoutExercises = {
-  exerciseData: DBExerciseData;
-  sets: ExerciseSet[];
-};
 
 export interface WorkoutData {
   title: string;
