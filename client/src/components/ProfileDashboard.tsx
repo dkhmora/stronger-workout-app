@@ -39,7 +39,7 @@ export default function ProfileDashboard() {
       </Typography>
 
       <Paper sx={{ padding: 2, borderRadius: 4 }}>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {/* Workouts per week chart */}
           <Grid item xs={12} md={4}>
             <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
