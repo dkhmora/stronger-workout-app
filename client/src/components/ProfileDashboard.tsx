@@ -33,101 +33,107 @@ const macrosData = [
 
 export default function ProfileDashboard() {
   return (
-    <Paper sx={{ padding: 2, borderRadius: 4 }}>
-      <Grid container spacing={3}>
-        {/* Workouts per week chart */}
-        <Grid item xs={12} md={4}>
-          <Typography variant="h6" gutterBottom>
-            Workouts per Week
-          </Typography>
-          <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
-            <Chart
-              chartType="BarChart"
-              data={workoutData}
-              options={{
-                hAxis: {
-                  titleTextStyle: { color: "white" },
-                  textStyle: { color: "white" },
-                },
-                vAxis: {
-                  title: "Activity",
-                  titleTextStyle: { color: "white" },
-                  textStyle: { color: "white" },
-                },
-                legend: {
-                  position: "none",
-                },
-                backgroundColor: blueGrey[900],
-              }}
-              graph_id="BarChart"
-              width="100%"
-              height="300px"
-            />
-          </Paper>
-        </Grid>
+    <Box>
+      <Typography variant="h5" gutterBottom>
+        Dashboard
+      </Typography>
 
-        {/* Body weight chart */}
-        <Grid item xs={12} md={4}>
-          <Typography variant="h6" gutterBottom>
-            Body Weight Progress
-          </Typography>
-          <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
-            <Chart
-              chartType="LineChart"
-              data={weightData}
-              options={{
-                hAxis: {
-                  titleTextStyle: { color: "white" },
-                  textStyle: { color: "white" },
-                },
-                vAxis: {
-                  title: "Activity",
-                  titleTextStyle: { color: "white" },
-                  textStyle: { color: "white" },
-                },
-                legend: {
-                  position: "none",
-                },
-                backgroundColor: blueGrey[900],
-              }}
-              graph_id="BodyWeightLineChart"
-              width="100%"
-              height="300px"
-            />
-          </Paper>
-        </Grid>
+      <Paper sx={{ padding: 2, borderRadius: 4 }}>
+        <Grid container spacing={3}>
+          {/* Workouts per week chart */}
+          <Grid item xs={12} md={4}>
+            <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
+              <Chart
+                chartType="BarChart"
+                data={workoutData}
+                options={{
+                  title: "Workouts per Week",
+                  titleTextStyle: {
+                    color: "white",
+                    fontSize: 18,
+                  },
+                  hAxis: {
+                    titleTextStyle: { color: "white" },
+                    textStyle: { color: "white" },
+                  },
+                  vAxis: {
+                    title: "Activity",
+                    titleTextStyle: { color: "white" },
+                    textStyle: { color: "white" },
+                  },
+                  legend: {
+                    position: "none",
+                  },
+                  backgroundColor: blueGrey[900],
+                }}
+                graph_id="BarChart"
+                width="100%"
+                height="300px"
+              />
+            </Paper>
+          </Grid>
 
-        {/* Daily Macros chart */}
-        <Grid item xs={12} md={4}>
-          <Typography variant="h6" gutterBottom>
-            Daily Macros
-          </Typography>
-          <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
-            <Chart
-              chartType="LineChart"
-              data={macrosData}
-              options={{
-                hAxis: {
-                  titleTextStyle: { color: "white" },
-                  textStyle: { color: "white" },
-                },
-                vAxis: {
-                  title: "Activity",
-                  titleTextStyle: { color: "white" },
-                  textStyle: { color: "white" },
-                },
-                legend: {
-                  position: "none",
-                },
-                backgroundColor: blueGrey[900],
-              }}
-              graph_id="DailyMacrosLineChart"
-              width="100%"
-              height="300px"
-            />
-          </Paper>
+          {/* Body weight chart */}
+          <Grid item xs={12} md={4}>
+            <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
+              <Chart
+                chartType="LineChart"
+                data={weightData}
+                options={{
+                  title: "Body Weight Progress",
+                  titleTextStyle: { color: "white", fontSize: 18 },
+                  hAxis: {
+                    titleTextStyle: { color: "white" },
+                    textStyle: { color: "white" },
+                  },
+                  vAxis: {
+                    title: "Activity",
+                    titleTextStyle: { color: "white" },
+                    textStyle: { color: "white" },
+                  },
+                  legend: {
+                    position: "none",
+                  },
+                  backgroundColor: blueGrey[900],
+                }}
+                graph_id="BodyWeightLineChart"
+                width="100%"
+                height="300px"
+              />
+            </Paper>
+          </Grid>
+
+          {/* Daily Macros chart */}
+          <Grid item xs={12} md={4}>
+            <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
+              <Chart
+                chartType="LineChart"
+                data={macrosData}
+                options={{
+                  title: "Daily Macros",
+                  titleTextStyle: { color: "white", fontSize: 18 },
+                  hAxis: {
+                    titleTextStyle: { color: "white" },
+                    textStyle: { color: "white" },
+                  },
+                  vAxis: {
+                    title: "Activity",
+                    titleTextStyle: { color: "white" },
+                    textStyle: { color: "white" },
+                  },
+                  legend: {
+                    position: "none",
+                  },
+                  backgroundColor: blueGrey[900],
+                }}
+                graph_id="DailyMacrosLineChart"
+                width="100%"
+                height="300px"
+              />
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Paper>
+      </Paper>
+    </Box>
   );
 }

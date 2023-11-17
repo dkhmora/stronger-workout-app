@@ -29,7 +29,7 @@ export default function ProfilePage() {
         </Grid>
       )}
 
-      <Grid item>
+      <Grid item sx={{ mb: 3 }}>
         <ProfileBox />
       </Grid>
 
