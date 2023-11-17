@@ -5,7 +5,6 @@ import { blueGrey } from "@mui/material/colors";
 
 // Sample data for the charts
 const workoutData = [
-  ["Week", "Workouts"],
   ["9/24", 3],
   ["10/1", 2],
   ["10/8", 4],
@@ -17,19 +16,21 @@ const workoutData = [
 ];
 
 const weightData = [
-  ["Week", "Weight"],
   ["10/22", 70],
   ["10/29", 69],
   ["11/5", 68.5],
   ["11/12", 68],
 ];
 
-const macrosData = [
-  ["Macro", "Value"],
-  ["Protein", 120],
-  ["Carbs", 200],
-  ["Fat", 50],
+const bodyFatData = [
+  ["Sep", 20.2],
+  ["Oct", 21],
+  ["Nov", 21.3],
 ];
+
+const selectedWorkoutData = [["Week", "Workouts"], ...workoutData.slice(-5)];
+const selectedWeightData = [["Week", "Weight"], ...weightData.slice(-7)];
+const selectedBodyFatData = [["Month", "Body Fat"], ...bodyFatData.slice(-90)];
 
 export default function ProfileDashboard() {
   return (
@@ -44,8 +45,8 @@ export default function ProfileDashboard() {
           <Grid item xs={12} md={4}>
             <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
               <Chart
-                chartType="BarChart"
-                data={workoutData}
+                chartType="ColumnChart"
+                data={selectedWorkoutData}
                 options={{
                   title: "Workouts per Week",
                   titleTextStyle: {
@@ -78,7 +79,7 @@ export default function ProfileDashboard() {
             <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
               <Chart
                 chartType="LineChart"
-                data={weightData}
+                data={selectedWeightData}
                 options={{
                   title: "Body Weight Progress",
                   titleTextStyle: { color: "white", fontSize: 18 },
@@ -103,14 +104,14 @@ export default function ProfileDashboard() {
             </Paper>
           </Grid>
 
-          {/* Daily Macros chart */}
+          {/* Body Fat chart */}
           <Grid item xs={12} md={4}>
             <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
               <Chart
                 chartType="LineChart"
-                data={macrosData}
+                data={selectedBodyFatData}
                 options={{
-                  title: "Daily Macros",
+                  title: "Body Fat",
                   titleTextStyle: { color: "white", fontSize: 18 },
                   hAxis: {
                     titleTextStyle: { color: "white" },
