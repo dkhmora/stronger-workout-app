@@ -5,7 +5,7 @@ import HistoryListItem from "./HistoryListItem";
 export default function HistoryList(props: any) {
   const { workouts, isMobile } = props;
 
-  const itemsPerRow = isMobile ? 1 : 3;
+  const itemsPerRow = isMobile ? 1 : 2;
 
   const renderRows = () => {
     const rows = [];

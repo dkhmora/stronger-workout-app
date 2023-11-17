@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import HistoryList from "../components/HistoryList";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
@@ -12,30 +12,32 @@ export default function ProfilePage() {
   const containerPadding = isMobile ? 2 : 3;
 
   return (
-    <Grid
-      container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-        p: containerPadding,
-      }}
-    >
-      {!isMobile && (
-        <Grid item sx={{ mt: 3, mb: 6 }}>
-          <Typography noWrap variant="h2" component="div">
-            Profile
-          </Typography>
+    <Container>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          p: containerPadding,
+        }}
+      >
+        {!isMobile && (
+          <Grid item sx={{ mt: 3, mb: 6 }}>
+            <Typography noWrap variant="h2" component="div">
+              Profile
+            </Typography>
+          </Grid>
+        )}
+
+        <Grid item sx={{ mb: 3 }}>
+          <ProfileBox />
         </Grid>
-      )}
 
-      <Grid item sx={{ mb: 3 }}>
-        <ProfileBox />
+        <Grid item>
+          <ProfileDashboard />
+        </Grid>
       </Grid>
-
-      <Grid item>
-        <ProfileDashboard />
-      </Grid>
-    </Grid>
+    </Container>
   );
 }

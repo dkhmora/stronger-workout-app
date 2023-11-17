@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import DataTable from "../components/DataTable";
 import { useSelector } from "react-redux";
 import ExerciseList from "../components/ExerciseList";
@@ -27,26 +27,28 @@ export default function ExercisesPage() {
   }
 
   return (
-    <Grid
-      container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-        p: 3,
-      }}
-    >
-      {!isMobile && (
-        <Grid item sx={{ my: 3 }}>
-          <Typography noWrap variant="h2" component="div">
-            Exercises
-          </Typography>
-        </Grid>
-      )}
+    <Container>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          p: 3,
+        }}
+      >
+        {!isMobile && (
+          <Grid item sx={{ my: 3 }}>
+            <Typography noWrap variant="h2" component="div">
+              Exercises
+            </Typography>
+          </Grid>
+        )}
 
-      <Grid item>
-        <DataTable columns={columns} rows={data} />
+        <Grid item>
+          <DataTable columns={columns} rows={data} />
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 }

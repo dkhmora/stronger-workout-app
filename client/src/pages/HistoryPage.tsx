@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import HistoryList from "../components/HistoryList";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
@@ -10,30 +10,32 @@ export default function HistoryPage() {
   const containerPadding = isMobile ? 2 : 3;
 
   return (
-    <Grid
-      container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-        p: containerPadding,
-      }}
-    >
-      {!isMobile && (
-        <Grid item sx={{ my: 3 }}>
-          <Typography noWrap variant="h2" component="div">
-            Workout History
-          </Typography>
-        </Grid>
-      )}
+    <Container>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          p: containerPadding,
+        }}
+      >
+        {!isMobile && (
+          <Grid item sx={{ my: 3 }}>
+            <Typography noWrap variant="h2" component="div">
+              Workout History
+            </Typography>
+          </Grid>
+        )}
 
-      <Grid item>
-        <HistoryList
-          isMobile={isMobile}
-          toolbarTitle="Workout History"
-          workouts={data}
-        />
+        <Grid item>
+          <HistoryList
+            isMobile={isMobile}
+            toolbarTitle="Workout History"
+            workouts={data}
+          />
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 }
