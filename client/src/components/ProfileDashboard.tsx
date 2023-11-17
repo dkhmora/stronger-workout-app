@@ -17,10 +17,10 @@ const workoutData = [
 ];
 
 const weightData = [
-  ["10/22", 70],
-  ["10/29", 69],
-  ["11/5", 68.5],
-  ["11/12", 68],
+  [new Date(2023, 9, 14), 68.5],
+  [new Date(2023, 10, 11), 70],
+  [new Date(2023, 10, 15), 68],
+  [new Date(2023, 11, 12), 69],
 ];
 
 const bodyFatData = [
@@ -42,7 +42,10 @@ const bodyFatData = [
 ];
 
 const selectedWorkoutData = [["Week", "Workouts"], ...workoutData.slice(-5)];
-const selectedWeightData = [["Week", "Weight"], ...weightData.slice(-7)];
+const selectedWeightData = [
+  [{ type: "date", label: "Month" }, "Weight"],
+  ...weightData,
+];
 const selectedBodyFatData = [
   [{ type: "date", label: "Month" }, "Body Fat"],
   ...bodyFatData,
@@ -97,16 +100,21 @@ export default function ProfileDashboard() {
                 chartType="LineChart"
                 data={selectedWeightData}
                 options={{
-                  title: "Body Weight Progress",
+                  title: "Body Weight",
                   titleTextStyle: { color: "white", fontSize: 18 },
+                  curveType: "function",
                   hAxis: {
                     titleTextStyle: { color: "white" },
                     textStyle: { color: "white" },
+                    format: "MMM",
+                    ticks: getPreviousMonthTicks(4),
                   },
                   vAxis: {
                     title: "Activity",
                     titleTextStyle: { color: "white" },
                     textStyle: { color: "white" },
+                    format: "decimal",
+                    gridlines: { minSpacing: 40 },
                   },
                   legend: {
                     position: "none",
@@ -129,6 +137,7 @@ export default function ProfileDashboard() {
                 options={{
                   title: "Body Fat",
                   titleTextStyle: { color: "white", fontSize: 18 },
+                  curveType: "function",
                   hAxis: {
                     titleTextStyle: { color: "white" },
                     textStyle: { color: "white" },
