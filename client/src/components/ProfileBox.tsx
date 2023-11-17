@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Box, Grid, Paper, Typography } from "@mui/material";
+import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
 import {
   Person as PersonIcon,
   ArrowForwardIos as ArrowForwardIosIcon,
@@ -7,7 +7,8 @@ import {
 
 export default function ProfileBox() {
   return (
-    <Paper
+    <Button
+      component={Paper}
       sx={{
         width: "50vh",
         padding: 2,
@@ -30,9 +31,11 @@ export default function ProfileBox() {
           </Avatar>
 
           <Box sx={{ px: 2 }}>
-            <Typography variant="h5">Daryl Mora</Typography>
+            <Typography variant="h6" color="text.primary">
+              <b>Daryl Mora</b>
+            </Typography>
             {/*TODO: Change to user name*/}
-            <Typography variant="subtitle1" color="text.secondary">
+            <Typography variant="subtitle2" color="text.secondary">
               <b>444 workouts</b>
             </Typography>
             {/*TODO: Change to user number of workouts*/}
@@ -43,6 +46,6 @@ export default function ProfileBox() {
           <ArrowForwardIosIcon />
         </Grid>
       </Grid>
-    </Paper>
+    </Button>
   );
 }
