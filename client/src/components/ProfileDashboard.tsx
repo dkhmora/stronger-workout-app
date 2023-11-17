@@ -34,7 +34,7 @@ const macrosData = [
 export default function ProfileDashboard() {
   return (
     <Box>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>
 

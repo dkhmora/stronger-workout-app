@@ -37,8 +37,8 @@ export default function ExercisesPage() {
       }}
     >
       {!isMobile && (
-        <Grid item sx={{ mb: 3 }}>
-          <Typography noWrap variant="h3" component="div">
+        <Grid item sx={{ my: 3 }}>
+          <Typography noWrap variant="h2" component="div">
             Exercises
           </Typography>
         </Grid>

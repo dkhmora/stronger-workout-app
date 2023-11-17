@@ -22,8 +22,8 @@ export default function ProfilePage() {
       }}
     >
       {!isMobile && (
-        <Grid item sx={{ mb: 3 }}>
-          <Typography noWrap variant="h3" component="div">
+        <Grid item sx={{ mt: 3, mb: 6 }}>
+          <Typography noWrap variant="h2" component="div">
             Profile
           </Typography>
         </Grid>
