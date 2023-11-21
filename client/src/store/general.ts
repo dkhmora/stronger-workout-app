@@ -1,24 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 // Define the initial state of the store
 const initialState = {
   isMobile: false, // Set the initial value of isMobile to false
 };
 
-// Define a reducer function to handle state changes
-function reducer(state = initialState, action: any) {
-  switch (action.type) {
-    case "SET_IS_MOBILE":
-      return {
-        ...state,
-        isMobile: action.payload,
-      };
-    default:
-      return state;
-  }
-}
+const generalSlice = createSlice({
+  name: "general",
+  initialState,
+  reducers: {
+    SET_IS_MOBILE: (state, { payload }) => ({
+      ...state,
+      isMobile: payload,
+    }),
+  },
+});
 
-// Create the Redux store using the reducer
+// Extract the reducer and action creators
+const { reducer, actions } = generalSlice;
+
 const store = configureStore({
   reducer,
 });
@@ -26,4 +26,6 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
+// Export the reducer and action creators
+export const { SET_IS_MOBILE } = actions;
 export default store;

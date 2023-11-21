@@ -11,6 +11,7 @@ import ExercisesPage from "./pages/ExercisesPage";
 import HistoryPage from "./pages/HistoryPage";
 import { Box, CssBaseline } from "@mui/material";
 import MobileAppBar from "./components/MobileAppBar";
+import { SET_IS_MOBILE } from "./store/general";
 
 function App() {
   const [windowDimension, setWindowDimension] = useState<number | null>(null);
@@ -33,7 +34,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: "SET_IS_MOBILE", payload: isMobile });
+    dispatch(SET_IS_MOBILE({ payload: isMobile }));
   }, [dispatch, isMobile]);
 
   const mainPadding = {
