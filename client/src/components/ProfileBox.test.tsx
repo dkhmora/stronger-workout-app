@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import ProfileBox from "./ProfileBox";
 
-test("renders navbar and navbar buttons", () => {
+test("renders profile box", () => {
   render(<ProfileBox />);
 
   const userName = screen.getByTestId("user-name");
