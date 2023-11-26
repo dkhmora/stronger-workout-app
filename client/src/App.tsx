@@ -34,7 +34,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(SET_IS_MOBILE({ payload: isMobile }));
+    dispatch(SET_IS_MOBILE(isMobile));
   }, [dispatch, isMobile]);
 
   const mainPadding = {
