@@ -26,12 +26,16 @@ export default function ProfileBox() {
           item
           sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
         >
-          <Avatar sx={{ width: 60, height: 60 }}>
+          <Avatar sx={{ width: 60, height: 60 }} data-testid="user-avatar">
             <PersonIcon fontSize="large" />
           </Avatar>
 
           <Box sx={{ px: 2 }}>
-            <Typography variant="h6" color="text.primary">
+            <Typography
+              variant="h6"
+              color="text.primary"
+              data-testid="user-name"
+            >
               <b>Daryl Mora</b>
             </Typography>
             {/*TODO: Change to user name*/}
