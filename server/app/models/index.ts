@@ -21,5 +21,16 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.exercises = require("./exercise.model.ts")(sequelize, Sequelize);
+db.users = require("./user.model.ts")(sequelize, Sequelize);
+db.workouts = require("./workout.model.ts")(sequelize, Sequelize);
+db.workoutTemplates = require("./workoutTemplate.model.ts")(
+  sequelize,
+  Sequelize
+);
+
+db.users.hasMany(db.exercises, { as: "Exercises" });
+db.users.hasMany(db.workouts, { as: "Workouts" });
+db.workoutTemplates.hasMany(db.workouts);
+db.workouts.belongsTo(db.workoutTemplates);
 
 module.exports = db;

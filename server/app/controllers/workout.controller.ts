@@ -1,8 +1,8 @@
 const dbModelFiles = require("../models/index.ts");
-const Exercise = dbModelFiles.exercises;
+const Workout = dbModelFiles.workouts;
 const Op = dbModelFiles.Sequelize.Op;
 
-// Create and Save a new Exercise
+// Create and Save a new Workout
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.title) {
@@ -12,23 +12,24 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Exercise
-  const exercise = {
+  // Create a Workout
+  const workout = {
     title: req.body.title,
-    description: req.body.description,
-    category: req.body.category,
-    bodyPart: req.body.bodyPart,
+    start: req.body.start,
+    end: req.body.end,
+    totalWeight: req.body.totalWeight,
+    numberOfPersonalRecords: req.body.numberOfPersonalRecords,
   };
 
-  // Save Exercise in the database
-  Exercise.create(exercise)
+  // Save Workout in the database
+  Workout.create(workout)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Exercise.",
+          err.message || "Some error occurred while creating the Workout.",
       });
     });
 };
@@ -38,96 +39,96 @@ exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-  Exercise.findAll({ where: condition })
+  Workout.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving exercises.",
+          err.message || "Some error occurred while retrieving workouts.",
       });
     });
 };
 
-// Find a single Exercise with an id
+// Find a single Workout with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Exercise.findByPk(id)
+  Workout.findByPk(id)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Exercise with id=" + id,
+        message: "Error retrieving Workout with id=" + id,
       });
     });
 };
 
-// Update a Exercise by the id in the request
+// Update a Workout by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Exercise.update(req.body, {
+  Workout.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Exercise was updated successfully.",
+          message: "Workout was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Exercise with id=${id}. Maybe Exercise was not found or req.body is empty!`,
+          message: `Cannot update Workout with id=${id}. Maybe Workout was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Exercise with id=" + id,
+        message: "Error updating Workout with id=" + id,
       });
     });
 };
 
-// Delete a Exercise with the specified id in the request
+// Delete a Workout with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Exercise.destroy({
+  Workout.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Exercise was deleted successfully!",
+          message: "Workout was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Exercise with id=${id}. Maybe Exercise was not found!`,
+          message: `Cannot delete Workout with id=${id}. Maybe Workout was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Exercise with id=" + id,
+        message: "Could not delete Workout with id=" + id,
       });
     });
 };
 
-// Delete all Exercises from the database.
+// Delete all Workouts from the database.
 exports.deleteAll = (req, res) => {
-  Exercise.destroy({
+  Workout.destroy({
     where: {},
     truncate: false,
   })
     .then((nums) => {
-      res.send({ message: `${nums} Exercises were deleted successfully!` });
+      res.send({ message: `${nums} Workouts were deleted successfully!` });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all exercises.",
+          err.message || "Some error occurred while removing all workouts.",
       });
     });
 };

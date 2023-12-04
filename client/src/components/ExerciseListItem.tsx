@@ -14,9 +14,7 @@ interface ExerciseListProps {
   exerciseData: ExerciseData;
 }
 
-export default function ExerciseListItem(props: ExerciseListProps) {
-  const { exerciseData } = props;
-
+export default function ExerciseListItem({ exerciseData }: ExerciseListProps) {
   const getListItemPrimaryText = ({ title, type }: ExerciseData) =>
     `${title} (${type})`;
 

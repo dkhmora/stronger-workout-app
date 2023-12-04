@@ -8,17 +8,14 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Box,
 } from "@mui/material";
-import TableToolbar from "./TableToolbar";
 
 interface DataTableProps {
   columns: any[];
   rows: any[];
 }
 
-export default function DataTable(props: DataTableProps) {
-  const { columns, rows } = props;
+export default function DataTable({ columns, rows }: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

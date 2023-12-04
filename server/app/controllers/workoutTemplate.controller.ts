@@ -1,8 +1,8 @@
 const dbModelFiles = require("../models/index.ts");
-const Exercise = dbModelFiles.exercises;
+const WorkoutTemplate = dbModelFiles.workoutTemplates;
 const Op = dbModelFiles.Sequelize.Op;
 
-// Create and Save a new Exercise
+// Create and Save a new Workout Template
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.title) {
@@ -12,122 +12,125 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Exercise
-  const exercise = {
+  // Create a Workout Template
+  const workoutTemplate = {
     title: req.body.title,
-    description: req.body.description,
-    category: req.body.category,
-    bodyPart: req.body.bodyPart,
+    lastUsedAt: null,
   };
 
-  // Save Exercise in the database
-  Exercise.create(exercise)
+  // Save Workout Template in the database
+  WorkoutTemplate.create(workoutTemplate)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Exercise.",
+          err.message ||
+          "Some error occurred while creating the Workout Template.",
       });
     });
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all Workout Templates from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-  Exercise.findAll({ where: condition })
+  WorkoutTemplate.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving exercises.",
+          err.message ||
+          "Some error occurred while retrieving Workout Templates.",
       });
     });
 };
 
-// Find a single Exercise with an id
+// Find a single Workout Template with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Exercise.findByPk(id)
+  WorkoutTemplate.findByPk(id)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Exercise with id=" + id,
+        message: "Error retrieving Workout Template with id=" + id,
       });
     });
 };
 
-// Update a Exercise by the id in the request
+// Update a Workout Template by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Exercise.update(req.body, {
+  WorkoutTemplate.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Exercise was updated successfully.",
+          message: "Workout Template was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Exercise with id=${id}. Maybe Exercise was not found or req.body is empty!`,
+          message: `Cannot update Workout Template with id=${id}. Maybe Workout Template was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Exercise with id=" + id,
+        message: "Error updating Workout Template with id=" + id,
       });
     });
 };
 
-// Delete a Exercise with the specified id in the request
+// Delete a Workout Template with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Exercise.destroy({
+  WorkoutTemplate.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Exercise was deleted successfully!",
+          message: "Workout Template was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Exercise with id=${id}. Maybe Exercise was not found!`,
+          message: `Cannot delete Workout Template with id=${id}. Maybe Workout Template was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Exercise with id=" + id,
+        message: "Could not delete Workout Template with id=" + id,
       });
     });
 };
 
-// Delete all Exercises from the database.
+// Delete all Workout Templates from the database.
 exports.deleteAll = (req, res) => {
-  Exercise.destroy({
+  WorkoutTemplate.destroy({
     where: {},
     truncate: false,
   })
     .then((nums) => {
-      res.send({ message: `${nums} Exercises were deleted successfully!` });
+      res.send({
+        message: `${nums} Workout Templates were deleted successfully!`,
+      });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all exercises.",
+          err.message ||
+          "Some error occurred while removing all workoutTemplates.",
       });
     });
 };

@@ -20,9 +20,9 @@ const dbModels = require("./app/models/index.ts");
 
 dbModels.sequelize.sync();
 // // drop the table if it already exists
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
+dbModels.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 // simple route
 app.get("/", (req, res) => {
@@ -30,6 +30,9 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/exercise.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/workout.routes")(app);
+require("./app/routes/workoutTemplate.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.NODE_DOCKER_PORT || 8080;

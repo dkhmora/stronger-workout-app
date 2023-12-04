@@ -31,7 +31,6 @@ export default function HistoryPage() {
         <Grid item>
           <HistoryList
             isMobile={isMobile}
-            toolbarTitle="Workout History"
             workouts={data}
           />
         </Grid>
