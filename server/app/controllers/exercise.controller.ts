@@ -16,7 +16,8 @@ exports.create = (req, res) => {
   const exercise = {
     title: req.body.title,
     description: req.body.description,
-    published: req.body.published ? req.body.published : false,
+    category: req.body.category,
+    bodyPart: req.body.bodyPart,
   };
 
   // Save Exercise in the database
@@ -127,20 +128,6 @@ exports.deleteAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all exercises.",
-      });
-    });
-};
-
-// find all published Exercise
-exports.findAllPublished = (req, res) => {
-  Exercise.findAll({ where: { published: true } })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving exercises.",
       });
     });
 };
