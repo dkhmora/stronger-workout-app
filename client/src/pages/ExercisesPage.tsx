@@ -21,9 +21,7 @@ export default function ExercisesPage() {
   ];
 
   if (isMobile) {
-    return (
-      <ExerciseList toolbarTitle="Exercises" columns={columns} rows={data} />
-    );
+    return <ExerciseList exercises={data} />;
   }
 
   return (

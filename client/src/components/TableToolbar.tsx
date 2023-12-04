@@ -10,9 +10,10 @@ interface TableToolbarProps {
   numSelected: number;
 }
 
-export default function TableToolbar(props: TableToolbarProps) {
-  const { numSelected, title } = props;
-
+export default function TableToolbar({
+  numSelected,
+  title,
+}: TableToolbarProps) {
   return (
     <Toolbar
       sx={{

@@ -1,24 +1,23 @@
 import * as React from "react";
 import { Box, List } from "@mui/material";
 import ExerciseListItem from "./ExerciseListItem";
-import { ExerciseData, ExerciseColumn } from "../interfaces";
+import { ExerciseData } from "../interfaces";
 
 interface ExerciseListProps {
-  toolbarTitle: string | null;
-  columns: ExerciseColumn[];
-  rows: ExerciseData[];
+  exercises: ExerciseData[];
 }
 
-export default function ExerciseList(props: ExerciseListProps) {
-  const { toolbarTitle, columns, rows } = props;
-
+export default function ExerciseList({ exercises }: ExerciseListProps) {
   return (
     <Box sx={{ height: "100%", width: "100%", overflow: "auto" }}>
       <List sx={{ width: "100%" }}>
-        {rows.map((row: ExerciseData, index) => {
+        {exercises.map((exercise: ExerciseData, index) => {
           return (
             <>
-              <ExerciseListItem exerciseData={row} />
+              <ExerciseListItem
+                exerciseData={exercise}
+                key={`${index}${exercise.title}`}
+              />
             </>
           );
         })}

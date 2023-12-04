@@ -23,8 +23,7 @@ interface WorkoutListItemProps {
   workoutData: WorkoutData;
 }
 
-export default function HistoryListItem(props: WorkoutListItemProps) {
-  const { workoutData } = props;
+export default function HistoryListItem({ workoutData }: WorkoutListItemProps) {
   const { duration, totalWeight, totalPersonalRecords } =
     getWorkoutSummary(workoutData);
 

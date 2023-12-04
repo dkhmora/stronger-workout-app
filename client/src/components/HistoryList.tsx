@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Box, List, Grid } from "@mui/material";
 import HistoryListItem from "./HistoryListItem";
+import { WorkoutData } from "../interfaces";
 
-export default function HistoryList(props: any) {
-  const { workouts, isMobile } = props;
+interface HistoryListProps {
+  workouts: WorkoutData[];
+  isMobile: boolean;
+}
 
+export default function HistoryList({ workouts, isMobile }: HistoryListProps) {
   const itemsPerRow = isMobile ? 1 : 2;
 
   const renderRows = () => {
