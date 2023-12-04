@@ -114,14 +114,14 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Tutorials from the database.
+// Delete all Exercises from the database.
 exports.deleteAll = (req, res) => {
   Exercise.destroy({
     where: {},
     truncate: false,
   })
     .then((nums) => {
-      res.send({ message: `${nums} Tutorials were deleted successfully!` });
+      res.send({ message: `${nums} Exercises were deleted successfully!` });
     })
     .catch((err) => {
       res.status(500).send({
