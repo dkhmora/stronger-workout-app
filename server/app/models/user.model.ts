@@ -1,5 +1,3 @@
-const Exercise = require("./exercise.model");
-
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define(
     "user",

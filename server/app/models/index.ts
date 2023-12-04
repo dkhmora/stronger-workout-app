@@ -21,8 +21,8 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.exercises = require("./exercise.model.ts")(sequelize, Sequelize);
-db.users = require('./user.model')(sequelize, Sequelize);
+db.users = require("./user.model.ts")(sequelize, Sequelize);
 
-db.users.hasMany(db.exercises, { as: 'Exercises' });
+db.users.hasMany(db.exercises, { as: "Exercises" });
 
 module.exports = db;
