@@ -24,6 +24,7 @@ export default function MobileNavbar() {
             icon={icon}
             {...{ to }}
             component={Link}
+            key={text + to}
           />
         ))}
       </BottomNavigation>

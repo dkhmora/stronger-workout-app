@@ -124,10 +124,10 @@ export default function HistoryListItem({ workoutData }: WorkoutListItemProps) {
 
   const getExercisesList = (workouts: WorkoutExercises[]) => {
     return workouts.map(
-      ({
-        exerciseData: { id, title, type, description, userCreated },
-        sets,
-      }) => {
+      (
+        { exerciseData: { id, title, type, description, userCreated }, sets },
+        index
+      ) => {
         const numberOfSets = sets.length;
 
         return (
@@ -137,6 +137,7 @@ export default function HistoryListItem({ workoutData }: WorkoutListItemProps) {
             component="span"
             variant="body2"
             color="text.secondary"
+            key={`${title}${index}`}
           >
             {numberOfSets} x {title} ({type})
           </Typography>
@@ -147,10 +148,20 @@ export default function HistoryListItem({ workoutData }: WorkoutListItemProps) {
 
   const getBestSetList = (workouts: WorkoutExercises[]) => {
     return workouts.map(
-      ({
-        exerciseData: { id, title, type, description, userCreated, weightUnit },
-        sets,
-      }) => {
+      (
+        {
+          exerciseData: {
+            id,
+            title,
+            type,
+            description,
+            userCreated,
+            weightUnit,
+          },
+          sets,
+        },
+        index
+      ) => {
         const bestOneRepMax = 0;
         let bestSet = sets[0];
 
@@ -170,6 +181,7 @@ export default function HistoryListItem({ workoutData }: WorkoutListItemProps) {
             component="span"
             variant="body2"
             color="text.secondary"
+            key={`${title}${index}`}
           >
             {bestSet.numberOfReps} x {bestSet.weight} {weightUnit}
           </Typography>
