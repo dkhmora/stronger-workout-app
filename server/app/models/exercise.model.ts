@@ -8,8 +8,11 @@ module.exports = (sequelize, Sequelize) => {
       description: {
         type: Sequelize.STRING,
       },
-      userCreated: {
-        type: Sequelize.BOOLEAN,
+      category: {
+        type: Sequelize.STRING,
+      },
+      bodyPart: {
+        type: Sequelize.STRING,
       },
     },
     { underscored: true }
