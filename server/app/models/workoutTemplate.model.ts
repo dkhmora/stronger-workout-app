@@ -7,7 +7,6 @@ module.exports = (sequelize, Sequelize) => {
       },
       lastUsedAt: {
         type: Sequelize.DATE,
-        allowNull: false,
       },
     },
     { underscored: true }
