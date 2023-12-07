@@ -1,40 +1,57 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
+import dbModels from "./app/models";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import userRoutes from "./app/routes/user.routes";
+import exerciseRoutes from "./app/routes/exercise.routes";
+import workoutRoutes from "./app/routes/workout.routes";
+import workoutTemplateRoutes from "./app/routes/workoutTemplate.routes";
+
+dotenv.config();
 
 const app = express();
 
-var corsOptions = {
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:8081",
+// Set up CORS options
+const allowedOrigins = process.env.CLIENT_ORIGIN
+  ? process.env.CLIENT_ORIGIN.split(",")
+  : ["http://localhost:3000"];
+
+let corsOptions = {
+  origin: function (origin: any, callback: any) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
 };
+
+// Parse JSON bodies
+app.use(bodyParser.json());
+
+// Parse URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
-app.use(express.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
-
-const dbModels = require("./app/models/index.ts");
-
-dbModels.sequelize.sync();
-// // drop the table if it already exists
+// Drop the table if it already exists
 dbModels.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
 
-// simple route
-app.get("/", (req, res) => {
+// Entry route
+app.get("/", (req: any, res: any) => {
   res.json({ message: "Welcome to stronger" });
 });
 
-require("./app/routes/exercise.routes")(app);
-require("./app/routes/user.routes")(app);
-require("./app/routes/workout.routes")(app);
-require("./app/routes/workoutTemplate.routes")(app);
+// Initialize routes
+userRoutes(app);
+exerciseRoutes(app);
+workoutRoutes(app);
+workoutTemplateRoutes(app);
 
-// set port, listen for requests
+// Set port, listen for requests
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
 
 app.listen(PORT, () => {

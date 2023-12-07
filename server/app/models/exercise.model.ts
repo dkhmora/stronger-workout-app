@@ -1,22 +1,33 @@
-module.exports = (sequelize, Sequelize) => {
-  const Exercise = sequelize.define(
+import { Model } from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
+
+export interface ExerciseAttributes {
+  title: string;
+  description: string; // Optional because it may not be set
+  category: string;
+  bodyPart: string;
+}
+
+export interface ExerciseInstance
+  extends Model<ExerciseAttributes>,
+    ExerciseAttributes {}
+
+export default (sequelize: Sequelize) =>
+  sequelize.define<ExerciseInstance>(
     "exercise",
     {
       title: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       description: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       category: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       bodyPart: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
     },
     { underscored: true }
   );
-
-  return Exercise;
-};

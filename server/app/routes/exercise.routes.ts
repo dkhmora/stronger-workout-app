@@ -1,4 +1,6 @@
-module.exports = (app) => {
+import { Express } from "express";
+
+export default (app: Express) => {
   const exercises = require("../controllers/exercise.controller.ts");
   const router = require("express").Router();
 
