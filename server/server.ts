@@ -1,24 +1,31 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
+import dbModels from "./app/models";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+
+dotenv.config();
 
 const app = express();
 
-var corsOptions = {
+let corsOptions = {
   origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
 };
 
+// Parse JSON bodies
+app.use(bodyParser.json());
+
+// Parse URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
-app.use(express.json());
+// // parse requests of content-type - application/json
+// app.use(express.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+// // parse requests of content-type - application/x-www-form-urlencoded
+// app.use(express.urlencoded({ extended: true }));
 
-const dbModels = require("./app/models/index.ts");
-
-dbModels.sequelize.sync();
 // // drop the table if it already exists
 dbModels.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");

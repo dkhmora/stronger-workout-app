@@ -1,9 +1,11 @@
-const dbModelFiles = require("../models/index.ts");
-const Workout = dbModelFiles.workouts;
-const Op = dbModelFiles.Sequelize.Op;
+import { Op } from "sequelize";
+import dbModels from "../models";
+import { Request, Response } from "express";
+
+const Workout = dbModels.workouts;
 
 // Create and Save a new Workout
-exports.create = (req, res) => {
+exports.create = (req: Request, res: Response) => {
   // Validate request
   if (!req.body.title) {
     res.status(400).send({
@@ -35,11 +37,11 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {
+exports.findAll = (req: Request, res: Response) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-  Workout.findAll({ where: condition })
+  Workout.findAll({ where: condition as any })
     .then((data) => {
       res.send(data);
     })
@@ -52,7 +54,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Workout with an id
-exports.findOne = (req, res) => {
+exports.findOne = (req: Request, res: Response) => {
   const id = req.params.id;
 
   Workout.findByPk(id)
@@ -67,14 +69,14 @@ exports.findOne = (req, res) => {
 };
 
 // Update a Workout by the id in the request
-exports.update = (req, res) => {
+exports.update = (req: Request, res: Response) => {
   const id = req.params.id;
 
   Workout.update(req.body, {
-    where: { id: id },
+    where: { id: id } as any,
   })
     .then((num) => {
-      if (num == 1) {
+      if (num.length == 1) {
         res.send({
           message: "Workout was updated successfully.",
         });
@@ -92,11 +94,11 @@ exports.update = (req, res) => {
 };
 
 // Delete a Workout with the specified id in the request
-exports.delete = (req, res) => {
+exports.delete = (req: Request, res: Response) => {
   const id = req.params.id;
 
   Workout.destroy({
-    where: { id: id },
+    where: { id: id } as any,
   })
     .then((num) => {
       if (num == 1) {
@@ -117,7 +119,7 @@ exports.delete = (req, res) => {
 };
 
 // Delete all Workouts from the database.
-exports.deleteAll = (req, res) => {
+exports.deleteAll = (req: Request, res: Response) => {
   Workout.destroy({
     where: {},
     truncate: false,

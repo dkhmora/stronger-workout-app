@@ -10,7 +10,7 @@ export interface UserAttributes {
 export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
 
 export default (sequelize: Sequelize) =>
-  sequelize.define(
+  sequelize.define<UserInstance>(
     "user",
     {
       firstName: {

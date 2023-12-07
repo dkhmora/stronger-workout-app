@@ -13,7 +13,7 @@ export interface WorkoutInstance
     WorkoutAttributes {}
 
 export default (sequelize: Sequelize) =>
-  sequelize.define(
+  sequelize.define<WorkoutInstance>(
     "workout",
     {
       title: {

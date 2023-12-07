@@ -1,9 +1,11 @@
-const dbModelFiles = require("../models/index.ts");
-const WorkoutTemplate = dbModelFiles.workoutTemplates;
-const Op = dbModelFiles.Sequelize.Op;
+import { Op } from "sequelize";
+import dbModels from "../models";
+import { Request, Response } from "express";
+
+const WorkoutTemplate = dbModels.workoutTemplates;
 
 // Create and Save a new Workout Template
-exports.create = (req, res) => {
+exports.create = (req: Request, res: Response) => {
   // Validate request
   if (!req.body.title) {
     res.status(400).send({
@@ -33,11 +35,11 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Workout Templates from the database.
-exports.findAll = (req, res) => {
+exports.findAll = (req: Request, res: Response) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-  WorkoutTemplate.findAll({ where: condition })
+  WorkoutTemplate.findAll({ where: condition as any })
     .then((data) => {
       res.send(data);
     })
@@ -51,7 +53,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Workout Template with an id
-exports.findOne = (req, res) => {
+exports.findOne = (req: Request, res: Response) => {
   const id = req.params.id;
 
   WorkoutTemplate.findByPk(id)
@@ -66,14 +68,14 @@ exports.findOne = (req, res) => {
 };
 
 // Update a Workout Template by the id in the request
-exports.update = (req, res) => {
+exports.update = (req: Request, res: Response) => {
   const id = req.params.id;
 
   WorkoutTemplate.update(req.body, {
-    where: { id: id },
+    where: { id: id } as any,
   })
     .then((num) => {
-      if (num == 1) {
+      if (num.length == 1) {
         res.send({
           message: "Workout Template was updated successfully.",
         });
@@ -91,11 +93,11 @@ exports.update = (req, res) => {
 };
 
 // Delete a Workout Template with the specified id in the request
-exports.delete = (req, res) => {
+exports.delete = (req: Request, res: Response) => {
   const id = req.params.id;
 
   WorkoutTemplate.destroy({
-    where: { id: id },
+    where: { id: id } as any,
   })
     .then((num) => {
       if (num == 1) {
@@ -116,7 +118,7 @@ exports.delete = (req, res) => {
 };
 
 // Delete all Workout Templates from the database.
-exports.deleteAll = (req, res) => {
+exports.deleteAll = (req: Request, res: Response) => {
   WorkoutTemplate.destroy({
     where: {},
     truncate: false,

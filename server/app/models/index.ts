@@ -41,4 +41,4 @@ dbModels.users.hasMany(dbModels.workouts, { as: "Workouts" });
 dbModels.workoutTemplates.hasMany(dbModels.workouts);
 dbModels.workouts.belongsTo(dbModels.workoutTemplates);
 
-export default { ...dbModels };
+export default dbModels;
