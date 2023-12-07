@@ -1,12 +1,25 @@
-const dbConfig = require("../config/db.config.ts");
+import exercises, { ExerciseInstance } from "./exercise.model";
+import users, { UserInstance } from "./user.model";
+import workoutTemplates, {
+  WorkoutTemplateInstance,
+} from "./workoutTemplate.model";
+import workouts, { WorkoutInstance } from "./workout.model";
+import { ModelStatic, Sequelize } from "sequelize";
+import dbConfig from "../config/db.config";
 
-const Sequelize = require("sequelize");
+interface DBModels {
+  sequelize: Sequelize;
+  Sequelize: Sequelize;
+  exercises: ModelStatic<ExerciseInstance>;
+  users: ModelStatic<UserInstance>;
+  workouts: ModelStatic<WorkoutInstance>;
+  workoutTemplates: ModelStatic<WorkoutTemplateInstance>;
+}
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   port: dbConfig.port,
-  operatorsAliases: false,
-
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -15,22 +28,17 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   },
 });
 
-const db = {};
-
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
-db.exercises = require("./exercise.model.ts")(sequelize, Sequelize);
-db.users = require("./user.model.ts")(sequelize, Sequelize);
-db.workouts = require("./workout.model.ts")(sequelize, Sequelize);
-db.workoutTemplates = require("./workoutTemplate.model.ts")(
+const dbModels = <DBModels>{
   sequelize,
-  Sequelize
-);
+  exercises: exercises(sequelize),
+  users: users(sequelize),
+  workouts: workouts(sequelize),
+  workoutTemplates: workoutTemplates(sequelize),
+};
 
-db.users.hasMany(db.exercises, { as: "Exercises" });
-db.users.hasMany(db.workouts, { as: "Workouts" });
-db.workoutTemplates.hasMany(db.workouts);
-db.workouts.belongsTo(db.workoutTemplates);
+dbModels.users.hasMany(dbModels.exercises, { as: "Exercises" });
+dbModels.users.hasMany(dbModels.workouts, { as: "Workouts" });
+dbModels.workoutTemplates.hasMany(dbModels.workouts);
+dbModels.workouts.belongsTo(dbModels.workoutTemplates);
 
-module.exports = db;
+export default { ...dbModels };

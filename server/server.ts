@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:8081",
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
 };
 
 app.use(cors(corsOptions));
@@ -25,7 +25,7 @@ dbModels.sequelize.sync({ force: true }).then(() => {
 });
 
 // simple route
-app.get("/", (req, res) => {
+app.get("/", (req: any, res: any) => {
   res.json({ message: "Welcome to stronger" });
 });
 

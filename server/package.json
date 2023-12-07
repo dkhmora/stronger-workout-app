@@ -6,19 +6,21 @@
   "license": "ISC",
   "main": "server.ts",
   "scripts": {
-    "start": "node server.ts",
+    "start": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.3.1",
     "express": "^4.17.1",
-    "mysql2": "^2.0.2",
-    "sequelize": "^5.21.2"
+    "mysql2": "^3.6.5",
+    "sequelize": "^6.35.1"
   },
   "devDependencies": {
-    "@types/express": "^4.17.20",
-    "@types/node": "^20.8.10",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.3",
+    "@types/sequelize": "^4.28.19",
+    "nodemon": "^3.0.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }

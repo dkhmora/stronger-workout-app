@@ -1,23 +1,31 @@
-module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define(
+import { Sequelize, DataTypes, Optional, Model } from "sequelize";
+
+export interface UserAttributes {
+  firstName: string;
+  middleName: string; // Optional because it may not be set
+  lastName: string;
+  birthDate: Date;
+}
+
+export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
+
+export default (sequelize: Sequelize) =>
+  sequelize.define(
     "user",
     {
       firstName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       middleName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       lastName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       birthDate: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
       },
     },
     { underscored: true }
   );
-
-  return User;
-};
