@@ -9,7 +9,7 @@ import {
   Drawer as MuiDrawer,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { desktopNavbarItems } from "../constants/general";
+import { routes } from "../constants/general";
 import "./Navbar.css";
 import {
   dynamicNavbarStyles,
@@ -52,7 +52,7 @@ export default function Navbar() {
       onMouseLeave={handleDrawerClose}
     >
       <List>
-        {desktopNavbarItems.map(({ text, icon, to }, index) => (
+        {routes.map(({ text, icon, to }, index) => (
           <ListItem
             key={text}
             disablePadding
