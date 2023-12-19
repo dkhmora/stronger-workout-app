@@ -29,10 +29,7 @@ export default function HistoryPage() {
         )}
 
         <Grid item>
-          <HistoryList
-            isMobile={isMobile}
-            workouts={data}
-          />
+          <HistoryList workouts={data} />
         </Grid>
       </Grid>
     </Container>
