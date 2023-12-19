@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
 import ProfileBox from "../components/ProfileBox";
@@ -16,9 +16,11 @@ export default function ProfilePage() {
         </Typography>
       ) : null}
 
-      <ProfileBox className="my-6" />
+      <Box className="my-6">
+        <ProfileBox />
 
-      <ProfileDashboard className="my-6" />
+        <ProfileDashboard className="my-6" />
+      </Box>
     </Container>
   );
 }

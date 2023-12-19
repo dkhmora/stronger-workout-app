@@ -5,9 +5,10 @@ import { WorkoutData } from "../interfaces";
 
 interface HistoryListProps {
   workouts: WorkoutData[];
+  className?: string;
 }
 
-export default function HistoryList({ workouts }: HistoryListProps) {
+export default function HistoryList({ workouts, className }: HistoryListProps) {
   const renderWorkouts = () => {
     return workouts.map((data: WorkoutData, index: number) => (
       <Grid
@@ -25,8 +26,8 @@ export default function HistoryList({ workouts }: HistoryListProps) {
   };
 
   return (
-    <List sx={{ height: "100%", width: "100%" }}>
-      <Grid container rowSpacing={3} columnSpacing={3} alignItems="stretch">
+    <List className={className}>
+      <Grid container rowSpacing={2} columnSpacing={3} alignItems="stretch">
         {renderWorkouts()}
       </Grid>
     </List>
