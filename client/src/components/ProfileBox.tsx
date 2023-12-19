@@ -7,30 +7,22 @@ import {
 
 export default function ProfileBox() {
   return (
-    <Button
-      component={Paper}
-      sx={{
-        width: "50vh",
-        padding: 2,
-        marginBottom: 2,
-        borderRadius: 4,
-      }}
-    >
+    <Button component={Paper} className="w-full lg:w-5/12 rounded-3xl">
       <Grid
         container
         alignItems="center"
         justifyContent="space-between"
-        spacing={0}
+        spacing={4}
+        className="px-6 py-4"
       >
-        <Grid
-          item
-          sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-        >
-          <Avatar sx={{ width: 60, height: 60 }} data-testid="user-avatar">
+        <Grid item xs={3} md={3}>
+          <Avatar className="w-14 h-14" data-testid="user-avatar">
             <PersonIcon fontSize="large" />
           </Avatar>
+        </Grid>
 
-          <Box sx={{ px: 2 }}>
+        <Grid item xs={7} md={7}>
+          <Box>
             <Typography
               variant="h6"
               color="text.primary"
@@ -46,7 +38,7 @@ export default function ProfileBox() {
           </Box>
         </Grid>
 
-        <Grid item>
+        <Grid item xs={2} md={2}>
           <ArrowForwardIosIcon />
         </Grid>
       </Grid>
