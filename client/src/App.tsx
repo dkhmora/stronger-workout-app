@@ -19,7 +19,7 @@ function App() {
   }, [dispatch, isMobile]);
 
   const mainPadding = {
-    py: isMobile ? 5 : 0,
+    my: isMobile ? 5 : 0,
   };
 
   return (

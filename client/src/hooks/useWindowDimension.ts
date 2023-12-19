@@ -23,7 +23,7 @@ export default function useWindowDimension() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isMobile = windowDimension.width < 768;
+  const isMobile = windowDimension.width < 640;
 
   return { isMobile, windowDimension };
 }

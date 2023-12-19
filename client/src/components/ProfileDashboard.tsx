@@ -50,9 +50,11 @@ const selectedBodyFatData = [
   ...bodyFatData,
 ];
 
-export default function ProfileDashboard() {
+type ProfileDashboardProps = { className?: string };
+
+export default function ProfileDashboard({ className }: ProfileDashboardProps) {
   return (
-    <Box>
+    <Box className={className}>
       <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>

@@ -5,9 +5,14 @@ import {
   ArrowForwardIos as ArrowForwardIosIcon,
 } from "@mui/icons-material";
 
-export default function ProfileBox() {
+type ProfileBoxProps = { className?: string };
+
+export default function ProfileBox({ className }: ProfileBoxProps) {
   return (
-    <Button component={Paper} className="w-full lg:w-5/12 rounded-3xl">
+    <Button
+      component={Paper}
+      className={"w-full md:w-7/12 lg:w-5/12 rounded-3xl " + className}
+    >
       <Grid
         container
         alignItems="center"
