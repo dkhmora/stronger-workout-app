@@ -12,25 +12,10 @@ import HistoryPage from "./pages/HistoryPage";
 import { Box, CssBaseline } from "@mui/material";
 import MobileAppBar from "./components/MobileAppBar";
 import { SET_IS_MOBILE } from "./store/general";
+import useWindowDimension from "./hooks/useWindowDimension";
 
 function App() {
-  const [windowDimension, setWindowDimension] = useState<number | null>(null);
-
-  useEffect(() => {
-    setWindowDimension(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimension(window.innerWidth);
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const isMobile = windowDimension && windowDimension <= 640;
-
+  const { isMobile } = useWindowDimension();
   const dispatch = useDispatch();
 
   useEffect(() => {
