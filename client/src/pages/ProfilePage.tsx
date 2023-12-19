@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
 import ProfileBox from "../components/ProfileBox";

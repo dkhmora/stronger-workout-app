@@ -11,7 +11,10 @@ export default function ProfileBox({ className }: ProfileBoxProps) {
   return (
     <Button
       component={Paper}
-      className={"w-full md:w-7/12 lg:w-5/12 rounded-3xl " + className}
+      className={
+        "md:transition md:delay-150 md:hover:-translate-y-1 md:duration-300 w-full md:w-7/12 lg:w-5/12 rounded-3xl " +
+        className
+      }
     >
       <Grid
         container
