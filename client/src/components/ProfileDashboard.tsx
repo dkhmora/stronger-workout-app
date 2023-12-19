@@ -1,7 +1,6 @@
 import React from "react";
 import { Typography, Grid, Paper, Box } from "@mui/material";
 import { getPreviousMonthTicks } from "../helpers";
-import useWindowDimension from "../hooks/useWindowDimension";
 import ChartCard from "./ChartCard";
 
 // Sample data for the charts
@@ -52,60 +51,56 @@ const selectedBodyFatData = [
 ];
 
 export default function ProfileDashboard() {
-  const { windowDimension } = useWindowDimension();
-
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>
 
-      <Paper sx={{ padding: 2, borderRadius: 4 }}>
-        <Grid container spacing={2}>
-          {/* Workouts per week chart */}
-          <Grid item xs={12} md={4}>
-            <ChartCard
-              title="Workouts per Week"
-              chartType="ColumnChart"
-              data={selectedWorkoutData}
-            />
-          </Grid>
-
-          {/* Body weight chart */}
-          <Grid item xs={12} md={4}>
-            <ChartCard
-              title="Body Weight"
-              chartType="LineChart"
-              data={selectedWeightData}
-              options={{
-                hAxis: {
-                  format: "MMM",
-                  ticks: getPreviousMonthTicks(4),
-                },
-                vAxis: {
-                  format: "decimal",
-                  gridlines: { minSpacing: 40 },
-                },
-              }}
-            />
-          </Grid>
-
-          {/* Body Fat chart */}
-          <Grid item xs={12} md={4}>
-            <ChartCard
-              title="Body Fat"
-              chartType="LineChart"
-              data={selectedBodyFatData}
-              options={{
-                hAxis: {
-                  format: "MMM",
-                  ticks: getPreviousMonthTicks(4),
-                },
-              }}
-            />
-          </Grid>
+      <Grid container spacing={2}>
+        {/* Workouts per week chart */}
+        <Grid item xs={12} md={4}>
+          <ChartCard
+            title="Workouts per Week"
+            chartType="ColumnChart"
+            data={selectedWorkoutData}
+          />
         </Grid>
-      </Paper>
+
+        {/* Body weight chart */}
+        <Grid item xs={12} md={4}>
+          <ChartCard
+            title="Body Weight"
+            chartType="LineChart"
+            data={selectedWeightData}
+            options={{
+              hAxis: {
+                format: "MMM",
+                ticks: getPreviousMonthTicks(4),
+              },
+              vAxis: {
+                format: "decimal",
+                gridlines: { minSpacing: 40 },
+              },
+            }}
+          />
+        </Grid>
+
+        {/* Body Fat chart */}
+        <Grid item xs={12} md={4}>
+          <ChartCard
+            title="Body Fat"
+            chartType="LineChart"
+            data={selectedBodyFatData}
+            options={{
+              hAxis: {
+                format: "MMM",
+                ticks: getPreviousMonthTicks(4),
+              },
+            }}
+          />
+        </Grid>
+      </Grid>
     </Box>
   );
 }

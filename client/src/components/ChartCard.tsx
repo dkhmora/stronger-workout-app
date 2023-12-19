@@ -9,7 +9,6 @@ import Chart, {
 
 interface AdditionalGoogleChartOptions
   extends Omit<GoogleChartOptions, "backgroundColor"> {
-  // Add your own properties here
   backgroundColor?: string;
 }
 
