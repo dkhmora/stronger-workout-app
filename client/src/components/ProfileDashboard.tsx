@@ -1,8 +1,9 @@
 import React from "react";
-import { Avatar, Typography, Grid, Paper, Box } from "@mui/material";
+import { Typography, Grid, Paper, Box } from "@mui/material";
 import Chart from "react-google-charts";
 import { blueGrey } from "@mui/material/colors";
 import { getPreviousMonthTicks } from "../helpers";
+import useWindowDimension from "../hooks/useWindowDimension";
 
 // Sample data for the charts
 const workoutData = [
@@ -52,6 +53,8 @@ const selectedBodyFatData = [
 ];
 
 export default function ProfileDashboard() {
+  const { windowDimension } = useWindowDimension();
+
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
@@ -62,8 +65,9 @@ export default function ProfileDashboard() {
         <Grid container spacing={2}>
           {/* Workouts per week chart */}
           <Grid item xs={12} md={4}>
-            <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
+            <Paper className="rounded-3xl overflow-hidden">
               <Chart
+                key={windowDimension.width + "WorkoutsPerWeekBarChart"}
                 chartType="ColumnChart"
                 data={selectedWorkoutData}
                 options={{
@@ -97,6 +101,7 @@ export default function ProfileDashboard() {
           <Grid item xs={12} md={4}>
             <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
               <Chart
+                key={windowDimension.width + "BodyWeightLineChart"}
                 chartType="LineChart"
                 data={selectedWeightData}
                 options={{
@@ -132,6 +137,7 @@ export default function ProfileDashboard() {
           <Grid item xs={12} md={4}>
             <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
               <Chart
+                key={windowDimension.width + "BodyFatLineChart"}
                 chartType="LineChart"
                 data={selectedBodyFatData}
                 options={{
