@@ -31,7 +31,11 @@ function App() {
           {isMobile && <MobileAppBar />}
           <Routes>
             {routes.map((route) => (
-              <Route path={route.to} element={route.element} />
+              <Route
+                path={route.to}
+                element={route.element}
+                key={`${route.text}${route.to}`}
+              />
             ))}
           </Routes>
         </Box>
