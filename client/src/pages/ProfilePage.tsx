@@ -9,7 +9,7 @@ export default function ProfilePage() {
   const isMobile = useSelector((state: RootState) => state.isMobile);
 
   return (
-    <Container className="p-6 md:p-12">
+    <Container className="p-4 md:p-12">
       {!isMobile ? (
         <Typography noWrap variant="h2" component="h2" className="mb-6">
           Profile
