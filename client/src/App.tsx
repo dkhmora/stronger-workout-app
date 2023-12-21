@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
-import { Box, CssBaseline } from "@mui/material";
+import { BottomNavigation, Box, CssBaseline, Toolbar } from "@mui/material";
 import MobileAppBar from "./components/MobileAppBar";
 import { SET_IS_MOBILE } from "./store/general";
 import useWindowDimension from "./hooks/useWindowDimension";
@@ -18,17 +18,21 @@ function App() {
     dispatch(SET_IS_MOBILE(isMobile));
   }, [dispatch, isMobile]);
 
-  const mainPadding = {
-    my: isMobile ? 5 : 0,
-  };
-
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box className="flex">
       <CssBaseline />
       <BrowserRouter>
-        {isMobile ? <MobileNavbar /> : <Navbar />}
-        <Box sx={{ flexGrow: 1, overflow: "auto", ...mainPadding }}>
-          {isMobile && <MobileAppBar />}
+        {isMobile ? (
+          <>
+            <MobileAppBar />
+            <MobileNavbar />
+          </>
+        ) : (
+          <Navbar />
+        )}
+
+        <Box component="main" className="flex-grow">
+          {isMobile ? <Toolbar /> : null}
           <Routes>
             {routes.map((route) => (
               <Route
@@ -38,6 +42,7 @@ function App() {
               />
             ))}
           </Routes>
+          {isMobile ? <BottomNavigation /> : null}
         </Box>
       </BrowserRouter>
     </Box>

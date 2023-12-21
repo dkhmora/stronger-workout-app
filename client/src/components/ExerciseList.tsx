@@ -9,7 +9,7 @@ interface ExerciseListProps {
 
 export default function ExerciseList({ exercises }: ExerciseListProps) {
   return (
-    <List className="py-0">
+    <List className="p-0">
       {exercises.map((exercise: ExerciseData, index) => (
         <ExerciseListItem
           exerciseData={exercise}

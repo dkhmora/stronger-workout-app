@@ -9,17 +9,17 @@ export default function ProfilePage() {
   const isMobile = useSelector((state: RootState) => state.isMobile);
 
   return (
-    <Container className="py-4 md:p-12">
+    <Container className="p-6 md:p-12">
       {!isMobile ? (
-        <Typography noWrap variant="h2" component="h2">
+        <Typography noWrap variant="h2" component="h2" className="mb-6">
           Profile
         </Typography>
       ) : null}
 
-      <Box className="my-6">
+      <Box>
         <ProfileBox />
 
-        <ProfileDashboard className="my-6" />
+        <ProfileDashboard className="mt-6 md:mt-12" />
       </Box>
     </Container>
   );

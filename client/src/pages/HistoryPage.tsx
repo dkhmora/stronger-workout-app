@@ -9,14 +9,14 @@ export default function HistoryPage() {
   const isMobile = useSelector((state: RootState) => state.isMobile);
 
   return (
-    <Container className="py-4 md:p-12">
+    <Container className="p-6 md:p-12">
       {!isMobile && (
-        <Typography noWrap variant="h2" component="h2">
+        <Typography noWrap variant="h2" component="h2" className="mb-6">
           Workout History
         </Typography>
       )}
 
-      <Box className="my-6">
+      <Box>
         <HistoryList workouts={data} className="py-0" />
       </Box>
     </Container>

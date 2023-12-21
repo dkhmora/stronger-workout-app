@@ -21,12 +21,12 @@ export default function ExercisesPage() {
   ];
 
   return (
-    <Container className="py-4 md:p-12">
+    <Container className="p-0 md:p-12">
       {isMobile ? (
         <ExerciseList exercises={data} />
       ) : (
         <>
-          <Typography noWrap variant="h2" component="div">
+          <Typography noWrap variant="h2" component="h2">
             Exercises
           </Typography>
 

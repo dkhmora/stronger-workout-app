@@ -10,7 +10,7 @@ export default function MobileAppBar() {
     pathnameTitles[pathname as keyof typeof pathnameTitles];
 
   return (
-    <AppBar position="fixed">
+    <AppBar>
       <Toolbar>
         <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
           <Typography noWrap variant="h6" component="div">
