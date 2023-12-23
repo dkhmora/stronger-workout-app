@@ -25,7 +25,7 @@ function App() {
         {isMobile ? (
           <>
             <MobileAppBar />
-            <MobileNavbar />
+            <MobileNavbar className="navbar" />
           </>
         ) : (
           <Navbar />
@@ -42,7 +42,7 @@ function App() {
               />
             ))}
           </Routes>
-          {isMobile ? <BottomNavigation /> : null}
+          {isMobile ? <BottomNavigation className="navbar" /> : null}
         </Box>
       </BrowserRouter>
     </Box>
