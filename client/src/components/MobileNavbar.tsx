@@ -12,7 +12,7 @@ export default function MobileNavbar({ className }: MobileNavbarProps) {
 
   return (
     <nav>
-      <Paper className="fixed bottom-0 left-0 right-0 z-1000" elevation={3}>
+      <Paper className="fixed bottom-0 left-0 right-0 z-50" elevation={3}>
         <BottomNavigation
           showLabels
           value={value}
