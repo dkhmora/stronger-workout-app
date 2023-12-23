@@ -8,7 +8,12 @@ type MobileNavbarProps = {
 };
 
 export default function MobileNavbar({ className }: MobileNavbarProps) {
-  const [value, setValue] = React.useState(0);
+  const currentNavIndex = mobileNavbarItems.findIndex(
+    (item) => item.to === window.location.pathname
+  );
+  const [value, setValue] = React.useState(
+    currentNavIndex === -1 ? 0 : currentNavIndex
+  );
 
   return (
     <nav>
