@@ -17,37 +17,49 @@ export const routes = [
     icon: createElement(HomeIcon),
     to: "/",
     element: createElement(HomePage),
+    desktop: true,
+    mobile: false,
   },
   {
     text: "Profile",
     icon: createElement(PersonIcon),
     to: "/profile",
     element: createElement(ProfilePage),
+    desktop: true,
+    mobile: true,
   },
   {
     text: "History",
     icon: createElement(HistoryIcon),
     to: "/history",
     element: createElement(HistoryPage),
+    desktop: true,
+    mobile: true,
+  },
+  {
+    text: "Workout",
+    appBarTitle: "New Workout",
+    icon: createElement(AddIcon),
+    to: "/create",
+    desktop: false,
+    mobile: true,
   },
   {
     text: "Exercises",
     icon: createElement(FitnessCenterIcon),
     to: "/exercises",
     element: createElement(ExercisesPage),
+    desktop: true,
+    mobile: true,
   },
   {
     text: "Measure",
     icon: createElement(StraightenIcon),
     to: "/measure",
     element: createElement(MeasurePage),
+    desktop: true,
+    mobile: true,
   },
-];
-
-export const mobileNavbarItems = [
-  ...routes.slice(1, 3),
-  { text: "Workout", icon: createElement(AddIcon), to: "/create" },
-  ...routes.slice(3),
 ];
 
 export const pathnameTitles = {

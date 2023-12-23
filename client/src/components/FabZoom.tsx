@@ -1,5 +1,6 @@
 import { Zoom, Fab } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 type FabZoomProps = {
   icon: React.ReactNode;
@@ -14,6 +15,7 @@ type FabZoomProps = {
   className?: string;
   label: string;
   transitionDuration: number;
+  to: string;
 };
 
 export default function FabZoom({
@@ -22,6 +24,7 @@ export default function FabZoom({
   className,
   label,
   transitionDuration,
+  to,
 }: FabZoomProps) {
   return (
     <Zoom
@@ -33,7 +36,13 @@ export default function FabZoom({
       in={true}
       unmountOnExit
     >
-      <Fab className={className} aria-label={label} color={color}>
+      <Fab
+        component={Link}
+        className={className}
+        aria-label={label}
+        color={color}
+        to={to}
+      >
         {icon}
       </Fab>
     </Zoom>

@@ -16,6 +16,8 @@ function App() {
   const { isMobile } = useWindowDimension();
   const dispatch = useDispatch();
 
+  // console.log(currentPath);
+
   useEffect(() => {
     dispatch(SET_IS_MOBILE(isMobile));
   }, [dispatch, isMobile]);
@@ -44,18 +46,18 @@ function App() {
               />
             ))}
           </Routes>
-          {isMobile ? (
-            <BottomNavigation className="navbar" />
-          ) : (
+          {isMobile ? <BottomNavigation className="navbar" /> : null}
+          {/* To push content up */}
+          {!isMobile && window.location.pathname !== "/create" ? (
             <FabZoom
               icon={<AddIcon />}
               color="primary"
               className="fixed bottom-8 right-8 z-50 bg-blue-500 hover:bg-blue-700"
               label="Add"
               transitionDuration={500}
+              to="/create"
             />
-          )}
-          {/* to push content up or add add workout button */}
+          ) : null}
         </Box>
       </BrowserRouter>
     </Box>

@@ -52,28 +52,30 @@ export default function Navbar() {
       onMouseLeave={handleDrawerClose}
     >
       <List>
-        {routes.map(({ text, icon, to }, index) => (
-          <ListItem
-            key={text}
-            disablePadding
-            sx={navbarStyles.listItem}
-            {...{ to }}
-            component={Link}
-          >
-            <ListItemButton
-              sx={dynamicNavbarStyles.listItemButton({ open })}
-              selected={location.pathname === to}
+        {routes.map(({ text, icon, to, desktop }, index) =>
+          desktop ? (
+            <ListItem
+              key={text}
+              disablePadding
+              sx={navbarStyles.listItem}
+              {...{ to }}
+              component={Link}
             >
-              <ListItemIcon sx={dynamicNavbarStyles.listItemIcon({ open })}>
-                {icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={text}
-                sx={dynamicNavbarStyles.listItemText({ open })}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
+              <ListItemButton
+                sx={dynamicNavbarStyles.listItemButton({ open })}
+                selected={location.pathname === to}
+              >
+                <ListItemIcon sx={dynamicNavbarStyles.listItemIcon({ open })}>
+                  {icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={text}
+                  sx={dynamicNavbarStyles.listItemText({ open })}
+                />
+              </ListItemButton>
+            </ListItem>
+          ) : null
+        )}
       </List>
     </Drawer>
   );
