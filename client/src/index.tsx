@@ -28,6 +28,14 @@ declare module "@mui/material/styles" {
       primary: string;
     };
   }
+
+  interface PaletteColor {
+    darker?: string;
+  }
+
+  interface SimplePaletteColorOptions {
+    darker?: string;
+  }
 }
 
 const darkTheme = createTheme({
@@ -37,6 +45,12 @@ const darkTheme = createTheme({
     background: {
       default: grey[900],
       paper: grey[900],
+    },
+    primary: {
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700],
+      darker: blue[900],
     },
   },
   button: {

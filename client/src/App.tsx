@@ -5,10 +5,12 @@ import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
 import { BottomNavigation, Box, CssBaseline, Toolbar } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import MobileAppBar from "./components/MobileAppBar";
 import { SET_IS_MOBILE } from "./store/general";
 import useWindowDimension from "./hooks/useWindowDimension";
 import { routes } from "./constants/general";
+import FabZoom from "./components/FabZoom";
 
 function App() {
   const { isMobile } = useWindowDimension();
@@ -32,7 +34,7 @@ function App() {
         )}
 
         <Box component="main" className="flex-grow">
-          {isMobile ? <Toolbar /> : null}
+          {isMobile ? <Toolbar /> : null} {/* To push content down */}
           <Routes>
             {routes.map((route) => (
               <Route
@@ -42,7 +44,18 @@ function App() {
               />
             ))}
           </Routes>
-          {isMobile ? <BottomNavigation className="navbar" /> : null}
+          {isMobile ? (
+            <BottomNavigation className="navbar" />
+          ) : (
+            <FabZoom
+              icon={<AddIcon />}
+              color="primary"
+              className="fixed bottom-8 right-8 z-50 bg-blue-500 hover:bg-blue-700"
+              label="Add"
+              transitionDuration={500}
+            />
+          )}
+          {/* to push content up or add add workout button */}
         </Box>
       </BrowserRouter>
     </Box>
