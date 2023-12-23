@@ -16,8 +16,6 @@ function App() {
   const { isMobile } = useWindowDimension();
   const dispatch = useDispatch();
 
-  // console.log(currentPath);
-
   useEffect(() => {
     dispatch(SET_IS_MOBILE(isMobile));
   }, [dispatch, isMobile]);
@@ -46,9 +44,9 @@ function App() {
               />
             ))}
           </Routes>
-          {isMobile ? <BottomNavigation className="navbar" /> : null}
-          {/* To push content up */}
-          {!isMobile && window.location.pathname !== "/create" ? (
+          {isMobile ? (
+            <BottomNavigation className="navbar" />
+          ) : (
             <FabZoom
               icon={<AddIcon />}
               color="primary"
@@ -56,8 +54,10 @@ function App() {
               label="Add"
               transitionDuration={500}
               to="/create"
+              hideOnLocations={["/create"]}
             />
-          ) : null}
+          )}
+          {/* To push content up */}
         </Box>
       </BrowserRouter>
     </Box>

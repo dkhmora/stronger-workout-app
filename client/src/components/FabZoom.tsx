@@ -1,6 +1,6 @@
 import { Zoom, Fab } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 type FabZoomProps = {
   icon: React.ReactNode;
@@ -16,6 +16,7 @@ type FabZoomProps = {
   label: string;
   transitionDuration: number;
   to: string;
+  hideOnLocations?: string[];
 };
 
 export default function FabZoom({
@@ -25,7 +26,10 @@ export default function FabZoom({
   label,
   transitionDuration,
   to,
+  hideOnLocations,
 }: FabZoomProps) {
+  const location = useLocation();
+
   return (
     <Zoom
       key={`${label}${color}`}
@@ -33,7 +37,7 @@ export default function FabZoom({
       style={{
         transitionDelay: "50ms",
       }}
-      in={true}
+      in={!hideOnLocations?.includes(location.pathname)}
       unmountOnExit
     >
       <Fab
