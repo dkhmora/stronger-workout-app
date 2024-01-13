@@ -10,6 +10,7 @@ import ProfilePage from "../pages/ProfilePage";
 import HistoryPage from "../pages/HistoryPage";
 import ExercisesPage from "../pages/ExercisesPage";
 import MeasurePage from "../pages/MeasurePage";
+import StartWorkoutPage from "../pages/StartWorkoutPage";
 
 export const routes = [
   {
@@ -41,6 +42,7 @@ export const routes = [
     appBarTitle: "New Workout",
     icon: createElement(AddIcon),
     to: "/create",
+    element: createElement(StartWorkoutPage),
     desktop: false,
     mobile: true,
   },
@@ -66,7 +68,7 @@ export const pathnameTitles = {
   "/": "Home",
   "/profile": "Profile",
   "/history": "History",
-  "/create": "New Workout",
+  "/create": "Start Workout",
   "/exercises": "Exercises",
   "/measure": "Measure",
 };
