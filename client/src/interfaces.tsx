@@ -30,3 +30,8 @@ export interface WorkoutData {
   end: number;
   exercises: WorkoutExercises[];
 }
+
+export interface TemplateData {
+  title: string;
+  exercises: WorkoutExercises[];
+}

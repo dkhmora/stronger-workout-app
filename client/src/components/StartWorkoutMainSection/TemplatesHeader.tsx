@@ -2,9 +2,9 @@ import { Add as AddIcon, Folder as FolderIcon } from "@mui/icons-material";
 import { Button, Typography } from "@mui/material";
 import React from "react";
 
-export default function TemplatesHeader() {
+export default function TemplatesHeader({className}: {className?: string}) {
   return (
-    <div className="flex flex-row w-full justify-between items-center">
+    <div className={className}>
       <Typography component="h4" variant="h4" className="font-bold">
         Templates
       </Typography>

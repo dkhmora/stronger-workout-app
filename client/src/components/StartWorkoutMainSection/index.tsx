@@ -4,7 +4,7 @@ import TemplatesSection from "./TemplatesSection";
 
 export default function StartWorkoutMainSection() {
   return (
-    <div className="my-6">
+    <div className="my-6 space-y-6">
       <QuickStartSection />
 
       <TemplatesSection />
