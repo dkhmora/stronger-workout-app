@@ -29,7 +29,7 @@ export default function TemplateList({
 
   return (
     <List className={className}>
-      <Grid container rowSpacing={2} columnSpacing={3} alignItems="stretch">
+      <Grid container rowSpacing={2} columnSpacing={2} alignItems="stretch">
         {renderWorkouts()}
       </Grid>
     </List>
