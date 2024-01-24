@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
@@ -7,14 +7,18 @@ import Navbar from "./components/Navbar";
 import { BottomNavigation, Box, CssBaseline, Toolbar } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MobileAppBar from "./components/MobileAppBar";
-import { SET_IS_MOBILE } from "./store/general";
+import { RootState, SET_IS_MOBILE } from "./store/general";
 import useWindowDimension from "./hooks/useWindowDimension";
 import { routes } from "./constants/general";
 import FabZoom from "./components/FabZoom";
+import RunningWorkoutBottomSheet from "./components/RunningWorkoutBottomSheet";
 
 function App() {
   const { isMobile } = useWindowDimension();
   const dispatch = useDispatch();
+  const currentWorkout = useSelector(
+    (state: RootState) => state.currentWorkout
+  );
 
   useEffect(() => {
     dispatch(SET_IS_MOBILE(isMobile));
@@ -44,6 +48,8 @@ function App() {
               />
             ))}
           </Routes>
+          {/* When a current workout is started, render RunningWorkoutBottomSheet */}
+          {currentWorkout ? <RunningWorkoutBottomSheet /> : null}
           {isMobile ? (
             <BottomNavigation className="navbar" />
           ) : (
