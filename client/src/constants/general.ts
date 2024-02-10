@@ -72,3 +72,11 @@ export const pathnameTitles = {
   "/exercises": "Exercises",
   "/measure": "Measure",
 };
+
+export const defaultWorkout = {
+  title: "",
+  exercises: [],
+  start: new Date(),
+  end: null,
+  notes: "",
+};

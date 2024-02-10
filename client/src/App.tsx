@@ -16,9 +16,6 @@ import RunningWorkoutBottomSheet from "./components/RunningWorkoutBottomSheet";
 function App() {
   const { isMobile } = useWindowDimension();
   const dispatch = useDispatch();
-  const currentWorkout = useSelector(
-    (state: RootState) => state.currentWorkout
-  );
 
   useEffect(() => {
     dispatch(SET_IS_MOBILE(isMobile));
@@ -36,8 +33,7 @@ function App() {
         ) : (
           <Navbar />
         )}
-
-        <Box component="main" className="flex-grow">
+        <Box component="main" className="flex-grow bg-blue" id="main">
           {isMobile ? <Toolbar /> : null} {/* To push content down */}
           <Routes>
             {routes.map((route) => (
@@ -48,8 +44,7 @@ function App() {
               />
             ))}
           </Routes>
-          {/* When a current workout is started, render RunningWorkoutBottomSheet */}
-          {currentWorkout ? <RunningWorkoutBottomSheet /> : null}
+          <RunningWorkoutBottomSheet />
           {isMobile ? (
             <BottomNavigation className="navbar" />
           ) : (

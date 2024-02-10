@@ -2,6 +2,7 @@ import * as React from "react";
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { Link } from "react-router-dom";
 import { routes } from "../constants/general";
+import RunningWorkoutBottomSheet from "./RunningWorkoutBottomSheet";
 
 type MobileNavbarProps = {
   className?: string;
