@@ -1,8 +1,7 @@
 import React from "react";
-import { Avatar, Typography, Grid, Paper, Box } from "@mui/material";
-import Chart from "react-google-charts";
-import { blueGrey } from "@mui/material/colors";
+import { Typography, Grid, Paper, Box } from "@mui/material";
 import { getPreviousMonthTicks } from "../helpers";
+import ChartCard from "./ChartCard";
 
 // Sample data for the charts
 const workoutData = [
@@ -51,117 +50,59 @@ const selectedBodyFatData = [
   ...bodyFatData,
 ];
 
-export default function ProfileDashboard() {
+type ProfileDashboardProps = { className?: string };
+
+export default function ProfileDashboard({ className }: ProfileDashboardProps) {
   return (
-    <Box>
+    <Box className={className}>
       <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>
 
-      <Paper sx={{ padding: 2, borderRadius: 4 }}>
-        <Grid container spacing={2}>
-          {/* Workouts per week chart */}
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
-              <Chart
-                chartType="ColumnChart"
-                data={selectedWorkoutData}
-                options={{
-                  title: "Workouts per Week",
-                  titleTextStyle: {
-                    color: "white",
-                    fontSize: 18,
-                  },
-                  hAxis: {
-                    titleTextStyle: { color: "white" },
-                    textStyle: { color: "white" },
-                  },
-                  vAxis: {
-                    title: "Activity",
-                    titleTextStyle: { color: "white" },
-                    textStyle: { color: "white" },
-                  },
-                  legend: {
-                    position: "none",
-                  },
-                  backgroundColor: blueGrey[900],
-                }}
-                graph_id="BarChart"
-                width="100%"
-                height="300px"
-              />
-            </Paper>
-          </Grid>
-
-          {/* Body weight chart */}
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
-              <Chart
-                chartType="LineChart"
-                data={selectedWeightData}
-                options={{
-                  title: "Body Weight",
-                  titleTextStyle: { color: "white", fontSize: 18 },
-                  curveType: "function",
-                  hAxis: {
-                    titleTextStyle: { color: "white" },
-                    textStyle: { color: "white" },
-                    format: "MMM",
-                    ticks: getPreviousMonthTicks(4),
-                  },
-                  vAxis: {
-                    title: "Activity",
-                    titleTextStyle: { color: "white" },
-                    textStyle: { color: "white" },
-                    format: "decimal",
-                    gridlines: { minSpacing: 40 },
-                  },
-                  legend: {
-                    position: "none",
-                  },
-                  backgroundColor: blueGrey[900],
-                }}
-                graph_id="BodyWeightLineChart"
-                width="100%"
-                height="300px"
-              />
-            </Paper>
-          </Grid>
-
-          {/* Body Fat chart */}
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ borderRadius: 4, overflow: "hidden" }}>
-              <Chart
-                chartType="LineChart"
-                data={selectedBodyFatData}
-                options={{
-                  title: "Body Fat",
-                  titleTextStyle: { color: "white", fontSize: 18 },
-                  curveType: "function",
-                  hAxis: {
-                    titleTextStyle: { color: "white" },
-                    textStyle: { color: "white" },
-                    format: "MMM",
-                    ticks: getPreviousMonthTicks(4),
-                  },
-                  vAxis: {
-                    title: "Activity",
-                    titleTextStyle: { color: "white" },
-                    textStyle: { color: "white" },
-                  },
-                  legend: {
-                    position: "none",
-                  },
-                  backgroundColor: blueGrey[900],
-                }}
-                graph_id="BodyFatLineChart"
-                width="100%"
-                height="300px"
-              />
-            </Paper>
-          </Grid>
+      <Grid container spacing={2}>
+        {/* Workouts per week chart */}
+        <Grid item xs={12} md={4}>
+          <ChartCard
+            title="Workouts per Week"
+            chartType="ColumnChart"
+            data={selectedWorkoutData}
+          />
         </Grid>
-      </Paper>
+
+        {/* Body weight chart */}
+        <Grid item xs={12} md={4}>
+          <ChartCard
+            title="Body Weight"
+            chartType="LineChart"
+            data={selectedWeightData}
+            options={{
+              hAxis: {
+                format: "MMM",
+                ticks: getPreviousMonthTicks(4),
+              },
+              vAxis: {
+                format: "decimal",
+                gridlines: { minSpacing: 40 },
+              },
+            }}
+          />
+        </Grid>
+
+        {/* Body Fat chart */}
+        <Grid item xs={12} md={4}>
+          <ChartCard
+            title="Body Fat"
+            chartType="LineChart"
+            data={selectedBodyFatData}
+            options={{
+              hAxis: {
+                format: "MMM",
+                ticks: getPreviousMonthTicks(4),
+              },
+            }}
+          />
+        </Grid>
+      </Grid>
     </Box>
   );
 }

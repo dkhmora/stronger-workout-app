@@ -1,8 +1,10 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { defaultWorkout } from "../constants/general";
 
 // Define the initial state of the store
 const initialState = {
   isMobile: false, // Set the initial value of isMobile to false
+  currentWorkout: null,
 };
 
 const generalSlice = createSlice({
@@ -12,6 +14,10 @@ const generalSlice = createSlice({
     SET_IS_MOBILE: (state, { payload }) => ({
       ...state,
       isMobile: payload,
+    }),
+    SET_CURRENT_WORKOUT: (state, { payload }) => ({
+      ...state,
+      currentWorkout: payload,
     }),
   },
 });
@@ -27,5 +33,5 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 // Export the reducer and action creators
-export const { SET_IS_MOBILE } = actions;
+export const { SET_IS_MOBILE, SET_CURRENT_WORKOUT } = actions;
 export default store;

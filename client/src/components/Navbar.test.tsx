@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import Navbar from "./Navbar";
-import { desktopNavbarItems } from "../constants/general";
+import { routes } from "../constants/general";
 import { BrowserRouter } from "react-router-dom";
 
 test("renders navbar and navbar buttons", () => {
@@ -13,7 +13,7 @@ test("renders navbar and navbar buttons", () => {
   const navbarElement = (navbarText: string) =>
     screen.getByText(new RegExp(navbarText, "i"));
 
-  desktopNavbarItems.forEach((navbarItem) =>
+  routes.forEach((navbarItem) =>
     expect(navbarElement(navbarItem.text)).toBeInTheDocument()
   );
 });

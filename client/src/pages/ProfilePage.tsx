@@ -1,43 +1,26 @@
 import React from "react";
-import { Container, Grid, Typography } from "@mui/material";
-import HistoryList from "../components/HistoryList";
+import { Box, Container, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
-import { data } from "../temp_db/workouts";
 import ProfileBox from "../components/ProfileBox";
 import ProfileDashboard from "../components/ProfileDashboard";
 
 export default function ProfilePage() {
   const isMobile = useSelector((state: RootState) => state.isMobile);
-  const containerPadding = isMobile ? 2 : 3;
 
   return (
-    <Container>
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-          p: containerPadding,
-        }}
-      >
-        {!isMobile && (
-          <Grid item sx={{ mt: 3, mb: 6 }}>
-            <Typography noWrap variant="h2" component="div">
-              Profile
-            </Typography>
-          </Grid>
-        )}
+    <Container className="p-4 md:p-12">
+      {!isMobile ? (
+        <Typography noWrap variant="h2" component="h2" className="mb-6">
+          Profile
+        </Typography>
+      ) : null}
 
-        <Grid item sx={{ mb: 3 }}>
-          <ProfileBox />
-        </Grid>
+      <Box>
+        <ProfileBox />
 
-        <Grid item>
-          <ProfileDashboard />
-        </Grid>
-      </Grid>
+        <ProfileDashboard className="mt-6 md:mt-12" />
+      </Box>
     </Container>
   );
 }

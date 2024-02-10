@@ -1,60 +1,64 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
-import ProfilePage from "./pages/ProfilePage";
-import HomePage from "./pages/HomePage";
-import MeasurePage from "./pages/MeasurePage";
-import ExercisesPage from "./pages/ExercisesPage";
-import HistoryPage from "./pages/HistoryPage";
-import { Box, CssBaseline } from "@mui/material";
+import { BottomNavigation, Box, CssBaseline, Toolbar } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import MobileAppBar from "./components/MobileAppBar";
-import { SET_IS_MOBILE } from "./store/general";
+import { RootState, SET_IS_MOBILE } from "./store/general";
+import useWindowDimension from "./hooks/useWindowDimension";
+import { routes } from "./constants/general";
+import FabZoom from "./components/FabZoom";
+import RunningWorkoutBottomSheet from "./components/RunningWorkoutBottomSheet";
 
 function App() {
-  const [windowDimension, setWindowDimension] = useState<number | null>(null);
-
-  useEffect(() => {
-    setWindowDimension(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimension(window.innerWidth);
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const isMobile = windowDimension && windowDimension <= 640;
-
+  const { isMobile } = useWindowDimension();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(SET_IS_MOBILE(isMobile));
   }, [dispatch, isMobile]);
 
-  const mainPadding = {
-    py: isMobile ? 5 : 0,
-  };
-
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box className="flex">
       <CssBaseline />
       <BrowserRouter>
-        {isMobile ? <MobileNavbar /> : <Navbar />}
-        <Box sx={{ flexGrow: 1, overflow: "auto", ...mainPadding }}>
-          {isMobile && <MobileAppBar />}
+        {isMobile ? (
+          <>
+            <MobileAppBar />
+            <MobileNavbar className="navbar" />
+          </>
+        ) : (
+          <Navbar />
+        )}
+        <Box component="main" className="flex-grow bg-blue" id="main">
+          {isMobile ? <Toolbar /> : null} {/* To push content down */}
           <Routes>
-            <Route index element={<HomePage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/history" element={<HistoryPage />} />
-            <Route path="/exercises" element={<ExercisesPage />} />
-            <Route path="/measure" element={<MeasurePage />} />
+            {routes.map((route) => (
+              <Route
+                path={route.to}
+                element={route.element}
+                key={`${route.text}${route.to}`}
+              />
+            ))}
           </Routes>
+          <RunningWorkoutBottomSheet />
+          {isMobile ? (
+            <BottomNavigation className="navbar" />
+          ) : (
+            <FabZoom
+              icon={<AddIcon />}
+              color="primary"
+              className="fixed bottom-8 right-8 z-50 bg-blue-500 hover:bg-blue-700"
+              label="Add"
+              transitionDuration={500}
+              to="/create"
+              hideOnLocations={["/create"]}
+            />
+          )}
+          {/* To push content up */}
         </Box>
       </BrowserRouter>
     </Box>

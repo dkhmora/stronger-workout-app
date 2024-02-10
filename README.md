@@ -1,6 +1,6 @@
 # Stronger Workout Web App
 
-Stronger Workout App is an app I am building to try and replicate the Strong Workout Mobile App in a web setting, and possibly a PWA(Progressive Web App) in the future.
+Stronger Workout App is a web app which tries to replicate the Strong Workout Mobile App in a web app setting.
 
 Front-end: React.js, Material UI
 Back-end: MySQL, Express.js, Sequelize.js

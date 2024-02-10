@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import DataTable from "../components/DataTable";
 import { useSelector } from "react-redux";
 import ExerciseList from "../components/ExerciseList";
@@ -20,33 +20,19 @@ export default function ExercisesPage() {
     },
   ];
 
-  if (isMobile) {
-    return <ExerciseList exercises={data} />;
-  }
-
   return (
-    <Container>
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-          p: 3,
-        }}
-      >
-        {!isMobile && (
-          <Grid item sx={{ my: 3 }}>
-            <Typography noWrap variant="h2" component="div">
-              Exercises
-            </Typography>
-          </Grid>
-        )}
+    <Container className="p-0 md:p-12">
+      {isMobile ? (
+        <ExerciseList exercises={data} />
+      ) : (
+        <>
+          <Typography noWrap variant="h2" component="h2">
+            Exercises
+          </Typography>
 
-        <Grid item>
           <DataTable columns={columns} rows={data} />
-        </Grid>
-      </Grid>
+        </>
+      )}
     </Container>
   );
 }
