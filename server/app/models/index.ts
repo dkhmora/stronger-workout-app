@@ -4,6 +4,7 @@ import workoutTemplates, {
   WorkoutTemplateInstance,
 } from "./workoutTemplate.model";
 import workouts, { WorkoutInstance } from "./workout.model";
+import sets, { SetInstance } from "./sets.model";
 import { ModelStatic, Sequelize } from "sequelize";
 import dbConfig from "../config/db.config";
 
@@ -11,6 +12,7 @@ interface DBModels {
   sequelize: Sequelize;
   Sequelize: Sequelize;
   exercises: ModelStatic<ExerciseInstance>;
+  sets: ModelStatic<SetInstance>;
   users: ModelStatic<UserInstance>;
   workouts: ModelStatic<WorkoutInstance>;
   workoutTemplates: ModelStatic<WorkoutTemplateInstance>;
@@ -31,6 +33,7 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const dbModels = <DBModels>{
   sequelize,
   exercises: exercises(sequelize),
+  sets: sets(sequelize),
   users: users(sequelize),
   workouts: workouts(sequelize),
   workoutTemplates: workoutTemplates(sequelize),
