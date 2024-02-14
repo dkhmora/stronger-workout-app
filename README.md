@@ -16,6 +16,9 @@ Future plans:
 - Make it a Progressive Web App (PWA)
 - Deploy to AWS ECS
 
+## Database Schema Diagram
+![Stronger Workout App DB Schema (Created with LucidCharts)](https://lucid.app/publicSegments/view/16a177f1-a126-4273-9946-a24e559e0f5a/image.png)
+
 ## Build Setup
 
 1. Create a `.env` file in the root of the project with the following content. Please change "MYSQLDB_ROOT_PASSWORD" to whatever you like:
@@ -42,4 +45,9 @@ WATCHPACK_POLLING=true
 
 ```bash
 $ docker compose up
+```
+
+## Installing/Updating New Node Modules
+```bash
+$ docker compose up --build --force-recreate
 ```
