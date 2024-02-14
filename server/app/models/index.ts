@@ -1,10 +1,21 @@
-import exercises, { ExerciseInstance } from "./exercise.model";
-import users, { UserInstance } from "./user.model";
-import workoutTemplates, {
+import exercisesModel, { ExerciseInstance } from "./exercise.model";
+import usersModel, { UserInstance } from "./user.model";
+import workoutTemplatesModel, {
   WorkoutTemplateInstance,
 } from "./workoutTemplate.model";
-import workouts, { WorkoutInstance } from "./workout.model";
-import sets, { SetInstance } from "./sets.model";
+import workoutsModel, { WorkoutInstance } from "./workout.model";
+import workoutExercisesModel, {
+  WorkoutExercisesInstance,
+} from "./workoutExercises.model";
+import workoutTemplateExercisesModel, {
+  WorkoutTemplateExercisesInstance,
+} from "./workoutTemplateExercises.model";
+import workoutExerciseSetsModel, {
+  WorkoutExerciseSetsInstance,
+} from "./workoutExerciseSets.model";
+import workoutTemplateExerciseSetsModel, {
+  WorkoutTemplateExerciseSetsInstance,
+} from "./workoutTemplateExerciseSets.model";
 import { ModelStatic, Sequelize } from "sequelize";
 import dbConfig from "../config/db.config";
 
@@ -12,7 +23,10 @@ interface DBModels {
   sequelize: Sequelize;
   Sequelize: Sequelize;
   exercises: ModelStatic<ExerciseInstance>;
-  sets: ModelStatic<SetInstance>;
+  workoutExercises: ModelStatic<WorkoutExercisesInstance>;
+  workoutTemplateExercises: ModelStatic<WorkoutTemplateExercisesInstance>;
+  workoutTemplateExerciseSets: ModelStatic<WorkoutTemplateExerciseSetsInstance>;
+  workoutExerciseSets: ModelStatic<WorkoutExerciseSetsInstance>;
   users: ModelStatic<UserInstance>;
   workouts: ModelStatic<WorkoutInstance>;
   workoutTemplates: ModelStatic<WorkoutTemplateInstance>;
@@ -32,11 +46,14 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 
 const dbModels = <DBModels>{
   sequelize,
-  exercises: exercises(sequelize),
-  sets: sets(sequelize),
-  users: users(sequelize),
-  workouts: workouts(sequelize),
-  workoutTemplates: workoutTemplates(sequelize),
+  exercises: exercisesModel(sequelize),
+  workoutExercises: workoutExercisesModel(sequelize),
+  workoutTemplateExercises: workoutTemplateExercisesModel(sequelize),
+  workoutTemplateExerciseSets: workoutTemplateExerciseSetsModel(sequelize),
+  workoutExerciseSets: workoutExerciseSetsModel(sequelize),
+  users: usersModel(sequelize),
+  workouts: workoutsModel(sequelize),
+  workoutTemplates: workoutTemplatesModel(sequelize),
 };
 
 dbModels.users.hasMany(dbModels.exercises, { as: "User_Exercises" });
@@ -45,17 +62,26 @@ dbModels.users.hasMany(dbModels.workoutTemplates, {
   as: "User_Workout_Templates",
 });
 dbModels.workoutTemplates.belongsToMany(dbModels.exercises, {
-  through: "workout_template_exercises",
+  through: dbModels.workoutTemplateExercises,
 });
 dbModels.exercises.belongsToMany(dbModels.workoutTemplates, {
-  through: "workout_template_exercises",
+  through: dbModels.workoutTemplateExercises,
 });
 dbModels.workouts.hasOne(dbModels.workoutTemplates);
 dbModels.workouts.belongsToMany(dbModels.exercises, {
-  through: "workout_exercises",
+  through: dbModels.workoutExercises,
 });
 dbModels.exercises.belongsToMany(dbModels.workouts, {
-  through: "workout_exercises",
+  through: dbModels.workoutExercises,
 });
+dbModels.workoutExercises.hasMany(dbModels.workoutExerciseSets, {
+  as: "Workout_Sets",
+});
+dbModels.workoutTemplateExercises.hasMany(
+  dbModels.workoutTemplateExerciseSets,
+  {
+    as: "Workout_Template_Sets",
+  }
+);
 
 export default dbModels;

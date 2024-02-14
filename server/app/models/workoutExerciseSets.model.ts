@@ -7,11 +7,13 @@ export interface SetAttributes {
   reps: number;
 }
 
-export interface SetInstance extends Model<SetAttributes>, SetAttributes {}
+export interface WorkoutExerciseSetsInstance
+  extends Model<SetAttributes>,
+    SetAttributes {}
 
 export default (sequelize: Sequelize) =>
-  sequelize.define<SetInstance>(
-    "set",
+  sequelize.define<WorkoutExerciseSetsInstance>(
+    "workoutExerciseSet",
     {
       setNumber: {
         type: DataTypes.STRING,
