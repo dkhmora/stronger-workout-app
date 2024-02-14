@@ -16,7 +16,7 @@ exports.create = (req: Request, res: Response) => {
 
   // Create a Exercise
   const exercise = {
-    title: req.body.title,
+    name: req.body.title,
     description: req.body.description,
     category: req.body.category,
     bodyPart: req.body.bodyPart,

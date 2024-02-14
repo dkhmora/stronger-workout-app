@@ -36,9 +36,23 @@ const dbModels = <DBModels>{
   workoutTemplates: workoutTemplates(sequelize),
 };
 
-dbModels.users.hasMany(dbModels.exercises, { as: "Exercises" });
-dbModels.users.hasMany(dbModels.workouts, { as: "Workouts" });
-dbModels.workoutTemplates.hasMany(dbModels.workouts);
-dbModels.workouts.belongsTo(dbModels.workoutTemplates);
+dbModels.users.hasMany(dbModels.exercises, { as: "User_Exercises" });
+dbModels.users.hasMany(dbModels.workouts, { as: "User_Workouts" });
+dbModels.users.hasMany(dbModels.workoutTemplates, {
+  as: "User_Workout_Templates",
+});
+dbModels.workoutTemplates.belongsToMany(dbModels.exercises, {
+  through: "workout_template_exercises",
+});
+dbModels.exercises.belongsToMany(dbModels.workoutTemplates, {
+  through: "workout_template_exercises",
+});
+dbModels.workouts.hasOne(dbModels.workoutTemplates);
+dbModels.workouts.belongsToMany(dbModels.exercises, {
+  through: "workout_exercises",
+});
+dbModels.exercises.belongsToMany(dbModels.workouts, {
+  through: "workout_exercises",
+});
 
 export default dbModels;

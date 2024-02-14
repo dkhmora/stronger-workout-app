@@ -16,10 +16,12 @@ exports.create = (req: Request, res: Response) => {
 
   // Create a User
   const user = {
-    firstName: req.body.firstName,
-    middleName: req.body.middleName,
-    lastName: req.body.lastName,
+    name: req.body.name,
+    email: req.body.email,
     birthDate: req.body.birthDate,
+    numberOfWorkouts: req.body.numberOfWorkouts,
+    bodyWeight: req.body.bodyWeight,
+    height: req.body.height,
   };
 
   // Save User in the database

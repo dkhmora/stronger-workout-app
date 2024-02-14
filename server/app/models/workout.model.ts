@@ -1,9 +1,9 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 export interface WorkoutAttributes {
-  title: string;
+  name: string;
   start: Date; // Optional because it may not be set
-  end: Date;
+  duration: Date;
   totalWeight: number;
   numberOfPersonalRecords: number;
 }
@@ -16,15 +16,15 @@ export default (sequelize: Sequelize) =>
   sequelize.define<WorkoutInstance>(
     "workout",
     {
-      title: {
+      name: {
         type: DataTypes.STRING,
       },
       start: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      end: {
-        type: DataTypes.DATE,
+      duration: {
+        type: DataTypes.TIME,
         allowNull: false,
       },
       totalWeight: {

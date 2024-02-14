@@ -16,9 +16,9 @@ exports.create = (req: Request, res: Response) => {
 
   // Create a Workout
   const workout = {
-    title: req.body.title,
+    name: req.body.title,
     start: req.body.start,
-    end: req.body.end,
+    duration: req.body.end,
     totalWeight: req.body.totalWeight,
     numberOfPersonalRecords: req.body.numberOfPersonalRecords,
   };

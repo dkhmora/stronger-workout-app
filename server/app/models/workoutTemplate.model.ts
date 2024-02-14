@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 export interface WorkoutTemplateAttributes {
-  title: string;
+  name: string;
   lastUsedAt?: Date | null; // Optional because it may not be set
 }
 
@@ -13,7 +13,7 @@ export default (sequelize: Sequelize) =>
   sequelize.define<WorkoutTemplateInstance>(
     "workout_template",
     {
-      title: {
+      name: {
         type: DataTypes.STRING,
       },
       lastUsedAt: {

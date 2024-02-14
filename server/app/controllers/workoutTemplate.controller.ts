@@ -16,7 +16,7 @@ exports.create = (req: Request, res: Response) => {
 
   // Create a Workout Template
   const workoutTemplate = {
-    title: req.body.title,
+    name: req.body.name,
     lastUsedAt: null,
   };
 

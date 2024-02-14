@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 import { Sequelize, DataTypes } from "sequelize";
 
 export interface ExerciseAttributes {
-  title: string;
+  name: string;
   description: string; // Optional because it may not be set
   category: string;
   bodyPart: string;
@@ -16,7 +16,7 @@ export default (sequelize: Sequelize) =>
   sequelize.define<ExerciseInstance>(
     "exercise",
     {
-      title: {
+      name: {
         type: DataTypes.STRING,
       },
       description: {
