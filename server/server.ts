@@ -7,53 +7,83 @@ import userRoutes from "./app/routes/user.routes";
 import exerciseRoutes from "./app/routes/exercise.routes";
 import workoutRoutes from "./app/routes/workout.routes";
 import workoutTemplateRoutes from "./app/routes/workoutTemplate.routes";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import http from "http";
 
 dotenv.config();
 
 const app = express();
 
 // Set up CORS options
-const allowedOrigins = process.env.CLIENT_ORIGIN
-  ? process.env.CLIENT_ORIGIN.split(",")
-  : ["http://localhost:3000"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:6868",
+  ...(process.env.CLIENT_ORIGIN || "").split(","),
+];
 
 let corsOptions = {
   origin: function (origin: any, callback: any) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new Error(`IP Address ${origin} Not allowed by CORS`));
     }
   },
 };
 
-// Parse JSON bodies
-app.use(bodyParser.json());
+// The GraphQL schema
+const typeDefs = `#graphql
+  type Query {
+    hello: String
+  }
+`;
 
-// Parse URL-encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+// A map of functions which return data for the schema.
+const resolvers = {
+  Query: {
+    hello: () => "world",
+  },
+};
 
-app.use(cors(corsOptions));
+const httpServer = http.createServer(app);
 
-// Drop the table if it already exists
-dbModels.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
+// Apollo Server
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
-// Entry route
-app.get("/", (req: any, res: any) => {
-  res.json({ message: "Welcome to stronger" });
-});
+apolloServer.start().then(() => {
+  app.use(
+    bodyParser.json(),
+    bodyParser.urlencoded({ extended: true }),
+    cors(corsOptions),
+    expressMiddleware(apolloServer)
+  );
 
-// Initialize routes
-userRoutes(app);
-exerciseRoutes(app);
-workoutRoutes(app);
-workoutTemplateRoutes(app);
+  // Set port, listen for requests
+  const PORT = process.env.NODE_DOCKER_PORT || 8080;
 
-// Set port, listen for requests
-const PORT = process.env.NODE_DOCKER_PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+  });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  // Drop the table if it already exists
+  dbModels.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+  });
+
+  // Entry route
+  app.get("/", (req: any, res: any) => {
+    res.json({ message: "Welcome to stronger" });
+  });
+
+  // Initialize routes
+  userRoutes(app);
+  exerciseRoutes(app);
+  workoutRoutes(app);
+  workoutTemplateRoutes(app);
 });
