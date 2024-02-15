@@ -49,5 +49,5 @@ $ docker compose up
 
 ## Installing/Updating New Node Modules
 ```bash
-$ docker compose up --build --force-recreate
+$ docker compose up --build --force-recreate -V
 ```
