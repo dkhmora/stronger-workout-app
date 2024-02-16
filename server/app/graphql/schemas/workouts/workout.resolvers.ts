@@ -1,32 +1,32 @@
 import { DBModels } from "app/models";
-import { ExerciseAttributes } from "app/models/exercise.model";
+import { WorkoutAttributes } from "app/models/workout.model";
 
-const exerciseResolvers = {
+const workoutResolvers = {
   Query: {
-    exercises: async (
+    workouts: async (
       parent: any,
       args: null,
       { models }: { models: DBModels }
     ) => {
-      return await models.exercises.findAll();
+      return await models.workouts.findAll();
     },
-    exercise: async (
+    workout: async (
       parent: any,
       { id }: { id: number },
       { models }: { models: DBModels }
     ) => {
-      return await models.exercises.findByPk(id);
+      return await models.workouts.findByPk(id);
     },
   },
   Mutation: {
-    createExercise: async (
+    createWorkout: async (
       parent: any,
-      exercise: ExerciseAttributes,
+      workout: WorkoutAttributes,
       context: { models: DBModels }
     ) => {
       try {
-        return await context.models.exercises.create({
-          ...exercise,
+        return await context.models.workouts.create({
+          ...workout,
         });
       } catch (error) {
         console.error(error);
@@ -35,4 +35,4 @@ const exerciseResolvers = {
   },
 };
 
-export default exerciseResolvers;
+export default workoutResolvers;

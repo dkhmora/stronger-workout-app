@@ -27,17 +27,6 @@ type User {
   workoutTemplates: [WorkoutTemplate]
 }
 
-type Workout {
-  id: ID!
-  name: String
-  start: String
-  duration: String
-  totalWeight: String
-  numberOfPRs: Int
-  user: User
-  exercises: [Exercise]
-}
-
 type WorkoutTemplate {
   id: ID!
   name: String
