@@ -1,0 +1,56 @@
+type Query {
+  user(id: ID!): User
+  users: [User]
+}
+
+type Mutation {
+  createUser(
+    name: String!
+    birthDate: String!
+    email: String!
+    bodyWeight: Float!
+    height: Float!
+  ): User
+  updateUser(id: ID!, name: String, email: String): User
+}
+
+type User {
+  id: ID!
+  name: String
+  email: String
+  birthDate: String
+  numberOfWorkouts: Int
+  bodyWeight: Float
+  height: Float
+  exercises: [Exercise]
+  workouts: [Workout]
+  workoutTemplates: [WorkoutTemplate]
+}
+
+type Exercise {
+  id: ID!
+  name: String
+  description: String
+  category: String
+  bodyPart: String
+  user: User
+}
+
+type Workout {
+  id: ID!
+  name: String
+  start: String
+  duration: String
+  totalWeight: String
+  numberOfPRs: Int
+  user: User
+  exercises: [Exercise]
+}
+
+type WorkoutTemplate {
+  id: ID!
+  name: String
+  lastUsedAt: String
+  user: User
+  exercises: [Exercise]
+}

@@ -19,7 +19,7 @@ import workoutTemplateExerciseSetsModel, {
 import { ModelStatic, Sequelize } from "sequelize";
 import dbConfig from "../config/db.config";
 
-interface DBModels {
+export interface DBModels {
   sequelize: Sequelize;
   Sequelize: Sequelize;
   exercises: ModelStatic<ExerciseInstance>;
@@ -56,8 +56,12 @@ const dbModels = <DBModels>{
   workoutTemplates: workoutTemplatesModel(sequelize),
 };
 
-dbModels.users.hasMany(dbModels.exercises, { as: "User_Exercises" });
-dbModels.users.hasMany(dbModels.workouts, { as: "User_Workouts" });
+dbModels.users.hasMany(dbModels.exercises, {
+  as: "User_Exercises",
+});
+dbModels.users.hasMany(dbModels.workouts, {
+  as: "User_Workouts",
+});
 dbModels.users.hasMany(dbModels.workoutTemplates, {
   as: "User_Workout_Templates",
 });

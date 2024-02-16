@@ -6,6 +6,7 @@ export interface ExerciseAttributes {
   description: string; // Optional because it may not be set
   category: string;
   bodyPart: string;
+  userId?: number;
 }
 
 export interface ExerciseInstance

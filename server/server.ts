@@ -7,9 +7,14 @@ import userRoutes from "./app/routes/user.routes";
 import exerciseRoutes from "./app/routes/exercise.routes";
 import workoutRoutes from "./app/routes/workout.routes";
 import workoutTemplateRoutes from "./app/routes/workoutTemplate.routes";
-import { ApolloServer } from "@apollo/server";
+import {
+  ApolloServer,
+  ApolloServerOptionsWithTypeDefs,
+  BaseContext,
+} from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { resolvers, typeDefs } from "./app/graphql/schemas";
 import http from "http";
 
 dotenv.config();
@@ -33,20 +38,6 @@ let corsOptions = {
   },
 };
 
-// The GraphQL schema
-const typeDefs = `#graphql
-  type Query {
-    hello: String
-  }
-`;
-
-// A map of functions which return data for the schema.
-const resolvers = {
-  Query: {
-    hello: () => "world",
-  },
-};
-
 const httpServer = http.createServer(app);
 
 // Apollo Server
@@ -54,14 +45,18 @@ const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-});
+} as ApolloServerOptionsWithTypeDefs<BaseContext>);
 
 apolloServer.start().then(() => {
   app.use(
     bodyParser.json(),
     bodyParser.urlencoded({ extended: true }),
     cors(corsOptions),
-    expressMiddleware(apolloServer)
+    expressMiddleware(apolloServer, {
+      context: async () => {
+        return { models: dbModels };
+      },
+    })
   );
 
   // Set port, listen for requests

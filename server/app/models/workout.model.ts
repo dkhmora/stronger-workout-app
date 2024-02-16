@@ -6,6 +6,7 @@ export interface WorkoutAttributes {
   duration: Date;
   totalWeight: number;
   numberOfPersonalRecords: number;
+  userId?: number;
 }
 
 export interface WorkoutInstance
