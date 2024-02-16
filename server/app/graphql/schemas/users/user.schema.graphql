@@ -26,11 +26,3 @@ type User {
   workouts: [Workout]
   workoutTemplates: [WorkoutTemplate]
 }
-
-type WorkoutTemplate {
-  id: ID!
-  name: String
-  lastUsedAt: String
-  user: User
-  exercises: [Exercise]
-}

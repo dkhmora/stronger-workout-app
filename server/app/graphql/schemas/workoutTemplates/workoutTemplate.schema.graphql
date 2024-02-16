@@ -1,0 +1,17 @@
+type Query {
+  workoutTemplate(id: ID!): WorkoutTemplate
+  workoutTemplates: [WorkoutTemplate]
+}
+
+type Mutation {
+  createWorkoutTemplate(name: String!, userId: ID!): WorkoutTemplate
+  updateWorkoutTemplate(id: ID!, name: String): WorkoutTemplate
+}
+
+type WorkoutTemplate {
+  id: ID!
+  name: String
+  lastUsedAt: String
+  user: User
+  exercises: [Exercise]
+}
