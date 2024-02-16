@@ -27,15 +27,6 @@ type User {
   workoutTemplates: [WorkoutTemplate]
 }
 
-type Exercise {
-  id: ID!
-  name: String
-  description: String
-  category: String
-  bodyPart: String
-  user: User
-}
-
 type Workout {
   id: ID!
   name: String

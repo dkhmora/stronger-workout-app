@@ -1,0 +1,23 @@
+type Query {
+  exercise(id: ID!): Exercise
+  exercises: [Exercise]
+}
+
+type Mutation {
+  createExercise(
+    name: String!
+    description: String!
+    category: String!
+    bodyPart: String!
+    userId: ID!
+  ): Exercise
+}
+
+type Exercise {
+  id: ID!
+  name: String
+  description: String
+  category: String
+  bodyPart: String
+  user: User
+}
