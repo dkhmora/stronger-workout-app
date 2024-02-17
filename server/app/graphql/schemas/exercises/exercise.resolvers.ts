@@ -3,6 +3,15 @@ import { ExerciseAttributes } from "app/models/exercise.model";
 
 const exerciseResolvers = {
   Query: {
+    defaultExercises: async (
+      parent: any,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      return await models.exercises.findAll({
+        where: { userId: null },
+      });
+    },
     exercises: async (
       parent: any,
       args: null,

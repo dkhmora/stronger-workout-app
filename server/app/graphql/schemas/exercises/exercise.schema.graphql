@@ -1,6 +1,7 @@
 type Query {
   exercise(id: ID!): Exercise
   exercises: [Exercise]
+  defaultExercises: [Exercise]
 }
 
 type Mutation {
@@ -9,7 +10,7 @@ type Mutation {
     description: String!
     category: String!
     bodyPart: String!
-    userId: ID!
+    userId: ID
   ): Exercise
 }
 
@@ -19,5 +20,6 @@ type Exercise {
   description: String
   category: String
   bodyPart: String
+  userId: ID
   user: User
 }
