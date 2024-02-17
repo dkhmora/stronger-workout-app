@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 export interface WorkoutAttributes {
+  id?: number;
   name: string;
   start: Date; // Optional because it may not be set
   duration: Date;

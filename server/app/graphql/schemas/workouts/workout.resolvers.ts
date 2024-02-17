@@ -33,6 +33,22 @@ const workoutResolvers = {
       }
     },
   },
+  Workout: {
+    exercises: async (
+      workout: WorkoutAttributes,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      return await models.exercises.findAll({
+        include: [
+          {
+            model: models.workouts,
+            where: { id: workout.id },
+          },
+        ],
+      });
+    },
+  },
 };
 
 export default workoutResolvers;
