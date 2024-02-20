@@ -91,6 +91,15 @@ const exerciseResolvers = {
         where: { workoutTemplateExerciseId: exercise.id },
       });
     },
+    user: async (
+      exercise: ExerciseAttributes,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      if (!exercise.userId) return null;
+
+      return await models.users.findByPk(exercise.userId);
+    },
   },
 };
 
