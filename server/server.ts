@@ -16,6 +16,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { resolvers, typeDefs } from "./app/graphql/schemas";
 import http from "http";
+import authMiddleware from "./app/middleware/auth";
 
 dotenv.config();
 
@@ -53,10 +54,11 @@ apolloServer.start().then(() => {
     bodyParser.urlencoded({ extended: true }),
     cors(corsOptions),
     expressMiddleware(apolloServer, {
-      context: async () => {
-        return { models: dbModels };
+      context: async ({ req }: { req: any }) => {
+        return { user: req.user, models: dbModels };
       },
-    })
+    }),
+    authMiddleware
   );
 
   // Set port, listen for requests
