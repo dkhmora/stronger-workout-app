@@ -48,6 +48,13 @@ const workoutResolvers = {
         ],
       });
     },
+    user: async (
+      workout: WorkoutAttributes,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      return await models.users.findByPk(workout.userId);
+    },
   },
 };
 
