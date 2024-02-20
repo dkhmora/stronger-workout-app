@@ -18,6 +18,7 @@ exports.create = (req: Request, res: Response) => {
   const user = {
     name: req.body.name,
     email: req.body.email,
+    password: req.body.password,
     birthDate: req.body.birthDate,
     numberOfWorkouts: req.body.numberOfWorkouts,
     bodyWeight: req.body.bodyWeight,

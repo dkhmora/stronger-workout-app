@@ -3,6 +3,7 @@ import { Sequelize, DataTypes, Optional, Model } from "sequelize";
 export interface UserAttributes {
   name: string;
   email: string;
+  password: string;
   birthDate: Date;
   numberOfWorkouts: number;
   bodyWeight: number;
@@ -20,6 +21,11 @@ export default (sequelize: Sequelize) =>
       },
       email: {
         type: DataTypes.STRING,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       birthDate: {
         type: DataTypes.STRING,

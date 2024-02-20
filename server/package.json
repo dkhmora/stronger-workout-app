@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@graphql-tools/load-files": "^7.0.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/body-parser": "^1.19.5",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",

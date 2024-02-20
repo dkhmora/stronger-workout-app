@@ -18,6 +18,7 @@ import workoutTemplateExerciseSetsModel, {
 } from "./workoutTemplateExerciseSets.model";
 import { ModelStatic, Sequelize } from "sequelize";
 import dbConfig from "../config/db.config";
+import bcrypt from "bcryptjs";
 
 export interface DBModels {
   sequelize: Sequelize;
@@ -64,6 +65,14 @@ dbModels.users.hasMany(dbModels.workouts, {
 });
 dbModels.users.hasMany(dbModels.workoutTemplates, {
   as: "User_Workout_Templates",
+});
+dbModels.users.beforeCreate(async (user) => {
+  try {
+    user.password = await bcrypt.hash(user.password, 10);
+  } catch (error) {
+    console.error("Error hashing password:", error);
+    throw error; // Rethrow the error to ensure Sequelize catches it.
+  }
 });
 dbModels.workoutTemplates.belongsToMany(dbModels.exercises, {
   through: dbModels.workoutTemplateExercises,
