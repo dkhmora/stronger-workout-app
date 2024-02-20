@@ -35,3 +35,10 @@ type WorkoutTemplateExercise {
   exercise: Exercise
   sets: [WorkoutTemplateExerciseSet]
 }
+
+type WorkoutExercise {
+  id: ID!
+  workout: Workout
+  exercise: Exercise
+  sets: [WorkoutExerciseSet]
+}

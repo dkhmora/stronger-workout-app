@@ -87,6 +87,7 @@ dbModels.workoutTemplateExercises.hasMany(
     as: "Workout_Template_Sets",
   }
 );
+// Automatically increment set number when creating a new set
 dbModels.workoutTemplateExerciseSets.beforeCreate(
   async (workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsInstance) => {
     const lastSet = await dbModels.workoutTemplateExerciseSets.findOne({
@@ -98,6 +99,18 @@ dbModels.workoutTemplateExerciseSets.beforeCreate(
     });
 
     workoutTemplateExerciseSet.setNumber = lastSet ? lastSet.setNumber + 1 : 1;
+  }
+);
+dbModels.workoutExerciseSets.beforeCreate(
+  async (workoutExerciseSet: WorkoutExerciseSetsInstance) => {
+    const lastSet = await dbModels.workoutExerciseSets.findOne({
+      where: {
+        workoutExerciseId: workoutExerciseSet.workoutExerciseId,
+      },
+      order: [["setNumber", "DESC"]],
+    });
+
+    workoutExerciseSet.setNumber = lastSet ? lastSet.setNumber + 1 : 1;
   }
 );
 

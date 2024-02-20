@@ -1,22 +1,29 @@
 import { Model } from "sequelize";
 import { Sequelize, DataTypes } from "sequelize";
 
-export interface SetAttributes {
-  setNumber: string;
+export interface WorkoutExerciseSetsAttributes {
+  id: number;
+  workoutExerciseId?: number;
+  setNumber: number;
   weight: number;
   reps: number;
 }
 
 export interface WorkoutExerciseSetsInstance
-  extends Model<SetAttributes>,
-    SetAttributes {}
+  extends Model<WorkoutExerciseSetsAttributes>,
+    WorkoutExerciseSetsAttributes {}
 
 export default (sequelize: Sequelize) =>
   sequelize.define<WorkoutExerciseSetsInstance>(
     "workoutExerciseSet",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       setNumber: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       weight: {
         type: DataTypes.INTEGER,
