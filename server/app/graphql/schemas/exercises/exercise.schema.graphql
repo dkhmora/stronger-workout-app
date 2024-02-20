@@ -28,3 +28,10 @@ type Exercise {
   userId: ID
   user: User
 }
+
+type WorkoutTemplateExercise {
+  id: ID!
+  workoutTemplate: WorkoutTemplate
+  exercise: Exercise
+  sets: [WorkoutTemplateExerciseSet]
+}

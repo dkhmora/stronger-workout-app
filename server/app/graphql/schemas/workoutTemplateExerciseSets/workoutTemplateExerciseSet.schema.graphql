@@ -1,0 +1,22 @@
+type Query {
+  workoutTemplateExerciseSet(id: ID!): WorkoutTemplateExerciseSet
+  workoutTemplateExerciseSets: [WorkoutTemplateExerciseSet]
+}
+
+type Mutation {
+  createWorkoutTemplateExerciseSet(
+    workoutTemplateExerciseId: ID!
+    setNumber: Int
+    weight: Int
+    reps: Int
+  ): WorkoutTemplateExerciseSet
+}
+
+type WorkoutTemplateExerciseSet {
+  id: ID!
+  workoutTemplateExercise: WorkoutTemplateExercise
+  reps: Int
+  weight: Float
+  setNumber: Int
+  exercise: Exercise
+}
