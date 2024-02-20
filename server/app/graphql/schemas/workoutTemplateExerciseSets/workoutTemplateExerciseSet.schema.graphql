@@ -6,7 +6,6 @@ type Query {
 type Mutation {
   createWorkoutTemplateExerciseSet(
     workoutTemplateExerciseId: ID!
-    setNumber: Int
     weight: Int
     reps: Int
   ): WorkoutTemplateExerciseSet

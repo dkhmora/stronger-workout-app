@@ -25,7 +25,6 @@ const workoutTemplateExerciseSetResolvers = {
       context: { models: DBModels }
     ) => {
       try {
-        console.log(workoutTemplateExerciseSet);
         return await context.models.workoutTemplateExerciseSets.create({
           ...workoutTemplateExerciseSet,
         });

@@ -87,5 +87,18 @@ dbModels.workoutTemplateExercises.hasMany(
     as: "Workout_Template_Sets",
   }
 );
+dbModels.workoutTemplateExerciseSets.beforeCreate(
+  async (workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsInstance) => {
+    const lastSet = await dbModels.workoutTemplateExerciseSets.findOne({
+      where: {
+        workoutTemplateExerciseId:
+          workoutTemplateExerciseSet.workoutTemplateExerciseId,
+      },
+      order: [["setNumber", "DESC"]],
+    });
+
+    workoutTemplateExerciseSet.setNumber = lastSet ? lastSet.setNumber + 1 : 1;
+  }
+);
 
 export default dbModels;

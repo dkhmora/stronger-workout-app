@@ -24,7 +24,6 @@ export default (sequelize: Sequelize) =>
       },
       setNumber: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       weight: {
         type: DataTypes.INTEGER,
