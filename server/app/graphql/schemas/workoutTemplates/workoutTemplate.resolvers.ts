@@ -33,6 +33,22 @@ const workoutTemplateResolvers = {
       }
     },
   },
+  WorkoutTemplate: {
+    exercises: async (
+      workoutTemplate: WorkoutTemplateAttributes,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      return await models.exercises.findAll({
+        include: [
+          {
+            model: models.workoutTemplates,
+            where: { id: workoutTemplate.id },
+          },
+        ],
+      });
+    },
+  },
 };
 
 export default workoutTemplateResolvers;

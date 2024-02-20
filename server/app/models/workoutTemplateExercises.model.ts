@@ -2,7 +2,9 @@ import { DataTypes, Model } from "sequelize";
 import { Sequelize } from "sequelize";
 
 export interface WorkoutTemplateExercisesAttributes {
-  id: number;
+  id?: number;
+  workoutTemplateId: number;
+  exerciseId: number;
 }
 
 export interface WorkoutTemplateExercisesInstance
@@ -17,6 +19,14 @@ export default (sequelize: Sequelize) =>
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+      },
+      workoutTemplateId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      exerciseId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
     },
     { underscored: true }

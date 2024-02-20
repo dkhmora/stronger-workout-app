@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 export interface WorkoutTemplateAttributes {
+  id?: number;
   name: string;
   lastUsedAt?: Date | null; // Optional because it may not be set
   userId?: number;

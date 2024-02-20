@@ -1,6 +1,7 @@
 import { DBModels } from "app/models";
 import { ExerciseAttributes } from "app/models/exercise.model";
 import { WorkoutExercisesAttributes } from "app/models/workoutExercises.model";
+import { WorkoutTemplateExercisesAttributes } from "app/models/workoutTemplateExercises.model";
 
 const exerciseResolvers = {
   Query: {
@@ -50,6 +51,20 @@ const exerciseResolvers = {
       try {
         return await models.workoutExercises.create({
           workoutId,
+          exerciseId,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    linkExerciseToWorkoutTemplate: async (
+      parent: any,
+      { workoutTemplateId, exerciseId }: WorkoutTemplateExercisesAttributes,
+      { models }: { models: DBModels }
+    ) => {
+      try {
+        return await models.workoutTemplateExercises.create({
+          workoutTemplateId,
           exerciseId,
         });
       } catch (error) {

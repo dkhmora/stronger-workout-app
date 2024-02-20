@@ -12,10 +12,11 @@ type Mutation {
     bodyPart: String!
     userId: ID
   ): Exercise
-  linkExerciseToWorkout(
-    workoutId: ID!
+  linkExerciseToWorkout(workoutId: ID!, exerciseId: ID!): Workout
+  linkExerciseToWorkoutTemplate(
+    workoutTemplateId: ID!
     exerciseId: ID!
-  ): Workout
+  ): WorkoutTemplate
 }
 
 type Exercise {
