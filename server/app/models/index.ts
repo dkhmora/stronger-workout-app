@@ -79,12 +79,12 @@ dbModels.exercises.belongsToMany(dbModels.workouts, {
   through: dbModels.workoutExercises,
 });
 dbModels.workoutExercises.hasMany(dbModels.workoutExerciseSets, {
-  as: "Workout_Sets",
+  as: "Workout_Exercise_Sets",
 });
 dbModels.workoutTemplateExercises.hasMany(
   dbModels.workoutTemplateExerciseSets,
   {
-    as: "Workout_Template_Sets",
+    as: "Workout_Template_Exercise_Sets",
   }
 );
 // Automatically increment set number when creating a new set

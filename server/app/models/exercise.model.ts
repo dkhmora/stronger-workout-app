@@ -2,8 +2,9 @@ import { Model } from "sequelize";
 import { Sequelize, DataTypes } from "sequelize";
 
 export interface ExerciseAttributes {
+  id?: number;
   name: string;
-  description: string; // Optional because it may not be set
+  description: string;
   category: string;
   bodyPart: string;
   userId?: number | null;
@@ -17,6 +18,11 @@ export default (sequelize: Sequelize) =>
   sequelize.define<ExerciseInstance>(
     "exercise",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
       },
