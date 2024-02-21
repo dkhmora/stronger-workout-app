@@ -29,7 +29,7 @@ const allowedOrigins = [
   ...(process.env.CLIENT_ORIGIN || "").split(","),
 ];
 
-let corsOptions = {
+const corsOptions = {
   origin: function (origin: any, callback: any) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);

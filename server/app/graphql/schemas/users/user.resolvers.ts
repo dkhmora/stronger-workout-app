@@ -1,5 +1,6 @@
 import { DBModels } from "app/models";
 import { UserAttributes } from "app/models/user.model";
+import bcrypt from "bcryptjs";
 
 const userResolvers = {
   Query: {
@@ -19,7 +20,7 @@ const userResolvers = {
     },
   },
   Mutation: {
-    createUser: async (
+    registerUser: async (
       parent: any,
       user: UserAttributes,
       context: { models: DBModels }
@@ -32,6 +33,21 @@ const userResolvers = {
       } catch (error) {
         console.error(error);
       }
+    },
+    loginUser: async (
+      parent: any,
+      { email, password }: { email: string; password: string },
+      { models }: { models: DBModels }
+    ) => {
+      const user = await models.users.findOne({ where: { email } });
+      if (!user) {
+        throw new Error("User not found");
+      }
+      const valid = await bcrypt.compare(password, user.password);
+      if (!valid) {
+        throw new Error("Invalid password");
+      }
+      return user;
     },
   },
   User: {

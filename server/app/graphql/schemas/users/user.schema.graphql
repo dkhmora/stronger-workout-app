@@ -4,7 +4,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(
+  registerUser(
     name: String!
     birthDate: String!
     email: String!
@@ -12,6 +12,7 @@ type Mutation {
     bodyWeight: Float!
     height: Float!
   ): User
+  loginUser(email: String!, password: String!): User
   updateUser(id: ID!, name: String, email: String): User
 }
 
