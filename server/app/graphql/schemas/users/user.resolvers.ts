@@ -1,6 +1,7 @@
 import { DBModels } from "app/models";
 import { UserAttributes } from "app/models/user.model";
 import bcrypt from "bcryptjs";
+import { sign } from "jsonwebtoken";
 
 const userResolvers = {
   Query: {
@@ -47,7 +48,12 @@ const userResolvers = {
       if (!valid) {
         throw new Error("Invalid password");
       }
-      return user;
+
+      const token = sign({ id: user.id }, process.env.JWT_SECRET || "", {
+        expiresIn: "24h",
+      });
+
+      return { user, token };
     },
   },
   User: {

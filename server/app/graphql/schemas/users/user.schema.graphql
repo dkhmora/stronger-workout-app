@@ -12,7 +12,7 @@ type Mutation {
     bodyWeight: Float!
     height: Float!
   ): User
-  loginUser(email: String!, password: String!): User
+  loginUser(email: String!, password: String!): AuthPayload
   updateUser(id: ID!, name: String, email: String): User
 }
 
@@ -27,4 +27,9 @@ type User {
   exercises: [Exercise]
   workouts: [Workout]
   workoutTemplates: [WorkoutTemplate]
+}
+
+type AuthPayload {
+  token: String
+  user: User
 }

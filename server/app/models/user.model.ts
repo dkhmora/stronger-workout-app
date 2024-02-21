@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes, Optional, Model } from "sequelize";
 
 export interface UserAttributes {
+  id?: number;
   name: string;
   email: string;
   password: string;
@@ -16,6 +17,11 @@ export default (sequelize: Sequelize) =>
   sequelize.define<UserInstance>(
     "user",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
       },
