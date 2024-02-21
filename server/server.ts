@@ -53,12 +53,12 @@ apolloServer.start().then(() => {
     bodyParser.json(),
     bodyParser.urlencoded({ extended: true }),
     cors(corsOptions),
+    authMiddleware,
     expressMiddleware(apolloServer, {
       context: async ({ req }: { req: any }) => {
         return { user: req.user, models: dbModels };
       },
-    }),
-    authMiddleware
+    })
   );
 
   // Set port, listen for requests

@@ -1,5 +1,5 @@
 import { DBModels } from "app/models";
-import { UserAttributes } from "app/models/user.model";
+import { UserAttributes, UserInstance } from "app/models/user.model";
 import bcrypt from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
@@ -60,28 +60,40 @@ const userResolvers = {
     exercises: async (
       parent: any,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) {
+        throw new Error("User not found");
+      }
+
       return await models.exercises.findAll({
-        where: { userId: parent.id },
+        where: { userId: user.id },
       });
     },
     workouts: async (
       parent: any,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) {
+        throw new Error("User not found");
+      }
+
       return await models.workouts.findAll({
-        where: { userId: parent.id },
+        where: { userId: user.id },
       });
     },
     workoutTemplates: async (
       parent: { id: string },
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) {
+        throw new Error("User not found");
+      }
+
       return await models.workoutTemplates.findAll({
-        where: { userId: parent.id },
+        where: { userId: user.id },
       });
     },
   },
