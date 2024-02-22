@@ -12,5 +12,11 @@ type WorkoutTemplate {
   name: String
   lastUsedAt: String
   user: User
-  exercises: [Exercise]
+  exercises: [WorkoutTemplateExercise]
+}
+
+type WorkoutTemplateExercise {
+  id: ID!
+  exercise: Exercise
+  sets: [WorkoutTemplateExerciseSet]
 }

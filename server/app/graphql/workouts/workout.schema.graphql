@@ -25,13 +25,6 @@ type Workout {
   exercises: [WorkoutExercise]
 }
 
-type WorkoutTemplateExercise {
-  id: ID!
-  workoutTemplate: WorkoutTemplate
-  exercise: Exercise
-  sets: [WorkoutTemplateExerciseSet]
-}
-
 type WorkoutExercise {
   id: ID!
   exercise: Exercise
