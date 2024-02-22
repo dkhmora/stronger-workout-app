@@ -11,9 +11,7 @@ const exerciseResolvers = {
       args: null,
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      if (!user) {
-        throw new Error("User not found");
-      }
+      if (!user) throw new Error("User not found");
 
       return await models.exercises.findAll({
         where: { userId: null },
@@ -24,29 +22,40 @@ const exerciseResolvers = {
     createExercise: async (
       parent: any,
       exercise: ExerciseAttributes,
-      context: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      try {
-        return await context.models.exercises.create({
-          ...exercise,
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      if (!user) throw new Error("User not found");
+
+      return await models.exercises.create({
+        ...exercise,
+        userId: user.id,
+      });
     },
     linkExerciseToWorkout: async (
       parent: any,
       { workoutId, exerciseId }: WorkoutExercisesAttributes,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      try {
-        return await models.workoutExercises.create({
-          workoutId,
-          exerciseId,
-        });
-      } catch (error) {
-        console.error(error);
+      if (!user) throw new Error("User not found");
+
+      const workout = await models.workouts.findByPk(workoutId);
+      const exercise = await models.exercises.findByPk(exerciseId);
+
+      if (!workout || !exercise) {
+        throw new Error("Workout or exercise not found");
       }
+
+      if (
+        workout.userId !== user.id ||
+        (exercise.userId !== 0 && exercise.userId !== user.id)
+      ) {
+        throw new Error("Not authorized");
+      }
+
+      return await models.workoutExercises.create({
+        workoutId,
+        exerciseId,
+      });
     },
     linkExerciseToWorkoutTemplate: async (
       parent: any,
