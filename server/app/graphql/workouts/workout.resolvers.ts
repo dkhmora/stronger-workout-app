@@ -24,15 +24,13 @@ const workoutResolvers = {
     createWorkoutExerciseSet: async (
       parent: any,
       workoutExerciseSet: WorkoutExerciseSetsAttributes,
-      context: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      try {
-        return await context.models.workoutExerciseSets.create({
-          ...workoutExerciseSet,
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      if (!user) throw new Error("User not found");
+
+      return await models.workoutExerciseSets.create({
+        ...workoutExerciseSet,
+      });
     },
   },
   Workout: {
@@ -41,6 +39,8 @@ const workoutResolvers = {
       args: null,
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) throw new Error("User not found");
+
       return await models.exercises.findAll({
         include: [
           {
@@ -74,13 +74,16 @@ const workoutResolvers = {
       if (!user) throw new Error("User not found");
       if (exercise.userId && user.id !== exercise.userId)
         throw new Error("Not authorized");
+
       return await models.exercises.findByPk(exercise.id);
     },
     sets: async (
       workoutExercise: WorkoutExercisesAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) throw new Error("User not found");
+
       return await models.workoutExerciseSets.findAll({
         where: { workoutExerciseId: workoutExercise.id },
       });
@@ -90,8 +93,10 @@ const workoutResolvers = {
     exercise: async (
       workoutExerciseSet: WorkoutExerciseSetsAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) throw new Error("User not found");
+
       return await models.exercises.findAll({
         include: [
           {
