@@ -25,6 +25,4 @@ type Exercise {
   bodyPart: String
   userId: ID
   user: User
-  workoutSets: [WorkoutExerciseSet]
-  workoutTemplateSets: [WorkoutTemplateExerciseSet]
 }

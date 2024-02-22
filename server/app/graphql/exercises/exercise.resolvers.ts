@@ -64,24 +64,6 @@ const exerciseResolvers = {
     },
   },
   Exercise: {
-    workoutSets: async (
-      exercise: ExerciseAttributes,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workoutExerciseSets.findAll({
-        where: { workoutExerciseId: exercise.id },
-      });
-    },
-    workoutTemplateSets: async (
-      exercise: ExerciseAttributes,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workoutTemplateExerciseSets.findAll({
-        where: { workoutTemplateExerciseId: exercise.id },
-      });
-    },
     user: async (
       exercise: ExerciseAttributes,
       args: null,
