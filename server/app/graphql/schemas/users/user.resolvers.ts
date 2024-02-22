@@ -5,19 +5,14 @@ import { sign } from "jsonwebtoken";
 
 const userResolvers = {
   Query: {
-    users: async (
-      parent: any,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.users.findAll();
-    },
-    user: async (
+    currentUser: async (
       parent: any,
       { id }: { id: number },
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      return await models.users.findByPk(id);
+      if (!user || user.id !== id) throw new Error("User not found");
+
+      return await models.users.findByPk(user.id);
     },
   },
   Mutation: {

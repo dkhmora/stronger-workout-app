@@ -1,6 +1,4 @@
 type Query {
-  exercise(id: ID!): Exercise
-  exercises: [Exercise]
   defaultExercises: [Exercise]
 }
 
