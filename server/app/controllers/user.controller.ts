@@ -20,7 +20,6 @@ exports.create = (req: Request, res: Response) => {
     email: req.body.email,
     password: req.body.password,
     birthDate: req.body.birthDate,
-    numberOfWorkouts: req.body.numberOfWorkouts,
     bodyWeight: req.body.bodyWeight,
     height: req.body.height,
   };

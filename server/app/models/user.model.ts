@@ -6,7 +6,6 @@ export interface UserAttributes {
   email: string;
   password: string;
   birthDate: Date;
-  numberOfWorkouts: number;
   bodyWeight: number;
   height: number;
 }
@@ -35,10 +34,6 @@ export default (sequelize: Sequelize) =>
       },
       birthDate: {
         type: DataTypes.STRING,
-      },
-      numberOfWorkouts: {
-        type: DataTypes.DATE,
-        allowNull: false,
       },
       bodyWeight: {
         type: DataTypes.INTEGER,

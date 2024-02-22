@@ -10,7 +10,7 @@ const userResolvers = {
       { id }: { id: number },
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      if (!user || user.id !== id) throw new Error("User not found");
+      if (!user || user.id !== Number(id)) throw new Error("User not found");
 
       return await models.users.findByPk(user.id);
     },
@@ -24,7 +24,6 @@ const userResolvers = {
       try {
         return await context.models.users.create({
           ...user,
-          numberOfWorkouts: 0,
         });
       } catch (error) {
         console.error(error);
@@ -62,9 +61,20 @@ const userResolvers = {
       return await models.users.update(user, {
         where: { id: currentUser.id },
       });
-    }
+    },
   },
   User: {
+    numberOfWorkouts: async (
+      parent: any,
+      args: null,
+      { user, models }: { user: UserInstance; models: DBModels }
+    ) => {
+      if (!user) throw new Error("User not found");
+
+      return await models.workouts.count({
+        where: { userId: user.id },
+      });
+    },
     exercises: async (
       parent: any,
       args: null,
