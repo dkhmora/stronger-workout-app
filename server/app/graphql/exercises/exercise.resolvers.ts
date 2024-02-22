@@ -47,7 +47,7 @@ const exerciseResolvers = {
 
       if (
         workout.userId !== user.id ||
-        (exercise.userId !== 0 && exercise.userId !== user.id)
+        (exercise.userId && exercise.userId !== user.id)
       ) {
         throw new Error("Not authorized");
       }
@@ -75,7 +75,7 @@ const exerciseResolvers = {
 
       if (
         workoutTemplate.userId !== user.id ||
-        (exercise.userId !== 0 && exercise.userId !== user.id)
+        (exercise.userId && exercise.userId !== user.id)
       ) {
         throw new Error("Not authorized");
       }
@@ -92,8 +92,8 @@ const exerciseResolvers = {
       args: null,
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      if (!exercise.userId) return null;
       if (!user) throw new Error("User not found");
+      if (!exercise.userId) return null;
       if (exercise.userId !== user.id) throw new Error("Not authorized");
 
       return await models.users.findByPk(exercise.userId);

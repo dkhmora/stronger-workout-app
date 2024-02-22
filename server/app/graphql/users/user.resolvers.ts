@@ -7,7 +7,7 @@ const userResolvers = {
   Query: {
     currentUser: async (
       parent: any,
-      { id }: { id: number },
+      { id }: { id: string },
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
       if (!user || user.id !== Number(id)) throw new Error("User not found");
