@@ -1,5 +1,6 @@
 import { DBModels } from "app/models";
 import { ExerciseAttributes } from "app/models/exercise.model";
+import { UserInstance } from "app/models/user.model";
 import { WorkoutExercisesAttributes } from "app/models/workoutExercises.model";
 import { WorkoutTemplateExercisesAttributes } from "app/models/workoutTemplateExercises.model";
 
@@ -8,25 +9,15 @@ const exerciseResolvers = {
     defaultExercises: async (
       parent: any,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) {
+        throw new Error("User not found");
+      }
+
       return await models.exercises.findAll({
         where: { userId: null },
       });
-    },
-    exercises: async (
-      parent: any,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.exercises.findAll();
-    },
-    exercise: async (
-      parent: any,
-      { id }: { id: number },
-      { models }: { models: DBModels }
-    ) => {
-      return await models.exercises.findByPk(id);
     },
   },
   Mutation: {
