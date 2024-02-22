@@ -1,5 +1,7 @@
 import { DBModels } from "app/models";
+import { UserInstance } from "app/models/user.model";
 import { WorkoutAttributes } from "app/models/workout.model";
+import sequelize from "sequelize";
 
 const workoutResolvers = {
   Query: {
@@ -22,22 +24,23 @@ const workoutResolvers = {
     createWorkout: async (
       parent: any,
       workout: WorkoutAttributes,
-      context: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      try {
-        return await context.models.workouts.create({
-          ...workout,
-        });
-      } catch (error) {
-        console.error(error);
+      if (!user) {
+        throw new Error("User not found");
       }
+
+      return await models.workouts.create({
+        ...workout,
+        userId: user.id,
+      });
     },
   },
   Workout: {
     exercises: async (
       workout: WorkoutAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
       return await models.exercises.findAll({
         include: [
@@ -46,6 +49,9 @@ const workoutResolvers = {
             where: { id: workout.id },
           },
         ],
+        where: {
+          [sequelize.Op.or]: [{ userId: user.id }, { userId: null }],
+        },
       });
     },
     user: async (

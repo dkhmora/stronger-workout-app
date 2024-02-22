@@ -9,7 +9,6 @@ type Mutation {
     start: String!
     duration: String!
     totalWeight: String!
-    userId: ID!
   ): Workout
   updateWorkout(
     id: ID!
