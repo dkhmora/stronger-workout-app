@@ -50,6 +50,19 @@ const userResolvers = {
 
       return { user, token };
     },
+    updateUser: async (
+      parent: any,
+      user: UserAttributes,
+      { user: currentUser, models }: { user: UserInstance; models: DBModels }
+    ) => {
+      if (!currentUser || currentUser.id !== user.id) {
+        throw new Error("User not found");
+      }
+
+      return await models.users.update(user, {
+        where: { id: currentUser.id },
+      });
+    }
   },
   User: {
     exercises: async (
