@@ -5,6 +5,11 @@ type Query {
 type Mutation {
   createWorkoutTemplate(name: String!): WorkoutTemplate
   updateWorkoutTemplate(id: ID!, name: String): WorkoutTemplate
+  createWorkoutTemplateExerciseSet(
+    workoutTemplateExerciseId: ID!
+    weight: Int
+    reps: Int
+  ): WorkoutTemplateExerciseSet
 }
 
 type WorkoutTemplate {
@@ -19,4 +24,13 @@ type WorkoutTemplateExercise {
   id: ID!
   exercise: Exercise
   sets: [WorkoutTemplateExerciseSet]
+}
+
+type WorkoutTemplateExerciseSet {
+  id: ID!
+  workoutTemplateExercise: WorkoutTemplateExercise
+  reps: Int
+  weight: Float
+  setNumber: Int
+  exercise: Exercise
 }

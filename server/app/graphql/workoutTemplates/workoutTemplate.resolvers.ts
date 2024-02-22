@@ -2,6 +2,7 @@ import { DBModels } from "app/models";
 import { ExerciseAttributes } from "app/models/exercise.model";
 import { UserInstance } from "app/models/user.model";
 import { WorkoutTemplateAttributes } from "app/models/workoutTemplate.model";
+import { WorkoutTemplateExerciseSetsAttributes } from "app/models/workoutTemplateExerciseSets.model";
 import { WorkoutTemplateExercisesAttributes } from "app/models/workoutTemplateExercises.model";
 import sequelize from "sequelize";
 
@@ -29,6 +30,19 @@ const workoutTemplateResolvers = {
         ...workoutTemplate,
         userId: user.id,
       });
+    },
+    createWorkoutTemplateExerciseSet: async (
+      parent: any,
+      workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsAttributes,
+      context: { models: DBModels }
+    ) => {
+      try {
+        return await context.models.workoutTemplateExerciseSets.create({
+          ...workoutTemplateExerciseSet,
+        });
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
   WorkoutTemplate: {
@@ -82,6 +96,31 @@ const workoutTemplateResolvers = {
       return await models.workoutTemplateExerciseSets.findAll({
         where: { workoutTemplateExerciseId: workoutTemplateExercise.id },
       });
+    },
+  },
+  WorkoutTemplateExerciseSet: {
+    exercise: async (
+      workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsAttributes,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      return await models.exercises.findAll({
+        include: [
+          {
+            model: models.workoutTemplateExercises,
+            where: { id: workoutTemplateExerciseSet.workoutTemplateExerciseId },
+          },
+        ],
+      });
+    },
+    workoutTemplateExercise: async (
+      workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsAttributes,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      return await models.workoutTemplateExercises.findByPk(
+        workoutTemplateExerciseSet.workoutTemplateExerciseId
+      );
     },
   },
 };
