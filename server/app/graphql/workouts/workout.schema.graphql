@@ -12,6 +12,11 @@ type Mutation {
     duration: String
     totalWeight: String
   ): Workout
+  createWorkoutExerciseSet(
+    workoutExerciseId: ID!
+    weight: Int
+    reps: Int
+  ): WorkoutExerciseSet
 }
 
 type Workout {
@@ -29,4 +34,13 @@ type WorkoutExercise {
   id: ID!
   exercise: Exercise
   sets: [WorkoutExerciseSet]
+}
+
+type WorkoutExerciseSet {
+  id: ID!
+  workoutExercise: WorkoutExercise
+  reps: Int
+  weight: Float
+  setNumber: Int
+  exercise: Exercise
 }
