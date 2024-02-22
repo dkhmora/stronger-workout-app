@@ -4,22 +4,7 @@ import { WorkoutAttributes } from "app/models/workout.model";
 import sequelize from "sequelize";
 
 const workoutResolvers = {
-  Query: {
-    workouts: async (
-      parent: any,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workouts.findAll();
-    },
-    workout: async (
-      parent: any,
-      { id }: { id: number },
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workouts.findByPk(id);
-    },
-  },
+  Query: {},
   Mutation: {
     createWorkout: async (
       parent: any,
