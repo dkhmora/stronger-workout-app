@@ -34,15 +34,13 @@ const workoutTemplateResolvers = {
     createWorkoutTemplateExerciseSet: async (
       parent: any,
       workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsAttributes,
-      context: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      try {
-        return await context.models.workoutTemplateExerciseSets.create({
-          ...workoutTemplateExerciseSet,
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      if (!user) throw new Error("User not found");
+
+      return await models.workoutTemplateExerciseSets.create({
+        ...workoutTemplateExerciseSet,
+      });
     },
   },
   WorkoutTemplate: {
@@ -86,41 +84,19 @@ const workoutTemplateResolvers = {
       if (!user) throw new Error("User not found");
       if (exercise.userId && user.id !== exercise.userId)
         throw new Error("Not authorized");
+
       return await models.exercises.findByPk(exercise.id);
     },
     sets: async (
       workoutTemplateExercise: WorkoutTemplateExercisesAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) throw new Error("User not found");
+
       return await models.workoutTemplateExerciseSets.findAll({
         where: { workoutTemplateExerciseId: workoutTemplateExercise.id },
       });
-    },
-  },
-  WorkoutTemplateExerciseSet: {
-    exercise: async (
-      workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsAttributes,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.exercises.findAll({
-        include: [
-          {
-            model: models.workoutTemplateExercises,
-            where: { id: workoutTemplateExerciseSet.workoutTemplateExerciseId },
-          },
-        ],
-      });
-    },
-    workoutTemplateExercise: async (
-      workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsAttributes,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workoutTemplateExercises.findByPk(
-        workoutTemplateExerciseSet.workoutTemplateExerciseId
-      );
     },
   },
 };

@@ -89,24 +89,6 @@ const workoutResolvers = {
       });
     },
   },
-  WorkoutExerciseSet: {
-    exercise: async (
-      workoutExerciseSet: WorkoutExerciseSetsAttributes,
-      args: null,
-      { user, models }: { user: UserInstance; models: DBModels }
-    ) => {
-      if (!user) throw new Error("User not found");
-
-      return await models.exercises.findAll({
-        include: [
-          {
-            model: models.workoutExercises,
-            where: { id: workoutExerciseSet.workoutExerciseId },
-          },
-        ],
-      });
-    },
-  },
 };
 
 export default workoutResolvers;

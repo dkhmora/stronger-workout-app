@@ -28,9 +28,7 @@ type WorkoutTemplateExercise {
 
 type WorkoutTemplateExerciseSet {
   id: ID!
-  workoutTemplateExercise: WorkoutTemplateExercise
   reps: Int
   weight: Float
   setNumber: Int
-  exercise: Exercise
 }

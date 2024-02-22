@@ -38,9 +38,7 @@ type WorkoutExercise {
 
 type WorkoutExerciseSet {
   id: ID!
-  workoutExercise: WorkoutExercise
   reps: Int
   weight: Float
   setNumber: Int
-  exercise: Exercise
 }
