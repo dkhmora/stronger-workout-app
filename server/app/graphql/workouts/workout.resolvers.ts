@@ -1,6 +1,8 @@
 import { DBModels } from "app/models";
+import { ExerciseAttributes } from "app/models/exercise.model";
 import { UserInstance } from "app/models/user.model";
 import { WorkoutAttributes } from "app/models/workout.model";
+import { WorkoutExercisesAttributes } from "app/models/workoutExercises.model";
 import sequelize from "sequelize";
 
 const workoutResolvers = {
@@ -49,6 +51,27 @@ const workoutResolvers = {
         throw new Error("Not authorized");
 
       return await models.users.findByPk(workout.userId);
+    },
+  },
+  WorkoutExercise: {
+    exercise: async (
+      exercise: ExerciseAttributes,
+      args: null,
+      { user, models }: { user: UserInstance; models: DBModels }
+    ) => {
+      if (!user) throw new Error("User not found");
+      if (exercise.userId && user.id !== exercise.userId)
+        throw new Error("Not authorized");
+      return await models.exercises.findByPk(exercise.id);
+    },
+    sets: async (
+      workoutExercise: WorkoutExercisesAttributes,
+      args: null,
+      { models }: { models: DBModels }
+    ) => {
+      return await models.workoutExerciseSets.findAll({
+        where: { workoutExerciseId: workoutExercise.id },
+      });
     },
   },
 };

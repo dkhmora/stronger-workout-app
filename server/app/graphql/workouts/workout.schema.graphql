@@ -22,5 +22,18 @@ type Workout {
   totalWeight: String
   numberOfPRs: Int
   user: User
-  exercises: [Exercise]
+  exercises: [WorkoutExercise]
+}
+
+type WorkoutTemplateExercise {
+  id: ID!
+  workoutTemplate: WorkoutTemplate
+  exercise: Exercise
+  sets: [WorkoutTemplateExerciseSet]
+}
+
+type WorkoutExercise {
+  id: ID!
+  exercise: Exercise
+  sets: [WorkoutExerciseSet]
 }

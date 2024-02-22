@@ -10,11 +10,11 @@ type Mutation {
     bodyPart: String!
     userId: ID
   ): Exercise
-  linkExerciseToWorkout(workoutId: ID!, exerciseId: ID!): Workout
+  linkExerciseToWorkout(workoutId: ID!, exerciseId: ID!): WorkoutExercise
   linkExerciseToWorkoutTemplate(
     workoutTemplateId: ID!
     exerciseId: ID!
-  ): WorkoutTemplate
+  ): WorkoutTemplateExercise
 }
 
 type Exercise {
@@ -27,18 +27,4 @@ type Exercise {
   user: User
   workoutSets: [WorkoutExerciseSet]
   workoutTemplateSets: [WorkoutTemplateExerciseSet]
-}
-
-type WorkoutTemplateExercise {
-  id: ID!
-  workoutTemplate: WorkoutTemplate
-  exercise: Exercise
-  sets: [WorkoutTemplateExerciseSet]
-}
-
-type WorkoutExercise {
-  id: ID!
-  workout: Workout
-  exercise: Exercise
-  sets: [WorkoutExerciseSet]
 }

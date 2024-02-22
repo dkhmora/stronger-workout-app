@@ -2,22 +2,7 @@ import { DBModels } from "app/models";
 import { WorkoutExerciseSetsAttributes } from "app/models/workoutExerciseSets.model";
 
 const workoutExerciseSetResolvers = {
-  Query: {
-    workoutExerciseSets: async (
-      parent: any,
-      args: null,
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workoutExerciseSets.findAll();
-    },
-    workoutExerciseSet: async (
-      parent: any,
-      { id }: { id: number },
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workoutExerciseSets.findByPk(id);
-    },
-  },
+  Query: {},
   Mutation: {
     createWorkoutExerciseSet: async (
       parent: any,
