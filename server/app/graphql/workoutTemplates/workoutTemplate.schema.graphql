@@ -1,6 +1,5 @@
 type Query {
-  workoutTemplate(id: ID!): WorkoutTemplate
-  workoutTemplates: [WorkoutTemplate]
+  defaultWorkoutTemplates: [WorkoutTemplate]
 }
 
 type Mutation {

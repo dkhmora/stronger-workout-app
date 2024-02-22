@@ -4,7 +4,7 @@ export interface WorkoutTemplateAttributes {
   id?: number;
   name: string;
   lastUsedAt?: Date | null; // Optional because it may not be set
-  userId?: number;
+  userId?: number | null;
 }
 
 export interface WorkoutTemplateInstance

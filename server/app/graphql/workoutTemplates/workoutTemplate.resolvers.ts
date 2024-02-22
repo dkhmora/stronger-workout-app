@@ -5,19 +5,14 @@ import sequelize from "sequelize";
 
 const workoutTemplateResolvers = {
   Query: {
-    workoutTemplates: async (
+    defaultWorkoutTemplates: async (
       parent: any,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      return await models.workoutTemplates.findAll();
-    },
-    workoutTemplate: async (
-      parent: any,
-      { id }: { id: number },
-      { models }: { models: DBModels }
-    ) => {
-      return await models.workoutTemplates.findByPk(id);
+      if (!user) throw new Error("User not found");
+
+      return await models.workoutTemplates.findAll({ where: { userId: null } });
     },
   },
   Mutation: {
@@ -26,9 +21,7 @@ const workoutTemplateResolvers = {
       workoutTemplate: WorkoutTemplateAttributes,
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      if (!user) {
-        throw new Error("User not found");
-      }
+      if (!user) throw new Error("User not found");
 
       return await models.workoutTemplates.create({
         ...workoutTemplate,
@@ -42,6 +35,8 @@ const workoutTemplateResolvers = {
       args: null,
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!user) throw new Error("User not found");
+
       return await models.exercises.findAll({
         include: [
           {
