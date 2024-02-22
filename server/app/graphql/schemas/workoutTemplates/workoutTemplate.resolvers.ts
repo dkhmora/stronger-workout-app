@@ -1,5 +1,7 @@
 import { DBModels } from "app/models";
+import { UserInstance } from "app/models/user.model";
 import { WorkoutTemplateAttributes } from "app/models/workoutTemplate.model";
+import sequelize from "sequelize";
 
 const workoutTemplateResolvers = {
   Query: {
@@ -22,22 +24,23 @@ const workoutTemplateResolvers = {
     createWorkoutTemplate: async (
       parent: any,
       workoutTemplate: WorkoutTemplateAttributes,
-      context: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      try {
-        return await context.models.workoutTemplates.create({
-          ...workoutTemplate,
-        });
-      } catch (error) {
-        console.error(error);
+      if (!user) {
+        throw new Error("User not found");
       }
+
+      return await models.workoutTemplates.create({
+        ...workoutTemplate,
+        userId: user.id,
+      });
     },
   },
   WorkoutTemplate: {
     exercises: async (
       workoutTemplate: WorkoutTemplateAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
       return await models.exercises.findAll({
         include: [
@@ -46,14 +49,19 @@ const workoutTemplateResolvers = {
             where: { id: workoutTemplate.id },
           },
         ],
+        where: {
+          [sequelize.Op.or]: [{ userId: user.id }, { userId: null }],
+        },
       });
     },
     user: async (
       workoutTemplate: WorkoutTemplateAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      if (!workoutTemplate.userId) return null;
+      if (!workoutTemplate.userId) throw new Error("User not found");
+      if (!user || user.id !== workoutTemplate.userId)
+        throw new Error("Not authorized");
 
       return await models.users.findByPk(workoutTemplate.userId);
     },

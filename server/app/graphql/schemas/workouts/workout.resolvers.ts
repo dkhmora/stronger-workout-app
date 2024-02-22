@@ -57,8 +57,12 @@ const workoutResolvers = {
     user: async (
       workout: WorkoutAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
+      if (!workout.userId) throw new Error("User not found");
+      if (!user || user.id !== workout.userId)
+        throw new Error("Not authorized");
+
       return await models.users.findByPk(workout.userId);
     },
   },

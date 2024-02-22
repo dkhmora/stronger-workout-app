@@ -4,7 +4,7 @@ type Query {
 }
 
 type Mutation {
-  createWorkoutTemplate(name: String!, userId: ID!): WorkoutTemplate
+  createWorkoutTemplate(name: String!): WorkoutTemplate
   updateWorkoutTemplate(id: ID!, name: String): WorkoutTemplate
 }
 
