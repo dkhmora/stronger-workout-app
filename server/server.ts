@@ -14,7 +14,7 @@ import {
 } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import { resolvers, typeDefs } from "./app/graphql/schemas";
+import { resolvers, typeDefs } from "./app/graphql";
 import http from "http";
 import authMiddleware from "./app/middleware/auth";
 
