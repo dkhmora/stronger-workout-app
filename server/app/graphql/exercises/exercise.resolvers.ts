@@ -60,25 +60,41 @@ const exerciseResolvers = {
     linkExerciseToWorkoutTemplate: async (
       parent: any,
       { workoutTemplateId, exerciseId }: WorkoutTemplateExercisesAttributes,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
-      try {
-        return await models.workoutTemplateExercises.create({
-          workoutTemplateId,
-          exerciseId,
-        });
-      } catch (error) {
-        console.error(error);
+      if (!user) throw new Error("User not found");
+
+      const workoutTemplate = await models.workoutTemplates.findByPk(
+        workoutTemplateId
+      );
+      const exercise = await models.exercises.findByPk(exerciseId);
+
+      if (!workoutTemplate || !exercise) {
+        throw new Error("Workout or exercise not found");
       }
+
+      if (
+        workoutTemplate.userId !== user.id ||
+        (exercise.userId !== 0 && exercise.userId !== user.id)
+      ) {
+        throw new Error("Not authorized");
+      }
+
+      return await models.workoutTemplateExercises.create({
+        workoutTemplateId,
+        exerciseId,
+      });
     },
   },
   Exercise: {
     user: async (
       exercise: ExerciseAttributes,
       args: null,
-      { models }: { models: DBModels }
+      { user, models }: { user: UserInstance; models: DBModels }
     ) => {
       if (!exercise.userId) return null;
+      if (!user) throw new Error("User not found");
+      if (exercise.userId !== user.id) throw new Error("Not authorized");
 
       return await models.users.findByPk(exercise.userId);
     },
