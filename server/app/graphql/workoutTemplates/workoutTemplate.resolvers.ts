@@ -38,8 +38,22 @@ const workoutTemplateResolvers = {
     ) => {
       if (!user) throw new Error("User not found");
 
+      const workoutTemplateExercise =
+        await models.workoutTemplateExerciseSets.findByPk(
+          workoutTemplateExerciseSet.workoutTemplateExerciseId
+        );
+
+      if (!workoutTemplateExercise)
+        throw new Error("Workout exercise not found");
+      if (
+        !workoutTemplateExercise.userId ||
+        workoutTemplateExercise.userId !== user.id
+      )
+        throw new Error("Not authorized");
+
       return await models.workoutTemplateExerciseSets.create({
         ...workoutTemplateExerciseSet,
+        userId: user.id,
       });
     },
   },
