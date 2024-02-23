@@ -35,6 +35,10 @@ export default (sequelize: Sequelize) =>
       numberOfPersonalRecords: {
         type: DataTypes.INTEGER,
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     { underscored: true }
   );
