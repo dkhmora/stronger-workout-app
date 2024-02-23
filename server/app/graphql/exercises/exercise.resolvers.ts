@@ -55,6 +55,7 @@ const exerciseResolvers = {
       return await models.workoutExercises.create({
         workoutId,
         exerciseId,
+        userId: user.id,
       });
     },
     linkExerciseToWorkoutTemplate: async (
@@ -83,6 +84,7 @@ const exerciseResolvers = {
       return await models.workoutTemplateExercises.create({
         workoutTemplateId,
         exerciseId,
+        userId: user.id,
       });
     },
   },

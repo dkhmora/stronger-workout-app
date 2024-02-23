@@ -3,10 +3,6 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import userRoutes from "./app/routes/user.routes";
-import exerciseRoutes from "./app/routes/exercise.routes";
-import workoutRoutes from "./app/routes/workout.routes";
-import workoutTemplateRoutes from "./app/routes/workoutTemplate.routes";
 import {
   ApolloServer,
   ApolloServerOptionsWithTypeDefs,
@@ -77,10 +73,4 @@ apolloServer.start().then(() => {
   app.get("/", (req: any, res: any) => {
     res.json({ message: "Welcome to stronger" });
   });
-
-  // Initialize routes
-  userRoutes(app);
-  exerciseRoutes(app);
-  workoutRoutes(app);
-  workoutTemplateRoutes(app);
 });
