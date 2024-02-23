@@ -4,6 +4,7 @@ import { UserInstance } from "app/models/user.model";
 import { WorkoutAttributes } from "app/models/workout.model";
 import { WorkoutExerciseSetsAttributes } from "app/models/workoutExerciseSets.model";
 import { WorkoutExercisesAttributes } from "app/models/workoutExercises.model";
+import moment from "moment";
 import sequelize from "sequelize";
 
 const workoutResolvers = {
@@ -18,8 +19,39 @@ const workoutResolvers = {
 
       return await models.workouts.create({
         ...workout,
+        start: new Date(),
         userId: user.id,
+        totalWeight: 0,
+        duration: 0,
       });
+    },
+    endWorkout: async (
+      parent: any,
+      { id }: { id: number },
+      { user, models }: { user: UserInstance; models: DBModels }
+    ) => {
+      if (!user) throw new Error("User not found");
+
+      const workout = await models.workouts.findByPk(id);
+
+      if (!workout) throw new Error("Workout not found");
+      if (!workout.userId || workout.userId !== user.id)
+        throw new Error("Not authorized");
+
+      const duration = moment
+        .duration(moment().diff(workout.start))
+        .asSeconds();
+
+      await models.workouts.update(
+        { duration },
+        {
+          where: { id: workout.id, userId: user.id },
+        }
+      );
+
+      workout.duration = duration; // Update the duration in the object
+
+      return workout;
     },
     createWorkoutExerciseSet: async (
       parent: any,

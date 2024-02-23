@@ -1,17 +1,6 @@
 type Mutation {
-  createWorkout(
-    name: String!
-    start: String!
-    duration: String!
-    totalWeight: String!
-  ): Workout
-  updateWorkout(
-    id: ID!
-    name: String
-    start: String
-    duration: String
-    totalWeight: String
-  ): Workout
+  createWorkout(name: String!): Workout
+  endWorkout(id: ID!): Workout
   createWorkoutExerciseSet(
     workoutExerciseId: ID!
     weight: Int
@@ -26,6 +15,7 @@ type Workout {
   duration: String
   totalWeight: String
   numberOfPRs: Int
+  userId: ID!
   user: User
   exercises: [WorkoutExercise]
 }
