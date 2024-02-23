@@ -3,7 +3,8 @@ import { Sequelize, DataTypes } from "sequelize";
 
 export interface WorkoutExerciseSetsAttributes {
   id: number;
-  workoutExerciseId?: number;
+  workoutExerciseId: number;
+  userId: number;
   setNumber: number;
   weight: number;
   reps: number;
@@ -21,6 +22,14 @@ export default (sequelize: Sequelize) =>
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+      },
+      workoutExerciseId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
       setNumber: {
         type: DataTypes.INTEGER,
