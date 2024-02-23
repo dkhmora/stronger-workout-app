@@ -1,0 +1,34 @@
+type Query {
+  defaultWorkoutTemplates: [WorkoutTemplate]
+}
+
+type Mutation {
+  createWorkoutTemplate(name: String!): WorkoutTemplate
+  updateWorkoutTemplate(id: ID!, name: String): WorkoutTemplate
+  createWorkoutTemplateExerciseSet(
+    workoutTemplateExerciseId: ID!
+    weight: Int
+    reps: Int
+  ): WorkoutTemplateExerciseSet
+}
+
+type WorkoutTemplate {
+  id: ID!
+  name: String
+  lastUsedAt: String
+  user: User
+  exercises: [WorkoutTemplateExercise]
+}
+
+type WorkoutTemplateExercise {
+  id: ID!
+  exercise: Exercise
+  sets: [WorkoutTemplateExerciseSet]
+}
+
+type WorkoutTemplateExerciseSet {
+  id: ID!
+  reps: Int
+  weight: Float
+  setNumber: Int
+}

@@ -1,0 +1,34 @@
+type Mutation {
+  createWorkout(name: String!): Workout
+  endWorkout(id: ID!): Workout
+  createWorkoutExerciseSet(
+    workoutExerciseId: ID!
+    weight: Int
+    reps: Int
+  ): WorkoutExerciseSet
+}
+
+type Workout {
+  id: ID!
+  name: String
+  start: String
+  duration: String
+  totalWeight: String
+  numberOfPRs: Int
+  userId: ID!
+  user: User
+  exercises: [WorkoutExercise]
+}
+
+type WorkoutExercise {
+  id: ID!
+  exercise: Exercise
+  sets: [WorkoutExerciseSet]
+}
+
+type WorkoutExerciseSet {
+  id: ID!
+  reps: Int
+  weight: Float
+  setNumber: Int
+}

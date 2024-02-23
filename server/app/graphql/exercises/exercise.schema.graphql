@@ -1,0 +1,27 @@
+type Query {
+  defaultExercises: [Exercise]
+}
+
+type Mutation {
+  createExercise(
+    name: String!
+    description: String!
+    category: String!
+    bodyPart: String!
+  ): Exercise
+  linkExerciseToWorkout(workoutId: ID!, exerciseId: ID!): WorkoutExercise
+  linkExerciseToWorkoutTemplate(
+    workoutTemplateId: ID!
+    exerciseId: ID!
+  ): WorkoutTemplateExercise
+}
+
+type Exercise {
+  id: ID!
+  name: String
+  description: String
+  category: String
+  bodyPart: String
+  userId: ID
+  user: User
+}

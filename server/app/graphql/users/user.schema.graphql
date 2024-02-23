@@ -1,0 +1,40 @@
+type Query {
+  currentUser(id: ID!): User
+}
+
+type Mutation {
+  registerUser(
+    name: String!
+    birthDate: String!
+    email: String!
+    password: String!
+    bodyWeight: Float!
+    height: Float!
+  ): User
+  loginUser(email: String!, password: String!): AuthPayload
+  updateUser(
+    id: ID!
+    name: String
+    email: String
+    bodyWeight: Float
+    height: Float
+  ): User
+}
+
+type User {
+  id: ID!
+  name: String
+  email: String
+  birthDate: String
+  numberOfWorkouts: Int
+  bodyWeight: Float
+  height: Float
+  exercises: [Exercise]
+  workouts: [Workout]
+  workoutTemplates: [WorkoutTemplate]
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}

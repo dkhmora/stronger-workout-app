@@ -1,10 +1,13 @@
 import { Sequelize, DataTypes, Optional, Model } from "sequelize";
 
 export interface UserAttributes {
-  firstName: string;
-  middleName: string; // Optional because it may not be set
-  lastName: string;
+  id: number;
+  name: string;
+  email: string;
+  password: string;
   birthDate: Date;
+  bodyWeight: number;
+  height: number;
 }
 
 export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
@@ -13,18 +16,30 @@ export default (sequelize: Sequelize) =>
   sequelize.define<UserInstance>(
     "user",
     {
-      firstName: {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      name: {
         type: DataTypes.STRING,
       },
-      middleName: {
+      email: {
         type: DataTypes.STRING,
+        unique: true,
       },
-      lastName: {
+      password: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       birthDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      bodyWeight: {
+        type: DataTypes.INTEGER,
+      },
+      height: {
+        type: DataTypes.INTEGER,
       },
     },
     { underscored: true }

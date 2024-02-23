@@ -1,16 +1,33 @@
-import exercises, { ExerciseInstance } from "./exercise.model";
-import users, { UserInstance } from "./user.model";
-import workoutTemplates, {
+import exercisesModel, { ExerciseInstance } from "./exercise.model";
+import usersModel, { UserInstance } from "./user.model";
+import workoutTemplatesModel, {
   WorkoutTemplateInstance,
 } from "./workoutTemplate.model";
-import workouts, { WorkoutInstance } from "./workout.model";
+import workoutsModel, { WorkoutInstance } from "./workout.model";
+import workoutExercisesModel, {
+  WorkoutExercisesInstance,
+} from "./workoutExercises.model";
+import workoutTemplateExercisesModel, {
+  WorkoutTemplateExercisesInstance,
+} from "./workoutTemplateExercises.model";
+import workoutExerciseSetsModel, {
+  WorkoutExerciseSetsInstance,
+} from "./workoutExerciseSets.model";
+import workoutTemplateExerciseSetsModel, {
+  WorkoutTemplateExerciseSetsInstance,
+} from "./workoutTemplateExerciseSets.model";
 import { ModelStatic, Sequelize } from "sequelize";
 import dbConfig from "../config/db.config";
+import bcrypt from "bcryptjs";
 
-interface DBModels {
+export interface DBModels {
   sequelize: Sequelize;
   Sequelize: Sequelize;
   exercises: ModelStatic<ExerciseInstance>;
+  workoutExercises: ModelStatic<WorkoutExercisesInstance>;
+  workoutTemplateExercises: ModelStatic<WorkoutTemplateExercisesInstance>;
+  workoutTemplateExerciseSets: ModelStatic<WorkoutTemplateExerciseSetsInstance>;
+  workoutExerciseSets: ModelStatic<WorkoutExerciseSetsInstance>;
   users: ModelStatic<UserInstance>;
   workouts: ModelStatic<WorkoutInstance>;
   workoutTemplates: ModelStatic<WorkoutTemplateInstance>;
@@ -30,15 +47,80 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 
 const dbModels = <DBModels>{
   sequelize,
-  exercises: exercises(sequelize),
-  users: users(sequelize),
-  workouts: workouts(sequelize),
-  workoutTemplates: workoutTemplates(sequelize),
+  exercises: exercisesModel(sequelize),
+  workoutExercises: workoutExercisesModel(sequelize),
+  workoutTemplateExercises: workoutTemplateExercisesModel(sequelize),
+  workoutTemplateExerciseSets: workoutTemplateExerciseSetsModel(sequelize),
+  workoutExerciseSets: workoutExerciseSetsModel(sequelize),
+  users: usersModel(sequelize),
+  workouts: workoutsModel(sequelize),
+  workoutTemplates: workoutTemplatesModel(sequelize),
 };
 
-dbModels.users.hasMany(dbModels.exercises, { as: "Exercises" });
-dbModels.users.hasMany(dbModels.workouts, { as: "Workouts" });
-dbModels.workoutTemplates.hasMany(dbModels.workouts);
-dbModels.workouts.belongsTo(dbModels.workoutTemplates);
+dbModels.users.hasMany(dbModels.exercises, {
+  as: "User_Exercises",
+});
+dbModels.users.hasMany(dbModels.workouts, {
+  as: "User_Workouts",
+});
+dbModels.users.hasMany(dbModels.workoutTemplates, {
+  as: "User_Workout_Templates",
+});
+dbModels.users.beforeCreate(async (user) => {
+  try {
+    user.password = await bcrypt.hash(user.password, 10);
+  } catch (error) {
+    console.error("Error hashing password:", error);
+    throw error; // Rethrow the error to ensure Sequelize catches it.
+  }
+});
+dbModels.workoutTemplates.belongsToMany(dbModels.exercises, {
+  through: dbModels.workoutTemplateExercises,
+});
+dbModels.exercises.belongsToMany(dbModels.workoutTemplates, {
+  through: dbModels.workoutTemplateExercises,
+});
+dbModels.workouts.hasOne(dbModels.workoutTemplates);
+dbModels.workouts.belongsToMany(dbModels.exercises, {
+  through: dbModels.workoutExercises,
+});
+dbModels.exercises.belongsToMany(dbModels.workouts, {
+  through: dbModels.workoutExercises,
+});
+dbModels.workoutExercises.hasMany(dbModels.workoutExerciseSets, {
+  as: "Workout_Exercise_Sets",
+});
+dbModels.workoutTemplateExercises.hasMany(
+  dbModels.workoutTemplateExerciseSets,
+  {
+    as: "Workout_Template_Exercise_Sets",
+  }
+);
+// Automatically increment set number when creating a new set
+dbModels.workoutTemplateExerciseSets.beforeCreate(
+  async (workoutTemplateExerciseSet: WorkoutTemplateExerciseSetsInstance) => {
+    const lastSet = await dbModels.workoutTemplateExerciseSets.findOne({
+      where: {
+        workoutTemplateExerciseId:
+          workoutTemplateExerciseSet.workoutTemplateExerciseId,
+      },
+      order: [["setNumber", "DESC"]],
+    });
+
+    workoutTemplateExerciseSet.setNumber = lastSet ? lastSet.setNumber + 1 : 1;
+  }
+);
+dbModels.workoutExerciseSets.beforeCreate(
+  async (workoutExerciseSet: WorkoutExerciseSetsInstance) => {
+    const lastSet = await dbModels.workoutExerciseSets.findOne({
+      where: {
+        workoutExerciseId: workoutExerciseSet.workoutExerciseId,
+      },
+      order: [["setNumber", "DESC"]],
+    });
+
+    workoutExerciseSet.setNumber = lastSet ? lastSet.setNumber + 1 : 1;
+  }
+);
 
 export default dbModels;
