@@ -1,9 +1,9 @@
-import exercisesModel, { ExerciseInstance } from "./exercise.model";
-import usersModel, { UserInstance } from "./user.model";
+import exercisesModel, { ExerciseInstance } from "./exercises.model";
+import usersModel, { UserInstance } from "./users.model";
 import workoutTemplatesModel, {
   WorkoutTemplateInstance,
-} from "./workoutTemplate.model";
-import workoutsModel, { WorkoutInstance } from "./workout.model";
+} from "./workoutTemplates.model";
+import workoutsModel, { WorkoutInstance } from "./workouts.model";
 import workoutExercisesModel, {
   WorkoutExercisesInstance,
 } from "./workoutExercises.model";

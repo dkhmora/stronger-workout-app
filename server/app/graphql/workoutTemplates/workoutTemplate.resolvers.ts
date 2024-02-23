@@ -1,7 +1,7 @@
 import { DBModels } from "app/models";
-import { ExerciseAttributes } from "app/models/exercise.model";
-import { UserInstance } from "app/models/user.model";
-import { WorkoutTemplateAttributes } from "app/models/workoutTemplate.model";
+import { ExerciseAttributes } from "app/models/exercises.model";
+import { UserInstance } from "app/models/users.model";
+import { WorkoutTemplateAttributes } from "app/models/workoutTemplates.model";
 import { WorkoutTemplateExerciseSetsAttributes } from "app/models/workoutTemplateExerciseSets.model";
 import { WorkoutTemplateExercisesAttributes } from "app/models/workoutTemplateExercises.model";
 import sequelize from "sequelize";

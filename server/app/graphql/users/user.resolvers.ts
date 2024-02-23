@@ -1,5 +1,5 @@
 import { DBModels } from "app/models";
-import { UserAttributes, UserInstance } from "app/models/user.model";
+import { UserAttributes, UserInstance } from "app/models/users.model";
 import bcrypt from "bcryptjs";
 import { sign } from "jsonwebtoken";
 

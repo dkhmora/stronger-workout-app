@@ -1,6 +1,6 @@
 import { DBModels } from "app/models";
-import { ExerciseAttributes } from "app/models/exercise.model";
-import { UserInstance } from "app/models/user.model";
+import { ExerciseAttributes } from "app/models/exercises.model";
+import { UserInstance } from "app/models/users.model";
 import { WorkoutExercisesAttributes } from "app/models/workoutExercises.model";
 import { WorkoutTemplateExercisesAttributes } from "app/models/workoutTemplateExercises.model";
 
