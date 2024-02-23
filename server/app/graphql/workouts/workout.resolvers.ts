@@ -22,7 +22,7 @@ const workoutResolvers = {
         start: new Date(),
         userId: user.id,
         totalWeight: 0,
-        duration: 0,
+        duration: "00:00:00",
       });
     },
     endWorkout: async (
@@ -39,8 +39,8 @@ const workoutResolvers = {
         throw new Error("Not authorized");
 
       const duration = moment
-        .duration(moment().diff(workout.start))
-        .asSeconds();
+        .utc(moment.duration(moment().diff(workout.start)).asMilliseconds())
+        .format("HH:mm:ss");
 
       await models.workouts.update(
         { duration },

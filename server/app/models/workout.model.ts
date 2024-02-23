@@ -4,7 +4,7 @@ export interface WorkoutAttributes {
   id?: number;
   name: string;
   start: Date; // Optional because it may not be set
-  duration: number; // seconds
+  duration: string; // seconds
   totalWeight: number;
   numberOfPersonalRecords: number;
   userId?: number;
