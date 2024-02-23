@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 import { Sequelize, DataTypes } from "sequelize";
 
 export interface WorkoutTemplateExerciseSetsAttributes {
-  id: number;
+  id?: number;
   workoutTemplateExerciseId: number;
   userId: number;
   setNumber: number;
