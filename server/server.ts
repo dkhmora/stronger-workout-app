@@ -64,11 +64,6 @@ apolloServer.start().then(() => {
     console.log(`Server is running on port ${PORT}.`);
   });
 
-  // Drop the table if it already exists
-  dbModels.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-  });
-
   // Entry route
   app.get("/", (req: any, res: any) => {
     res.json({ message: "Welcome to stronger" });

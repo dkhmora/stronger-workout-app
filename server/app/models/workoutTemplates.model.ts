@@ -15,6 +15,11 @@ export default (sequelize: Sequelize) =>
   sequelize.define<WorkoutTemplateInstance>(
     "workout_template",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
       },
