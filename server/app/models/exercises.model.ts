@@ -35,6 +35,10 @@ export default (sequelize: Sequelize) =>
       bodyPart: {
         type: DataTypes.STRING,
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
     },
     { underscored: true }
   );

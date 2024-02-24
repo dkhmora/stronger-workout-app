@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
     });
   },
 

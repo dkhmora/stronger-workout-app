@@ -26,6 +26,10 @@ export default (sequelize: Sequelize) =>
       lastUsedAt: {
         type: DataTypes.DATE,
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
     },
     { underscored: true }
   );

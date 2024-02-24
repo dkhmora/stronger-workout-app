@@ -17,6 +17,8 @@ const workoutResolvers = {
     ) => {
       if (!user) throw new Error("User not found");
 
+      console.log(user);
+
       return await models.workouts.create({
         ...workout,
         start: new Date(),
