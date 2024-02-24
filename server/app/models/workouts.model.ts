@@ -8,6 +8,7 @@ export interface WorkoutAttributes {
   totalWeight: number;
   numberOfPersonalRecords: number;
   userId?: number;
+  workoutTemplateId?: number;
 }
 
 export interface WorkoutInstance
@@ -43,6 +44,10 @@ export default (sequelize: Sequelize) =>
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      workoutTemplateId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
     },
     { underscored: true }

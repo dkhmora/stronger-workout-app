@@ -80,7 +80,7 @@ dbModels.workoutTemplates.belongsToMany(dbModels.exercises, {
 dbModels.exercises.belongsToMany(dbModels.workoutTemplates, {
   through: dbModels.workoutTemplateExercises,
 });
-dbModels.workouts.hasOne(dbModels.workoutTemplates);
+dbModels.workoutTemplates.hasMany(dbModels.workouts);
 dbModels.workouts.belongsToMany(dbModels.exercises, {
   through: dbModels.workoutExercises,
 });
