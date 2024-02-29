@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Typography, Box, Button } from "@mui/material";
 import RoundedTextField from "../components/RoundedTextField";
+import RoundedButton from "../components/RoundedButton";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -52,14 +53,15 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button
+
+          <RoundedButton
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
-          </Button>
+            Sign in
+          </RoundedButton>
         </Box>
       </Box>
     </Container>

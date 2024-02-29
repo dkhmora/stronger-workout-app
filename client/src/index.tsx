@@ -51,10 +51,22 @@ const darkTheme = createTheme({
       main: blue[500],
       dark: blue[700],
       darker: blue[900],
+      contrastText: "#fff",
     },
   },
   button: {
     primary: blue[500],
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          "&.MuiButton-containedPrimary": {
+            backgroundColor: blue[500],
+          },
+        },
+      },
+    },
   },
 });
 
