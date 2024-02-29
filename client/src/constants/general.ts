@@ -11,6 +11,7 @@ import HistoryPage from "../pages/HistoryPage";
 import ExercisesPage from "../pages/ExercisesPage";
 import MeasurePage from "../pages/MeasurePage";
 import StartWorkoutPage from "../pages/StartWorkoutPage";
+import LoginPage from "../pages/LoginPage";
 
 export const routes = [
   {
@@ -61,6 +62,13 @@ export const routes = [
     element: createElement(MeasurePage),
     desktop: true,
     mobile: true,
+  },
+  {
+    text: "Login",
+    to: "/login",
+    element: createElement(LoginPage),
+    desktop: false,
+    mobile: false,
   },
 ];
 
