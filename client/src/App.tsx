@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import { BottomNavigation, Box, CssBaseline, Toolbar } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MobileAppBar from "./components/MobileAppBar";
-import { RootState, SET_IS_MOBILE } from "./store/general";
+import { SET_IS_MOBILE } from "./store/general";
 import useWindowDimension from "./hooks/useWindowDimension";
 import { routes } from "./constants/general";
 import FabZoom from "./components/FabZoom";
@@ -55,7 +55,7 @@ function App() {
               label="Add"
               transitionDuration={500}
               to="/create"
-              hideOnLocations={["/create"]}
+              hideOnLocations={["/create", "/login", "/register"]}
             />
           )}
           {/* To push content up */}
