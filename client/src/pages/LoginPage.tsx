@@ -32,7 +32,7 @@ export default function LoginPage() {
         >
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 6 }}>
           <RoundedTextField
             required
             id="email"
@@ -53,12 +53,21 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <Button
+            variant="text"
+            sx={{ mb: 2 }}
+            onClick={() => {
+              console.log("Forgot Password Clicked");
+            }}
+          >
+            Forgot Password?
+          </Button>
 
           <RoundedButton
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 6, mb: 2 }}
           >
             Sign in
           </RoundedButton>
