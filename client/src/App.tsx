@@ -15,6 +15,7 @@ import RunningWorkoutBottomSheet from "./components/RunningWorkoutBottomSheet";
 
 function App() {
   const { isMobile } = useWindowDimension();
+  const userCredentials = useSelector((state: any) => state.userCredentials);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,14 +26,19 @@ function App() {
     <Box className="flex">
       <CssBaseline />
       <BrowserRouter>
-        {isMobile ? (
-          <>
-            <MobileAppBar />
-            <MobileNavbar className="navbar" />
-          </>
-        ) : (
-          <Navbar />
+        {userCredentials && (
+          <div>
+            {isMobile ? (
+              <>
+                <MobileAppBar />
+                <MobileNavbar className="navbar" />
+              </>
+            ) : (
+              <Navbar />
+            )}
+          </div>
         )}
+
         <Box component="main" className="flex-grow bg-blue" id="main">
           {isMobile ? <Toolbar /> : null} {/* To push content down */}
           <Routes>
@@ -44,21 +50,25 @@ function App() {
               />
             ))}
           </Routes>
-          <RunningWorkoutBottomSheet />
-          {isMobile ? (
-            <BottomNavigation className="navbar" />
-          ) : (
-            <FabZoom
-              icon={<AddIcon />}
-              color="primary"
-              className="fixed bottom-8 right-8 z-50 bg-blue-500 hover:bg-blue-700"
-              label="Add"
-              transitionDuration={500}
-              to="/create"
-              hideOnLocations={["/create", "/login", "/register"]}
-            />
+          {userCredentials && (
+            <div>
+              <RunningWorkoutBottomSheet />
+              {isMobile ? (
+                <BottomNavigation className="navbar" />
+              ) : (
+                <FabZoom
+                  icon={<AddIcon />}
+                  color="primary"
+                  className="fixed bottom-8 right-8 z-50 bg-blue-500 hover:bg-blue-700"
+                  label="Add"
+                  transitionDuration={500}
+                  to="/create"
+                  hideOnLocations={["/create", "/login", "/register"]}
+                />
+              )}
+              {/* To push content up */}
+            </div>
           )}
-          {/* To push content up */}
         </Box>
       </BrowserRouter>
     </Box>
