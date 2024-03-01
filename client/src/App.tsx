@@ -27,7 +27,7 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         {userCredentials && (
-          <div>
+          <>
             {isMobile ? (
               <>
                 <MobileAppBar />
@@ -36,7 +36,7 @@ function App() {
             ) : (
               <Navbar />
             )}
-          </div>
+          </>
         )}
 
         <Box component="main" className="flex-grow bg-blue" id="main">
@@ -51,7 +51,7 @@ function App() {
             ))}
           </Routes>
           {userCredentials && (
-            <div>
+            <>
               <RunningWorkoutBottomSheet />
               {isMobile ? (
                 <BottomNavigation className="navbar" />
@@ -67,7 +67,7 @@ function App() {
                 />
               )}
               {/* To push content up */}
-            </div>
+            </>
           )}
         </Box>
       </BrowserRouter>

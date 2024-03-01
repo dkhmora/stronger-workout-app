@@ -2,15 +2,23 @@ import React, { useState } from "react";
 import { Container, Typography, Box, Button } from "@mui/material";
 import RoundedTextField from "../components/RoundedTextField";
 import RoundedButton from "../components/RoundedButton";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../graphql/mutations";
+import { useDispatch } from "react-redux";
+import { SET_USER_CREDENTIALS } from "../store/general";
 
 export default function LoginPage() {
+  const [mutateFunction, { data, loading, error }] = useMutation(LOGIN_USER);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Implement your login logic here
-    console.log("Login with:", email, password);
+
+    mutateFunction({ variables: { email, password } }).then((res) => {
+      dispatch(SET_USER_CREDENTIALS(res.data.loginUser));
+    });
   };
 
   return (

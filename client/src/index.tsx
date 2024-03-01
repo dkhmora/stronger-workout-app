@@ -11,6 +11,7 @@ import {
 import generalStore from "./store/general";
 import { Provider } from "react-redux";
 import { blue, grey } from "@mui/material/colors";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -70,12 +71,19 @@ const darkTheme = createTheme({
   },
 });
 
+const apolloClient = new ApolloClient({
+  uri: process.env.REACT_APP_API_BASE_URL,
+  cache: new InMemoryCache(),
+});
+
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={darkTheme}>
       <StyledEngineProvider injectFirst>
         <Provider store={generalStore}>
-          <App />
+          <ApolloProvider client={apolloClient}>
+            <App />
+          </ApolloProvider>
         </Provider>
       </StyledEngineProvider>
     </ThemeProvider>
