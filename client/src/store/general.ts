@@ -12,7 +12,8 @@ import { loginRoutes } from "../constants/general";
 const initialState = {
   isMobile: false, // Set the initial value of isMobile to false
   currentWorkout: null,
-  userCredentials: null,
+  userCredentials:
+    JSON.parse(localStorage.getItem("userCredentials") as string) || null,
   currentRoutes: [],
 };
 
@@ -24,10 +25,14 @@ const generalSlice = createSlice({
       ...state,
       isMobile: payload,
     }),
-    SET_USER_CREDENTIALS: (state, { payload }) => ({
-      ...state,
-      userCredentials: payload,
-    }),
+    SET_USER_CREDENTIALS: (state, { payload }) => {
+      localStorage.setItem("userCredentials", JSON.stringify(payload));
+
+      return {
+        ...state,
+        userCredentials: payload,
+      };
+    },
     SET_CURRENT_WORKOUT: (state, { payload }) => ({
       ...state,
       currentWorkout: payload,
