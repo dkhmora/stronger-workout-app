@@ -9,7 +9,7 @@ import {
   Drawer as MuiDrawer,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { routes } from "../constants/general";
+import { routeElements, routes } from "../constants/general";
 import "./Navbar.css";
 import {
   dynamicNavbarStyles,
@@ -52,7 +52,7 @@ export default function Navbar() {
       onMouseLeave={handleDrawerClose}
     >
       <List>
-        {routes.map(({ text, icon, to, desktop }, index) =>
+        {routes.map(({ text, to, desktop }, index) =>
           desktop ? (
             <ListItem
               key={text}
@@ -65,9 +65,12 @@ export default function Navbar() {
                 sx={dynamicNavbarStyles.listItemButton({ open })}
                 selected={location.pathname === to}
               >
-                <ListItemIcon sx={dynamicNavbarStyles.listItemIcon({ open })}>
-                  {icon}
-                </ListItemIcon>
+                {routeElements[to as keyof typeof routeElements]?.icon && (
+                  <ListItemIcon sx={dynamicNavbarStyles.listItemIcon({ open })}>
+                    {routeElements[to as keyof typeof routeElements].icon}
+                  </ListItemIcon>
+                )}
+
                 <ListItemText
                   primary={text}
                   sx={dynamicNavbarStyles.listItemText({ open })}

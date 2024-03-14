@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { Link } from "react-router-dom";
-import { routes } from "../constants/general";
-import RunningWorkoutBottomSheet from "./RunningWorkoutBottomSheet";
+import { routeElements, routes } from "../constants/general";
 
 type MobileNavbarProps = {
   className?: string;
@@ -27,11 +26,11 @@ export default function MobileNavbar({ className }: MobileNavbarProps) {
           }}
           className={className}
         >
-          {routes.map(({ text, icon, to, mobile }, index) =>
+          {routes.map(({ text, to, mobile }, index) =>
             mobile ? (
               <BottomNavigationAction
                 label={text}
-                icon={icon}
+                icon={routeElements[to as keyof typeof routeElements]?.icon}
                 {...{ to }}
                 component={Link}
                 key={text + to}

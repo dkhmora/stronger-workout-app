@@ -14,3 +14,30 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const REGISTER_USER = gql`
+  mutation RegisterUser(
+    $name: String!
+    $email: String!
+    $password: String!
+    $birthDate: ID!
+    $bodyWeight: Float!
+    $height: Int!
+  ) {
+    registerUser(
+      name: $name
+      email: $email
+      password: $password
+      birthDate: $birthDate
+      bodyWeight: $bodyWeight
+      height: $height
+    ) {
+      id
+      name
+      birthDate
+      email
+      bodyWeight
+      height
+    }
+  }
+`;
