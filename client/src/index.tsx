@@ -71,6 +71,8 @@ const darkTheme = createTheme({
   },
 });
 
+console.log("yes", process.env);
+
 const apolloClient = new ApolloClient({
   uri: process.env.REACT_APP_API_BASE_URL,
   cache: new InMemoryCache(),
