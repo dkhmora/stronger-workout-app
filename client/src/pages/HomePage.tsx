@@ -1,8 +1,11 @@
 import React from "react";
-import { Container, Typography, Box, Paper } from "@mui/material";
-import RoundedButton from "../components/RoundedButton";
+import { Container, Typography, Box } from "@mui/material";
+import HomeSignUpBox from "../components/HomeSignUpBox";
+import { useSelector } from "react-redux";
 
 export default function HomePage() {
+  const userCredentials = useSelector((state: any) => state.userCredentials);
+
   return (
     <Container>
       <Box className="flex flex-col align-center justify-center items-center h-auto space-y-12 py-6 md:h-screen">
@@ -26,36 +29,7 @@ export default function HomePage() {
           </Typography>
         </Box>
 
-        <Paper className="flex flex-col space-y-4 mt-6 items-center p-6 rounded-3xl max-w-[500px] self-center">
-          <Typography
-            variant="h5"
-            component="h5"
-            sx={{ typography: { sm: "h5", xs: "h6" } }}
-            textAlign={"center"}
-          >
-            Please login or register to use the app
-          </Typography>
-
-          <Box className="flex flex-row space-x-4 mt-6">
-            <RoundedButton
-              type="button"
-              fullWidth
-              variant="contained"
-              href="/login"
-            >
-              Login
-            </RoundedButton>
-
-            <RoundedButton
-              type="button"
-              fullWidth
-              variant="outlined"
-              href="/register"
-            >
-              Register
-            </RoundedButton>
-          </Box>
-        </Paper>
+        {userCredentials ? null : <HomeSignUpBox />}
       </Box>
     </Container>
   );
