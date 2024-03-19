@@ -4,7 +4,7 @@ import HomeSignUpBox from "../components/HomeSignUpBox";
 import { useSelector } from "react-redux";
 
 export default function HomePage() {
-  const userCredentials = useSelector((state: any) => state.userCredentials);
+  const userToken = useSelector((state: any) => state.userToken);
 
   return (
     <Container>
@@ -29,7 +29,7 @@ export default function HomePage() {
           </Typography>
         </Box>
 
-        {userCredentials ? null : <HomeSignUpBox />}
+        {userToken ? null : <HomeSignUpBox />}
       </Box>
     </Container>
   );

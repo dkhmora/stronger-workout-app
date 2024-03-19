@@ -5,7 +5,7 @@ import RoundedButton from "../components/RoundedButton";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphql/mutations";
 import { useDispatch } from "react-redux";
-import { SET_USER_CREDENTIALS } from "../store/general";
+import { SET_USER_DETAILS, SET_USER_TOKEN } from "../store/general";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -20,10 +20,14 @@ export default function LoginPage() {
 
     mutateFunction({ variables: { email, password } })
       .then((res) => {
-        dispatch(SET_USER_CREDENTIALS(res.data.loginUser));
+        dispatch(SET_USER_DETAILS(res.data.loginUser.user));
+        dispatch(SET_USER_TOKEN(res.data.loginUser.token));
       })
       .then(() => {
         navigate("/profile");
+      })
+      .catch((e) => {
+        console.error(e);
       });
   };
 

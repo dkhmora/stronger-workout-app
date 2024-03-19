@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
   StyledEngineProvider,
@@ -11,7 +10,7 @@ import {
 import generalStore from "./store/general";
 import { Provider } from "react-redux";
 import { blue, grey } from "@mui/material/colors";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import ApolloProviderContainer from "./ApolloProviderContainer";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -71,21 +70,12 @@ const darkTheme = createTheme({
   },
 });
 
-console.log("yes", process.env);
-
-const apolloClient = new ApolloClient({
-  uri: process.env.REACT_APP_API_BASE_URL,
-  cache: new InMemoryCache(),
-});
-
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={darkTheme}>
       <StyledEngineProvider injectFirst>
         <Provider store={generalStore}>
-          <ApolloProvider client={apolloClient}>
-            <App />
-          </ApolloProvider>
+          <ApolloProviderContainer />
         </Provider>
       </StyledEngineProvider>
     </ThemeProvider>

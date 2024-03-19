@@ -13,6 +13,7 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import { resolvers, typeDefs } from "./app/graphql";
 import http from "http";
 import authMiddleware from "./app/middleware/auth";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -67,5 +68,26 @@ apolloServer.start().then(() => {
   // Entry route
   app.get("/", (req: any, res: any) => {
     res.json({ message: "Welcome to stronger" });
+  });
+
+  app.post("/verifyToken", (req, res) => {
+    const { token } = req.body;
+
+    if (!token) {
+      return res.status(400).json({ error: "Token is required" });
+    }
+
+    jwt.verify(
+      token,
+      process.env.JWT_SECRET || "",
+      (err: jwt.VerifyErrors | null, user: any) => {
+        if (err) {
+          return res.status(401).json({ error: "Invalid token" });
+        }
+
+        // Token is valid, you can send additional data from decoded object if needed
+        res.status(200).json({ user });
+      }
+    );
   });
 });

@@ -18,10 +18,12 @@ import {
 import FabZoom from "./components/FabZoom";
 import RunningWorkoutBottomSheet from "./components/RunningWorkoutBottomSheet";
 import { Route as RouteType } from "./types";
+import useSyncUserCredentials from "./hooks/useSyncUserCredentials";
 
 function App() {
   const { isMobile } = useWindowDimension();
-  const userCredentials = useSelector((state: any) => state.userCredentials);
+  const { data, loading, error } = useSyncUserCredentials();
+  const userToken = useSelector((state: any) => state.userToken);
   const currentRoutes = useSelector((state: any) => state.currentRoutes);
   const allRoutes = [defaultRoute, ...currentRoutes];
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ function App() {
 
   useEffect(() => {
     // Check if user is logged in (for example, check if user credentials exist in cookies)
-    const isLoggedIn = !!userCredentials; // Adjust this condition based on your authentication logic
+    const isLoggedIn = !!userToken; // Adjust this condition based on your authentication logic
 
     // Dispatch action to set current routes based on user login status
     if (isLoggedIn) {
@@ -40,13 +42,13 @@ function App() {
     } else {
       dispatch(SET_CURRENT_ROUTES(loginRoutes));
     }
-  }, [dispatch, userCredentials]);
+  }, [dispatch, userToken]);
 
   return (
     <Box className="flex">
       <CssBaseline />
       <BrowserRouter>
-        {userCredentials && (
+        {userToken && (
           <>
             {isMobile ? (
               <>
@@ -72,7 +74,7 @@ function App() {
               />
             ))}
           </Routes>
-          {userCredentials && (
+          {userToken && (
             <>
               <RunningWorkoutBottomSheet />
               {isMobile ? (
