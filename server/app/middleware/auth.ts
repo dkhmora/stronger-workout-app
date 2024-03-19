@@ -14,10 +14,19 @@ export default (req: any, res: any, next: any) => {
       token,
       process.env.JWT_SECRET,
       (err: jwt.VerifyErrors | null, user: any) => {
-        if (!err) {
-          req.user = user; // Successfully authenticated, attach user to request
+        if (err) {
+          // Token verification failed
+          return res.status(401).json({ error: "Unauthorized" });
         }
-        // Proceed regardless of token validity; errors are handled or ignored
+
+        // Token is valid, check expiry
+        if (user.exp && user.exp * 1000 < Date.now()) {
+          // Token has expired
+          return res.status(401).json({ error: "Token expired" });
+        }
+
+        // Token is valid and not expired, attach user to request
+        req.user = user;
         next();
       }
     );
