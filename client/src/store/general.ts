@@ -15,6 +15,7 @@ const initialState = {
   userDetails:
     JSON.parse(localStorage.getItem("userDetails") as string) || null,
   userToken: JSON.parse(localStorage.getItem("userToken") as string) || null,
+  workouts: [],
   currentRoutes: [],
 };
 
@@ -42,6 +43,10 @@ const generalSlice = createSlice({
         userToken: payload,
       };
     },
+    SET_WORKOUTS: (state, { payload }) => ({
+      ...state,
+      workouts: payload,
+    }),
     SET_CURRENT_WORKOUT: (state, { payload }) => ({
       ...state,
       currentWorkout: payload,
@@ -98,6 +103,7 @@ export const {
   SET_IS_MOBILE,
   SET_USER_DETAILS,
   SET_USER_TOKEN,
+  SET_WORKOUTS,
   SET_CURRENT_ROUTES,
   SET_CURRENT_WORKOUT,
 } = actions;

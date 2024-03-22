@@ -20,11 +20,14 @@ module.exports = {
       set_number: {
         type: Sequelize.INTEGER,
       },
+      reps: {
+        type: Sequelize.INTEGER,
+      },
       weight: {
         type: Sequelize.INTEGER,
       },
-      reps: {
-        type: Sequelize.INTEGER,
+      weight_unit: {
+        type: Sequelize.STRING,
       },
       created_at: {
         type: Sequelize.DATE,

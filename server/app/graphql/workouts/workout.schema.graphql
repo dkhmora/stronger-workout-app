@@ -15,6 +15,7 @@ type Workout {
   duration: String
   totalWeight: String
   numberOfPRs: Int
+  weightUnit: String
   userId: ID!
   user: User
   exercises: [WorkoutExercise]

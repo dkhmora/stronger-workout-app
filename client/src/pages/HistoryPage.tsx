@@ -4,9 +4,12 @@ import HistoryList from "../components/HistoryList";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
 import { data } from "../temp_db/workouts";
+import useGetWorkouts from "../hooks/useGetWorkouts";
 
 export default function HistoryPage() {
   const isMobile = useSelector((state: RootState) => state.isMobile);
+  const workouts = useSelector((state: RootState) => state.workouts);
+  const { data, loading, error } = useGetWorkouts();
 
   return (
     <Container className="p-4 md:p-12">
@@ -17,7 +20,7 @@ export default function HistoryPage() {
       )}
 
       <Box>
-        <HistoryList workouts={data} className="py-0" />
+        <HistoryList workouts={workouts} className="py-0" />
       </Box>
     </Container>
   );

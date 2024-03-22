@@ -12,3 +12,34 @@ export const GET_USER_DETAILS = gql`
     }
   }
 `;
+
+export const GET_WORKOUTS = gql`
+  query GetWorkouts($userId: ID!) {
+    currentUser(id: $userId) {
+      workouts {
+        id
+        name
+        start
+        duration
+        totalWeight
+        numberOfPRs
+        exercises {
+          id
+          sets {
+            id
+            reps
+            weight
+            setNumber
+          }
+          exercise {
+            id
+            name
+            description
+            category
+            bodyPart
+          }
+        }
+      }
+    }
+  }
+`;
