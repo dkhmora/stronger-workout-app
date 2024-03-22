@@ -22,7 +22,7 @@ export const defaultRoute: Route = {
   mobile: false,
 };
 
-export const routes: Route[] = [
+export const mainRoutes: Route[] = [
   {
     text: "Profile",
     to: "/profile",

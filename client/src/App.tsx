@@ -7,13 +7,13 @@ import Navbar from "./components/Navbar";
 import { BottomNavigation, Box, CssBaseline, Toolbar } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MobileAppBar from "./components/MobileAppBar";
-import { SET_IS_MOBILE, SET_CURRENT_ROUTES } from "./store/general";
+import { SET_IS_MOBILE } from "./store/general";
 import useWindowDimension from "./hooks/useWindowDimension";
 import {
   defaultRoute,
   loginRoutes,
   routeElements,
-  routes,
+  mainRoutes,
 } from "./constants/general";
 import FabZoom from "./components/FabZoom";
 import RunningWorkoutBottomSheet from "./components/RunningWorkoutBottomSheet";
@@ -24,25 +24,14 @@ function App() {
   const { isMobile } = useWindowDimension();
   const { data, loading, error } = useSyncUserCredentials();
   const userToken = useSelector((state: any) => state.userToken);
-  const currentRoutes = useSelector((state: any) => state.currentRoutes);
-  const allRoutes = [defaultRoute, ...currentRoutes];
+  const allRoutes = userToken
+    ? [defaultRoute, ...mainRoutes]
+    : [defaultRoute, ...loginRoutes];
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(SET_IS_MOBILE(isMobile));
   }, [dispatch, isMobile]);
-
-  useEffect(() => {
-    // Check if user is logged in (for example, check if user credentials exist in cookies)
-    const isLoggedIn = !!userToken; // Adjust this condition based on your authentication logic
-
-    // Dispatch action to set current routes based on user login status
-    if (isLoggedIn) {
-      dispatch(SET_CURRENT_ROUTES(routes));
-    } else {
-      dispatch(SET_CURRENT_ROUTES(loginRoutes));
-    }
-  }, [dispatch, userToken]);
 
   return (
     <Box className="flex">

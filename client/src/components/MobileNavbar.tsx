@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { Link } from "react-router-dom";
-import { routeElements, routes } from "../constants/general";
+import { routeElements, mainRoutes } from "../constants/general";
 
 type MobileNavbarProps = {
   className?: string;
 };
 
 export default function MobileNavbar({ className }: MobileNavbarProps) {
-  const currentNavIndex = routes.findIndex(
+  const currentNavIndex = mainRoutes.findIndex(
     (item) => item.to === window.location.pathname
   );
   const [value, setValue] = React.useState(
@@ -26,7 +26,7 @@ export default function MobileNavbar({ className }: MobileNavbarProps) {
           }}
           className={className}
         >
-          {routes.map(({ text, to, mobile }, index) =>
+          {mainRoutes.map(({ text, to, mobile }, index) =>
             mobile ? (
               <BottomNavigationAction
                 label={text}

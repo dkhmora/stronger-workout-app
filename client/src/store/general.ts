@@ -5,8 +5,6 @@ import {
   configureStore,
   createSlice,
 } from "@reduxjs/toolkit";
-import { routes } from "../constants/general";
-import { loginRoutes } from "../constants/general";
 
 // Define the initial state of the store
 const initialState = {
@@ -16,7 +14,6 @@ const initialState = {
     JSON.parse(localStorage.getItem("userDetails") as string) || null,
   userToken: JSON.parse(localStorage.getItem("userToken") as string) || null,
   workouts: [],
-  currentRoutes: [],
 };
 
 const generalSlice = createSlice({
@@ -51,10 +48,6 @@ const generalSlice = createSlice({
       ...state,
       currentWorkout: payload,
     }),
-    SET_CURRENT_ROUTES: (state, { payload }) => ({
-      ...state,
-      currentRoutes: payload,
-    }),
   },
 });
 
@@ -65,7 +58,6 @@ const { reducer, actions } = generalSlice;
 const routesMiddleware: Middleware =
   (store) => (next: Dispatch<AnyAction>) => async (action: AnyAction) => {
     if (action.type === "SET_USER_TOKEN") {
-      // If the user logs in, set the current routes to the default routes
       if (action.payload !== null) {
         await fetch("/api/verifyToken", {
           method: "POST",
@@ -74,18 +66,13 @@ const routesMiddleware: Middleware =
           .then((res) => console.log(res.json()))
           .catch((e) => {
             console.error(e);
+            store.dispatch({
+              type: "SET_USER_TOKEN",
+              payload: null,
+            });
+
             next(action);
           });
-
-        store.dispatch({
-          type: "SET_CURRENT_ROUTES",
-          payload: routes,
-        });
-      } else {
-        store.dispatch({
-          type: "SET_CURRENT_ROUTES",
-          payload: loginRoutes,
-        });
       }
     }
 
@@ -107,7 +94,6 @@ export const {
   SET_USER_DETAILS,
   SET_USER_TOKEN,
   SET_WORKOUTS,
-  SET_CURRENT_ROUTES,
   SET_CURRENT_WORKOUT,
 } = actions;
 

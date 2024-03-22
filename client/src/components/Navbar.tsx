@@ -9,7 +9,7 @@ import {
   Drawer as MuiDrawer,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { routeElements, routes } from "../constants/general";
+import { routeElements, mainRoutes } from "../constants/general";
 import "./Navbar.css";
 import {
   dynamicNavbarStyles,
@@ -52,7 +52,7 @@ export default function Navbar() {
       onMouseLeave={handleDrawerClose}
     >
       <List>
-        {routes.map(({ text, to, desktop }, index) =>
+        {mainRoutes.map(({ text, to, desktop }, index) =>
           desktop ? (
             <ListItem
               key={text}
