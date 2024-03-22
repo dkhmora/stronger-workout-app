@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import MobileNavbar from "./components/MobileNavbar";
 import Navbar from "./components/Navbar";
@@ -73,6 +73,8 @@ function App() {
                 key={`${route.text}${route.to}`}
               />
             ))}
+
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
           {userToken && (
             <>

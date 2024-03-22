@@ -80,13 +80,25 @@ apolloServer.start().then(() => {
     jwt.verify(
       token,
       process.env.JWT_SECRET || "",
-      (err: jwt.VerifyErrors | null, user: any) => {
+      async (err: jwt.VerifyErrors | null, user: any) => {
         if (err) {
           return res.status(401).json({ error: "Invalid token" });
         }
 
-        // Token is valid, you can send additional data from decoded object if needed
-        res.status(200).json({ user });
+        // Check if the user exists in the database
+        try {
+          const existingUser = await dbModels.users.findByPk(user.id);
+
+          if (!existingUser) {
+            return res.status(401).json({ error: "User not found" });
+          }
+
+          // Token is valid and user exists
+          res.status(200).json({ user });
+        } catch (error) {
+          console.error("Error verifying token:", error);
+          return res.status(500).json({ error: "Internal server error" });
+        }
       }
     );
   });

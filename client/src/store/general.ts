@@ -71,8 +71,11 @@ const routesMiddleware: Middleware =
           method: "POST",
           body: JSON.stringify({ token: action.payload }),
         })
-          .then((res) => res.json())
-          .catch((e) => console.error(e));
+          .then((res) => console.log(res.json()))
+          .catch((e) => {
+            console.error(e);
+            next(action);
+          });
 
         store.dispatch({
           type: "SET_CURRENT_ROUTES",

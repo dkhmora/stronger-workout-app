@@ -20,7 +20,9 @@ export default function ProfilePage() {
       ) : null}
 
       <Box>
-        <ProfileBox userName={name} numberOfWorkouts={numberOfWorkouts} />
+        {name && numberOfWorkouts && (
+          <ProfileBox userName={name} numberOfWorkouts={numberOfWorkouts} />
+        )}
 
         <ProfileDashboard className="mt-6 md:mt-12" />
       </Box>
