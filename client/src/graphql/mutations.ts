@@ -20,9 +20,9 @@ export const REGISTER_USER = gql`
     $name: String!
     $email: String!
     $password: String!
-    $birthDate: ID!
+    $birthDate: String!
     $bodyWeight: Float!
-    $height: Int!
+    $height: Float!
   ) {
     registerUser(
       name: $name
@@ -32,12 +32,14 @@ export const REGISTER_USER = gql`
       bodyWeight: $bodyWeight
       height: $height
     ) {
-      id
-      name
-      birthDate
-      email
-      bodyWeight
-      height
+      user {
+        id
+        name
+        email
+        bodyWeight
+        height
+      }
+      token
     }
   }
 `;

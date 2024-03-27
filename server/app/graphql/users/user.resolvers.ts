@@ -22,9 +22,18 @@ const userResolvers = {
       context: { models: DBModels }
     ) => {
       try {
-        return await context.models.users.create({
+        const newUser = await context.models.users.create({
           ...user,
         });
+
+        const token = sign({ id: newUser.id }, process.env.JWT_SECRET || "", {
+          expiresIn: "30d",
+        });
+
+        return {
+          user: newUser,
+          token,
+        };
       } catch (error) {
         console.error(error);
       }

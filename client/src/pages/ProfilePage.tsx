@@ -11,6 +11,8 @@ export default function ProfilePage() {
     (state: RootState) => state.userDetails
   );
 
+  console.log(name, numberOfWorkouts);
+
   return (
     <Container className="p-4 md:p-12">
       {!isMobile ? (
@@ -20,7 +22,7 @@ export default function ProfilePage() {
       ) : null}
 
       <Box>
-        {name && numberOfWorkouts && (
+        {name && numberOfWorkouts !== null && (
           <ProfileBox userName={name} numberOfWorkouts={numberOfWorkouts} />
         )}
 

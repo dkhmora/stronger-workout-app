@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { Container, Typography, Box } from "@mui/material";
 import RoundedTextField from "../components/RoundedTextField";
 import RoundedButton from "../components/RoundedButton";
+import { useMutation } from "@apollo/client";
+import { REGISTER_USER } from "../graphql/mutations";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { SET_USER_DETAILS, SET_USER_TOKEN } from "../store/general";
 
 export default function RegistrationPage() {
+  const [mutateFunction, { data, loading, error }] = useMutation(REGISTER_USER);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -13,6 +19,8 @@ export default function RegistrationPage() {
     password: "",
     confirmPassword: "",
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -24,9 +32,23 @@ export default function RegistrationPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Implement your registration logic here
-    console.log("Register with:", form);
-    // Make sure to include validation, e.g., matching passwords, valid email, etc.
+
+    const finalFormData = JSON.parse(JSON.stringify(form));
+    delete finalFormData.confirmPassword;
+    finalFormData.bodyWeight = parseFloat(finalFormData.bodyWeight);
+    finalFormData.height = parseFloat(finalFormData.height);
+
+    mutateFunction({ variables: finalFormData })
+      .then((res) => {
+        dispatch(SET_USER_DETAILS(res.data.registerUser.user));
+        dispatch(SET_USER_TOKEN(res.data.registerUser.token));
+      })
+      .then(() => {
+        navigate("/profile");
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   return (

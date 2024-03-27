@@ -10,7 +10,7 @@ type Mutation {
     password: String!
     bodyWeight: Float!
     height: Float!
-  ): User
+  ): AuthPayload
   loginUser(email: String!, password: String!): AuthPayload
   updateUser(
     id: ID!
