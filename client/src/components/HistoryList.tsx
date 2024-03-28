@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Grid } from "@mui/material";
+import { List, Grid, Typography, Box } from "@mui/material";
 import HistoryListItem from "./HistoryListItem";
 import { WorkoutData } from "../interfaces";
 
@@ -26,10 +26,12 @@ export default function HistoryList({ workouts, className }: HistoryListProps) {
   };
 
   return (
-    <List className={className}>
-      <Grid container rowSpacing={2} columnSpacing={3} alignItems="stretch">
-        {renderWorkouts()}
-      </Grid>
-    </List>
+    <Box>
+      <List className={className}>
+        <Grid container rowSpacing={2} columnSpacing={3} alignItems="stretch">
+          {renderWorkouts()}
+        </Grid>
+      </List>
+    </Box>
   );
 }

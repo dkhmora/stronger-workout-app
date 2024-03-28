@@ -50,7 +50,7 @@ function App() {
           </>
         )}
 
-        <Box component="main" className="flex-grow bg-blue" id="main">
+        <Box component="main" className="flex-grow" id="main">
           {isMobile ? <Toolbar /> : null} {/* To push content down */}
           <Routes>
             {allRoutes.map((route: RouteType) => (

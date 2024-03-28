@@ -12,15 +12,23 @@ export default function HistoryPage() {
   const { data, loading, error } = useGetWorkouts();
 
   return (
-    <Container className="p-4 md:p-12">
+    <Container
+      className="flex flex-col p-4 md:p-12"
+      maxWidth="lg"
+      style={{ minHeight: "100vh" }}
+    >
       {!isMobile && (
         <Typography noWrap variant="h2" component="h2" className="mb-6">
           Workout History
         </Typography>
       )}
 
-      <Box>
-        <HistoryList workouts={workouts} className="py-0" />
+      <Box className="flex flex-1 justify-center items-center">
+        {workouts.length === 0 ? (
+          <Typography variant="h6">No workouts found</Typography>
+        ) : (
+          <HistoryList workouts={workouts} className="py-0" />
+        )}
       </Box>
     </Container>
   );
