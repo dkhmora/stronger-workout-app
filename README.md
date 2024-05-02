@@ -2,17 +2,19 @@
 
 Stronger Workout App is a web app which tries to replicate the Strong Workout Mobile App in a web app setting.
 
-Front-end: React.js, Material UI
-Back-end: MySQL, Express.js, Sequelize.js, GraphQL
+Front-end: React.js, Material UI \
+Back-end: MySQL, Express.js, Sequelize.js \
 Testing: Jest
 
 Containers:
+
 - Client
 - Server
 - phpMyAdmin
 - MySQL
 
 Future plans:
+
 - Make it a Progressive Web App (PWA)
 - Deploy to AWS ECS
 

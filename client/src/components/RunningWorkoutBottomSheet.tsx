@@ -2,6 +2,7 @@ import Sheet, { SheetRef } from "react-modal-sheet";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/general";
 import { useRef } from "react";
+import { Typography } from "@mui/material";
 
 export default function RunningWorkoutBottomSheet() {
   const currentWorkout = useSelector(
@@ -16,12 +17,16 @@ export default function RunningWorkoutBottomSheet() {
       ref={ref}
       initialSnap={0}
       onClose={() => snapTo(1)}
-      snapPoints={[1, 100]}
+      snapPoints={[1, 80]}
+      disableScrollLocking
       className="mb-[56px] sm:mb-0"
     >
       <Sheet.Container>
         <Sheet.Header />
-        <Sheet.Content>{/* Your sheet content goes here */}</Sheet.Content>
+
+        <Sheet.Content className="flex text-center">
+          <Typography>Running Workout</Typography>
+        </Sheet.Content>
       </Sheet.Container>
     </Sheet>
   );

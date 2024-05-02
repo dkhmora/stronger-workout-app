@@ -1,5 +1,5 @@
 import { DBModels } from "app/models";
-import { UserAttributes, UserInstance } from "app/models/user.model";
+import { UserAttributes, UserInstance } from "app/models/users.model";
 import bcrypt from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
@@ -22,9 +22,18 @@ const userResolvers = {
       context: { models: DBModels }
     ) => {
       try {
-        return await context.models.users.create({
+        const newUser = await context.models.users.create({
           ...user,
         });
+
+        const token = sign({ id: newUser.id }, process.env.JWT_SECRET || "", {
+          expiresIn: "30d",
+        });
+
+        return {
+          user: newUser,
+          token,
+        };
       } catch (error) {
         console.error(error);
       }
@@ -44,7 +53,7 @@ const userResolvers = {
       }
 
       const token = sign({ id: user.id }, process.env.JWT_SECRET || "", {
-        expiresIn: "24h",
+        expiresIn: "30d",
       });
 
       return { user, token };

@@ -5,9 +5,17 @@ import {
   ArrowForwardIos as ArrowForwardIosIcon,
 } from "@mui/icons-material";
 
-type ProfileBoxProps = { className?: string };
+type ProfileBoxProps = {
+  className?: string;
+  numberOfWorkouts: number;
+  userName: string;
+};
 
-export default function ProfileBox({ className }: ProfileBoxProps) {
+export default function ProfileBox({
+  className,
+  numberOfWorkouts,
+  userName,
+}: ProfileBoxProps) {
   return (
     <Button
       component={Paper}
@@ -36,11 +44,11 @@ export default function ProfileBox({ className }: ProfileBoxProps) {
               color="text.primary"
               data-testid="user-name"
             >
-              <b>Daryl Mora</b>
+              <b>{userName}</b>
             </Typography>
             {/*TODO: Change to user name*/}
             <Typography variant="subtitle2" color="text.secondary">
-              <b>444 workouts</b>
+              <b>{numberOfWorkouts} workouts</b>
             </Typography>
             {/*TODO: Change to user number of workouts*/}
           </Box>

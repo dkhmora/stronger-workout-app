@@ -1,9 +1,9 @@
-import exercisesModel, { ExerciseInstance } from "./exercise.model";
-import usersModel, { UserInstance } from "./user.model";
+import exercisesModel, { ExerciseInstance } from "./exercises.model";
+import usersModel, { UserInstance } from "./users.model";
 import workoutTemplatesModel, {
   WorkoutTemplateInstance,
-} from "./workoutTemplate.model";
-import workoutsModel, { WorkoutInstance } from "./workout.model";
+} from "./workoutTemplates.model";
+import workoutsModel, { WorkoutInstance } from "./workouts.model";
 import workoutExercisesModel, {
   WorkoutExercisesInstance,
 } from "./workoutExercises.model";
@@ -80,7 +80,7 @@ dbModels.workoutTemplates.belongsToMany(dbModels.exercises, {
 dbModels.exercises.belongsToMany(dbModels.workoutTemplates, {
   through: dbModels.workoutTemplateExercises,
 });
-dbModels.workouts.hasOne(dbModels.workoutTemplates);
+dbModels.workoutTemplates.hasMany(dbModels.workouts);
 dbModels.workouts.belongsToMany(dbModels.exercises, {
   through: dbModels.workoutExercises,
 });

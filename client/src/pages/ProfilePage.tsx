@@ -7,6 +7,11 @@ import ProfileDashboard from "../components/ProfileDashboard";
 
 export default function ProfilePage() {
   const isMobile = useSelector((state: RootState) => state.isMobile);
+  const { name, numberOfWorkouts } = useSelector(
+    (state: RootState) => state.userDetails
+  );
+
+  console.log(name, numberOfWorkouts);
 
   return (
     <Container className="p-4 md:p-12">
@@ -17,7 +22,9 @@ export default function ProfilePage() {
       ) : null}
 
       <Box>
-        <ProfileBox />
+        {name && numberOfWorkouts !== null && (
+          <ProfileBox userName={name} numberOfWorkouts={numberOfWorkouts} />
+        )}
 
         <ProfileDashboard className="mt-6 md:mt-12" />
       </Box>

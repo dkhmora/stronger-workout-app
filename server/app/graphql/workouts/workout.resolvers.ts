@@ -1,7 +1,7 @@
 import { DBModels } from "app/models";
-import { ExerciseAttributes } from "app/models/exercise.model";
-import { UserInstance } from "app/models/user.model";
-import { WorkoutAttributes } from "app/models/workout.model";
+import { ExerciseAttributes } from "app/models/exercises.model";
+import { UserInstance } from "app/models/users.model";
+import { WorkoutAttributes } from "app/models/workouts.model";
 import { WorkoutExerciseSetsAttributes } from "app/models/workoutExerciseSets.model";
 import { WorkoutExercisesAttributes } from "app/models/workoutExercises.model";
 import moment from "moment";
@@ -16,6 +16,8 @@ const workoutResolvers = {
       { user, models }: { user: UserInstance; models: DBModels }
     ) => {
       if (!user) throw new Error("User not found");
+
+      console.log(user);
 
       return await models.workouts.create({
         ...workout,

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
   StyledEngineProvider,
@@ -11,6 +10,7 @@ import {
 import generalStore from "./store/general";
 import { Provider } from "react-redux";
 import { blue, grey } from "@mui/material/colors";
+import ApolloProviderContainer from "./ApolloProviderContainer";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -51,10 +51,22 @@ const darkTheme = createTheme({
       main: blue[500],
       dark: blue[700],
       darker: blue[900],
+      contrastText: "#fff",
     },
   },
   button: {
     primary: blue[500],
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          "&.MuiButton-containedPrimary": {
+            backgroundColor: blue[500],
+          },
+        },
+      },
+    },
   },
 });
 
@@ -63,7 +75,7 @@ root.render(
     <ThemeProvider theme={darkTheme}>
       <StyledEngineProvider injectFirst>
         <Provider store={generalStore}>
-          <App />
+          <ApolloProviderContainer />
         </Provider>
       </StyledEngineProvider>
     </ThemeProvider>
