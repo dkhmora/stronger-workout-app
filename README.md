@@ -19,7 +19,6 @@ Future plans:
 - Deploy to AWS ECS
 
 ## Database Schema Diagram
-
 ![Stronger Workout App DB Schema (Created with LucidCharts)](https://lucid.app/publicSegments/view/16a177f1-a126-4273-9946-a24e559e0f5a/image.png)
 
 ## Build Setup
@@ -51,7 +50,6 @@ $ docker compose up
 ```
 
 ## Installing/Updating New Node Modules
-
 ```bash
-$ docker compose up --build --force-recreate
+$ docker compose up --build --force-recreate -V
 ```
